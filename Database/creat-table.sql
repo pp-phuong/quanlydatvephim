@@ -1,7 +1,9 @@
+
+USE DALT
 CREATE TABLE account
 (
 	ID_number char PRIMARY KEY,
-	fullname varchar(30) NOT NULL,
+	fullname char(30) NOT NULL,
 	username char(30) NOT NULL,
 	pwd char(30) NOT NULL,
 	phone_number char(20) NOT NULL,
@@ -11,17 +13,17 @@ GO
 CREATE TABLE movie
 (
 	movie_id int PRIMARY KEY,
-	movie_name varchar(35) NOT NULL,
-	movie_description varchar(150),
+	movie_name char(35) NOT NULL,
+	movie_description char(150),
 	movie_length int NOT NULL,
-	movie_genres varchar(30) NOT NULL,
+	movie_genres char(30) NOT NULL,
 	movie_release Date NOT NULL
 )
 GO
 CREATE TABLE room
 (
 	room_id int  PRIMARY KEY,
-	room_name varchar(2) NOT NULL
+	room_name char(2) NOT NULL
 )
 GO
 CREATE TABLE schedule
@@ -40,7 +42,7 @@ CREATE TABLE seatType
 (
 	seat_type_id int PRIMARY KEY,
 	seat_type char(10) NOT NULL,
-	seat_price money DEFAULT (55000)
+	seat_price money DEFAULT (45000)
 )
 GO
 CREATE TABLE seat

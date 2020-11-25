@@ -14,7 +14,7 @@ bool DatabaseAccess::Init()
 
 	cout << "Dang ket noi toi CSDL......" << endl;
 	/*Data Source = DESKTOP - S2SLR6P; Initial Catalog = QlyDatVePhim; Persist Security Info = True; User ID = sa*/
-	switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLWCHAR*)L"DRIVER={SQL Server}; Server=DESKTOP-S2SLR6P;Database=QlyDatVePhim;UID=sa;PWD=123456;Trusted_Connection=True;",
+	switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLWCHAR*)L"DRIVER={SQL Server}; Server=DESKTOP-S2SLR6P;Database=DALT;UID=sa;PWD=123456;Trusted_Connection=True;",
 		SQL_NTS,
 		retConString,
 		1024,

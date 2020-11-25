@@ -16,6 +16,8 @@ int main()
     AccountAccess acc;
     acc.Init();
     acc.Show();
+    acc.Insert();
+    acc.Show();
     acc.Close();
 }
 

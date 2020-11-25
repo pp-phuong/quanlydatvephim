@@ -5,11 +5,11 @@ class Account
 {
 private:
 	int ID_number;
-	char fullname[30];
-	char username[30];
-	char pwd[30];
-	char email[30];
-	char phone[11];
+	char fullname[32];
+	char username[32];
+	char pwd[32];
+	char email[32];
+	char phone_number[50];
 
 public:
 	Account();
@@ -18,4 +18,6 @@ public:
 	int getID();
 	char* getUsername();
 	char* getPwd();
+	void setAccount();
+	string insertQuery();
 };

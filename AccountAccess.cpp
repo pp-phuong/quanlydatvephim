@@ -72,7 +72,6 @@ void AccountAccess::Show()
 	}
 	SQLCancel(SQLStateHandle);
 }
-
 bool AccountAccess::Insert()
 {
 	string c_query = "insert into account values ('";
@@ -94,6 +93,7 @@ bool AccountAccess::Insert()
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
+	return false;
 }
 bool AccountAccess::Update()
 {

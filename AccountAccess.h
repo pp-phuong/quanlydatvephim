@@ -10,5 +10,7 @@ public:
     bool Update();
     bool Delete();
     void Show();
+    int SearchName(string);
+
 };
 

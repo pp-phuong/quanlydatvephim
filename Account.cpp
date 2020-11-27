@@ -41,7 +41,7 @@ char* Account::getPwd()
 }
 void Account::setAccount()
 {
-    /*char ch;*/
+    char ch;
     cout << "ID Number :";
     cin >> ID_number;
     cout << "Fullname : ";
@@ -55,14 +55,15 @@ void Account::setAccount()
     cin.getline(phone_number, 50);
     cout << "Password :";
     cin.getline(pwd, 32);
-    /*while (ch != 13)
+
+   /* while (ch != 13)
     {
         if (ch == '\b')
         {
 
-            if ( !password.empty())
+            if ( pwd == "")
             {
-                password.pop_back();
+                pwd = pwd + ch;
                 cout << static_cast<char>(8) << " " << static_cast<char>(8);
             }
         }

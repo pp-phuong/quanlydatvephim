@@ -10,12 +10,10 @@ int main()
 {
     Function fc;
     char key;
-    AccountAccess acc;
-    //fc.Authentication();
     cout << " WELCOME TO HANAFUO CINEMA!" << endl;
     do
     {
-        fc.Menu(acc); 
+        fc.Menu(); 
         cout << "Do you want to be continute? y/n ";
         cin >> key;
     } while (key != 'n');

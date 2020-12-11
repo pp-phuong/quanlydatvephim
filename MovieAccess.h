@@ -1,11 +1,11 @@
 #pragma once
+#include "Movie.h"
 #include "DatabaseAccess.h"
-class Account;
-class AccountAccess :
+class MovieAccess :
     public DatabaseAccess
 {
 public:
-    void Select(Account *&);
+    void Select(Movie*&);
     int CountRow();
     bool Insert();
     int Search(int); // search theo id_number
@@ -15,4 +15,5 @@ public:
     int SearchName(string);
 
 };
+
 

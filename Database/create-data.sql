@@ -13,4 +13,4 @@ VALUES
 ('4','Tiec trang mau','tinh cam gia dinh,hai huoc', '85','human','12/12/2020')
 GO
 
-SELECT * FROM movie
+SELECT * FROM account

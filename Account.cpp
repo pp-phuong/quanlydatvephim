@@ -6,12 +6,12 @@
 
 Account::Account()
 {
-	ID_number = 0;
-	strcpy_s(fullname, "");
-	strcpy_s(username, "");
-	strcpy_s(pwd, "");
-	strcpy_s(email, "");
-	strcpy_s(phone_number, "");
+    ID_number = 0;
+	strcpy_s(fullname, 32, "");
+	strcpy_s(username, 32, "");
+	strcpy_s(pwd, 32, "");
+	strcpy_s(email, 32, "");
+	strcpy_s(phone_number,50, "");
 }
 Account::Account(int ID,char* fullname, char* username, char* pwd, char* email, char* phone)
     :ID_number(ID)
@@ -25,8 +25,6 @@ Account::Account(int ID,char* fullname, char* username, char* pwd, char* email, 
 Account::~Account()
 {
 }
-
-
 int Account::getID()
 {
     return this->ID_number;
@@ -41,12 +39,24 @@ char* Account::getPwd()
 }
 void Account::setAccount()
 {
+    AccountAccess acc;
+    acc.Init();
     char ch;
+    bool validate = false;
+    int temp;
+    do {
     cout << "ID Number :";
-    cin >> ID_number;
+    cin >> temp;
+    if (acc.Search(temp) != -1) {
+        cout << "ID Number da ton tai !";
+    }
+    else validate = true;
+    } while (validate == false);
+    ID_number = temp;
+    acc.Close();
     cout << "Fullname : ";
     cin.ignore();
-    cin.getline( fullname,32);
+    cin.getline(fullname,32);
     cout << "Username :";
     cin.getline(username,32);
     cout << "Email :";
@@ -95,8 +105,8 @@ string Account::insertQuery()
     string t_fullname(fullname);
     string t_username(username);
     string t_pwd(pwd);
-    string t_email(email);
     string t_phone(phone_number);
-    t_query = t_ID + "','" + t_fullname +"','" + t_username + "','" + t_pwd +"','" + t_email +"','" + t_phone + "')";
+    string t_email(email);
+    t_query = t_ID + "','" + t_fullname +"','" + t_username + "','" + t_pwd +"','" + t_phone +"','" + t_email + "')";
     return t_query;
 }

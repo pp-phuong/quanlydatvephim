@@ -1,21 +1,29 @@
 #include "Function.h"
 
-void Function::Menu(AccountAccess &acc)
+void Function::Menu()
 {
     cout << "_________________________HANAFUO CINEMA_________________________" << endl
         << "                       1. MOVIE" << endl
         << "                       2. SCHEDULE " << endl
         << "                       3. BOOKING " << endl
         << "                       4. ACCOUNT" << endl
-        << "                       5. INSERT ACCOUNT " << endl 
+        << "                       5. INSERT ACCOUNT " << endl
+        << "                       6. INSERT MOVIE " << endl
+        << "                       7. SEARCH MOVIE " << endl
         << "                       PRESS THE NUMBER : ";
     int m;
+    int search;
+    AccountAccess acc;
+    MovieAccess mv;
+
     cin >> m;
     switch (m)
     {
     case 1:
         cout << "You chose MOVIE" << endl;
-        /*cout << mv;*/
+        mv.Init();
+        mv.Show();
+        mv.Close();
         break;
     case 2:
         cout << "You chose SCHEDULE" << endl;
@@ -30,43 +38,59 @@ void Function::Menu(AccountAccess &acc)
         acc.Close();
         break;
     case 5:
-        cout << "You chose INSERT " << endl;
+        cout << "You chose INSERT ACCOUNT " << endl;
         acc.Init();
         acc.Insert();
         acc.Close();
         break;
-    default:
-        cout << " Sorry,There is no matching option " << endl;
+    case 6:
+        cout << "You chose INSERT MOVIE " << endl;
+        mv.Init();
+        mv.Insert();
+        mv.Close();
         break;
-    }
-}
-void Function::Authentication(AccountAccess& acc)
-{
-    Account user;
-    cout << "_________________________WELCOME TO HANAFUO CINEMA_________________________" << endl
-        << "                          Do you have account ? " << endl
-        << "                          1. Login " << endl
-        << "                          2. Register " << endl
-        << "                       PRESS THE NUMBER : ";
-    int m;
-    cin >> m;
-    switch (m)
-    {
-    case 1:
-        cout << "Login:" << endl;
-        Authentication(acc);
-        break;
-    case 2:
-        cout << "Register:" << endl;
-        acc.Insert();
-        cout << "Login:" << endl;
-        Authentication(acc);
+    case 7:
+        cout << "You chose INSERT MOVIE " << endl;
+        cout << "Nhap ma phim can tim kiem :";
+        cin >> search;
+        mv.Init();
+        cout << mv.Search(search);
+        mv.Close();
         break;
     default:
         cout << " Sorry,There is no matching option " << endl;
         break;
     }
 }
+//void Function::Authentication()
+//{
+//        AccountAccess acc;
+//    MovieAccess mv;
+//    Account user;
+//    cout << "_________________________WELCOME TO HANAFUO CINEMA_________________________" << endl
+//        << "                          Do you have account ? " << endl
+//        << "                          1. Login " << endl
+//        << "                          2. Register " << endl
+//        << "                       PRESS THE NUMBER : ";
+//    int m;
+//    cin >> m;
+//    switch (m)
+//    {
+//    case 1:
+//        cout << "Login:" << endl;
+//        Authentication(acc);
+//        break;
+//    case 2:
+//        cout << "Register:" << endl;
+//        acc.Insert();
+//        cout << "Login:" << endl;
+//        Authentication(acc);
+//        break;
+//    default:
+//        cout << " Sorry,There is no matching option " << endl;
+//        break;
+//    }
+//}
 //void Function::Validate()
 //{
 //    

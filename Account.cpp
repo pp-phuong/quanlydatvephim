@@ -6,15 +6,16 @@
 
 Account::Account()
 {
-	ID_number = 0;
-	strcpy_s(fullname, "");
-	strcpy_s(username, "");
-	strcpy_s(pwd, "");
-	strcpy_s(email, "");
-	strcpy_s(phone_number, "");
+    ID_number = 0;
+	strcpy_s(fullname, 32, "");
+	strcpy_s(username, 32, "");
+	strcpy_s(pwd, 32, "");
+	strcpy_s(email, 32, "");
+	strcpy_s(phone_number,50, "");
+    role = 0;
 }
-Account::Account(int ID,char* fullname, char* username, char* pwd, char* email, char* phone)
-    :ID_number(ID)
+Account::Account(int ID,char* fullname, char* username, char* pwd, char* email, char* phone, int role)
+    :ID_number(ID),role(role)
 {
 	strcpy_s(this->fullname,32, fullname);
 	strcpy_s(this->username,32, username);
@@ -25,8 +26,6 @@ Account::Account(int ID,char* fullname, char* username, char* pwd, char* email, 
 Account::~Account()
 {
 }
-
-
 int Account::getID()
 {
     return this->ID_number;
@@ -35,18 +34,64 @@ char* Account::getUsername()
 {
     return this->username;
 }
+string Account::getStrUsername() {
+    char* User = this->username;
+    for (int i = strlen(User) - 1; i >= 0; i--) {
+        if (User[i] != ' ') {
+            User[i + 1] = '\0';
+            break;
+        }
+    }
+    string temp(User);
+    return temp;
+}
+char* Account::getFullname()
+{
+    return this->fullname;
+}
+char* Account::getEmail()
+{
+    return this->email;
+}
+char* Account::getPhone()
+{
+    return this->phone_number;
+}
 char* Account::getPwd()
 {
-    return this->pwd;
+    char* pwd = this->pwd;
+    for (int i = strlen(pwd) - 1; i >= 0; i--) {
+        if (pwd[i] != ' ') {
+            pwd[i + 1] = '\0';
+            break;
+        }
+    }
+    return pwd;
+}
+int Account::getRole()
+{
+    return this->role;
 }
 void Account::setAccount()
 {
+   /* AccountAccess acc;
+    acc.Init();*/
     char ch;
+    bool validate = false;
+    /*int temp;
+    do {
     cout << "ID Number :";
-    cin >> ID_number;
+    cin >> temp;
+    if (acc.Search(temp) != -1) {
+        cout << "ID Number da ton tai !";
+    }
+    else validate = true;
+    } while (validate == false);
+    ID_number = temp;
+    acc.Close();*/
     cout << "Fullname : ";
     cin.ignore();
-    cin.getline( fullname,32);
+    cin.getline(fullname,32);
     cout << "Username :";
     cin.getline(username,32);
     cout << "Email :";
@@ -55,7 +100,6 @@ void Account::setAccount()
     cin.getline(phone_number, 50);
     cout << "Password :";
     cin.getline(pwd, 32);
-
    /* while (ch != 13)
     {
         if (ch == '\b')
@@ -87,16 +131,4 @@ void Account::setAccount()
         }
         ch = getch();
     }*/
-}
-string Account::insertQuery()
-{
-    string t_query;
-    string t_ID = to_string(ID_number);
-    string t_fullname(fullname);
-    string t_username(username);
-    string t_pwd(pwd);
-    string t_email(email);
-    string t_phone(phone_number);
-    t_query = t_ID + "','" + t_fullname +"','" + t_username + "','" + t_pwd +"','" + t_email +"','" + t_phone + "')";
-    return t_query;
 }

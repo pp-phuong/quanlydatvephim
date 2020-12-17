@@ -1,21 +1,19 @@
-﻿#pragma once
+#pragma once
+#include "Movie.h"
 #include "DatabaseAccess.h"
-class Account;
-class AccountAccess :
+class MovieAccess :
     public DatabaseAccess
 {
 public:
-    void Select(Account *&); // *:mảng các account &:tham chiếu từng trường trong account 
+    void Select(Movie*&);
     int CountRow();
     bool Insert();
-    bool Insert(Account);
     int Search(int); // search theo id_number
-    int LastID();
     bool Update();
     bool Delete();
     void Show();
     int SearchName(string);
-    char* checkPwd(int);
 
 };
+
 

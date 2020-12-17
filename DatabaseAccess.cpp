@@ -12,9 +12,9 @@ bool DatabaseAccess::Init()
 	if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_DBC, SQLEnvironmentHandle, &SQLConnectionHandle))
 		Close();
 
-	cout << "Dang ket noi toi CSDL......" << endl;
+	cout << "Waiting......" << endl;
 	/*Data Source = DESKTOP - S2SLR6P; Initial Catalog = QlyDatVePhim; Persist Security Info = True; User ID = sa*/
-	switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLWCHAR*)L"DRIVER={SQL Server}; Server=DESKTOP-S2SLR6P;Database=DALT;UID=sa;PWD=123456;Trusted_Connection=True;",
+	switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLWCHAR*)L"DRIVER={SQL Server}; Server=DESKTOP-BIHQC8D;Database=QLDatVeXemPhim;UID=sa;PWD=123456;Trusted_Connection=True;",
 		SQL_NTS,
 		retConString,
 		1024,
@@ -22,20 +22,20 @@ bool DatabaseAccess::Init()
 		SQL_DRIVER_NOPROMPT)) {
 
 	case SQL_SUCCESS:
-		cout << "Ket noi thanh cong!!" << endl;
+		/*cout << "Ket noi thanh cong!!" << endl;*/
 		break;
 
 	case SQL_SUCCESS_WITH_INFO:
-		cout << "Ket noi thanh cong!!" << endl;
+	/*	cout << "Ket noi thanh cong!!" << endl;*/
 		break;
 
 	case SQL_INVALID_HANDLE:
-		cout << "Khong the ket noi den CSDL!!" << endl;
+		cout << "Error!!" << endl;
 		Close();
 		break;
 
 	case SQL_ERROR:
-		cout << "Khong the ket noi den CSDL!!" << endl;
+		cout << "Error!!" << endl;
 		Close();
 		break;
 	default:

@@ -1,8 +1,8 @@
-USE DALT
+USE QLDatVeXemPhim
 INSERT INTO account 
 VALUES
-('1', 'Tran Thi Phuong','pphuong', '123123','0336615425','trantpp@gmail.com'),
-('2', 'Le hoang ngoc han','ngochan ', '123123','0336615425','ngochan0806@gmail.com')
+('1', 'Tran Thi Phuong','pphuong', '123123','0336615425','trantpp@gmail.com', '1'),
+('2', 'Le hoang ngoc han','ngochan ', '123123','0336615425','ngochan0806@gmail.com', '1')
 GO
 
 INSERT INTO movie 
@@ -13,4 +13,4 @@ VALUES
 ('4','Tiec trang mau','tinh cam gia dinh,hai huoc', '85','human','12/12/2020')
 GO
 
-SELECT * FROM movie
+SELECT * FROM account

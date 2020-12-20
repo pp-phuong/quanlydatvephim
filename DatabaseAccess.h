@@ -25,7 +25,7 @@ public:
 	virtual bool Insert() = 0;
 	virtual bool Delete() = 0;
 	virtual bool Update() = 0;
-	virtual void Show() = 0;
+	virtual void Show();
 	void Close();
 };
 

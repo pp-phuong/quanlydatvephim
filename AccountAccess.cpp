@@ -87,44 +87,12 @@ int AccountAccess::LastID() {
 }
 void AccountAccess::Show()
 {
-	if (SQL_SUCCESS != SQLExecDirect(SQLStateHandle, (SQLWCHAR*)L"SELECT * FROM account", SQL_NTS))
+	Account* ptr = new Account[this->CountRow()];
+	this->Select(ptr);
+	for (int i = 0; i < this->CountRow(); i++)
 	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
-		Close();
+		ptr[i].Show();
 	}
-	else
-	{
-		SQLINTEGER PtrSQLVersion;
-		int ID_number;
-		char fullname[32];
-		char username[32];
-		char pwd[32];
-		char email[33];
-		char phone_number[50];
-		int role;
-		int n = 0;
-		cout << "ID: " << setw(4) << "Fullname: " << setw(30) << "Username: " << setw(34) << "Phone number: " << setw(14) << "Email: " << setw(23) << "Role: " <<endl;
-		while (SQLFetch(SQLStateHandle) == SQL_SUCCESS)
-		{
-			SQLGetData(SQLStateHandle, 1, SQL_INTEGER, &ID_number, sizeof(ID_number), NULL);
-			SQLGetData(SQLStateHandle, 2, SQL_CHAR, fullname, sizeof(fullname), NULL);
-			SQLGetData(SQLStateHandle, 3, SQL_CHAR, username, sizeof(username), NULL);
-			SQLGetData(SQLStateHandle, 4, SQL_CHAR, pwd, sizeof(pwd), NULL);
-			SQLGetData(SQLStateHandle, 5, SQL_CHAR, phone_number, sizeof(phone_number), NULL);
-			SQLGetData(SQLStateHandle, 6, SQL_CHAR, email, sizeof(email), NULL);
-			SQLGetData(SQLStateHandle, 7, SQL_INTEGER, &role, sizeof(role), NULL);
-			cout << left << setw(4) << ID_number;
-			cout << left << setw(20) <<fullname;
-			cout << left  << setw(17) << username;
-			cout << left  << setw(11) << phone_number;
-			cout << left << setw(23) << email;
-			cout << right << setw(2) << role << endl;
-			
-			n++;
-			if (n == MAX_ROW_SHOW) break;
-		}
-	}
-	SQLCancel(SQLStateHandle);
 }
 bool AccountAccess::Insert(Account acc)
 {
@@ -164,4 +132,10 @@ bool AccountAccess::Update()
 bool AccountAccess::Delete()
 {
 	return true;
+}
+Account AccountAccess::getAccount(int index)
+{
+	Account* ptr = new Account[this->CountRow()];
+	this->Select(ptr);
+	return ptr[index];
 }

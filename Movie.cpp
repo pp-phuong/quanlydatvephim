@@ -51,3 +51,13 @@ string Movie::insertQuery()
 	t_query = t_movie_id + "','" + t_movie_name + "','" + t_movie_description + "','" +  t_movie_length + "','" + t_movie_genres + "','" +  t_movie_release + "')";
 	return t_query;
 }
+
+void Movie::Show()
+{
+	cout << left << setw(4) << this->movie_id;
+	cout << left << setw(20) << this->movie_name;
+	cout << left << setw(17) << this->movie_description;
+	cout << left << setw(10) << this->movie_length;
+	cout << left << setw(11) << this->movie_genre;
+	cout << right << setw(11) << this->movie_release << endl;
+}

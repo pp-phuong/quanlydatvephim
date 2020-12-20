@@ -1,8 +1,5 @@
 #include "Account.h"
-#include <iomanip>
-#include <windows.h>
-#include <conio.h>
-#include <string>
+
 
 Account::Account()
 {
@@ -74,21 +71,8 @@ int Account::getRole()
 }
 void Account::setAccount()
 {
-   /* AccountAccess acc;
-    acc.Init();*/
     char ch;
     bool validate = false;
-    /*int temp;
-    do {
-    cout << "ID Number :";
-    cin >> temp;
-    if (acc.Search(temp) != -1) {
-        cout << "ID Number da ton tai !";
-    }
-    else validate = true;
-    } while (validate == false);
-    ID_number = temp;
-    acc.Close();*/
     cout << "Fullname : ";
     cin.ignore();
     cin.getline(fullname,32);
@@ -100,35 +84,22 @@ void Account::setAccount()
     cin.getline(phone_number, 50);
     cout << "Password :";
     cin.getline(pwd, 32);
-   /* while (ch != 13)
-    {
-        if (ch == '\b')
-        {
-
-            if ( pwd == "")
-            {
-                pwd = pwd + ch;
-                cout << static_cast<char>(8) << " " << static_cast<char>(8);
-            }
-        }
-        else
-        {
-            if (ch == ' ')
-            {
-                cout << endl << " Khong nhap khoang trang !" << endl;
-                cout << " Xin nhap lai mat khau !" << endl << "Password :";
-                ch = getch();
-                continue;
-            }
-            else
-            {
-                p.push_back(ch);
-                cout << ch;
-                Sleep(200);
-                cout << static_cast<char>(8) << " " << static_cast<char>(8);
-                cout << '*';
-            }
-        }
-        ch = getch();
-    }*/
+}
+ostream& operator<<(ostream& o, const Account acc)
+{
+    o << left << setw(4) << acc.ID_number;
+    o << left << setw(20) << acc.fullname;
+    o << left << setw(17) << acc.username;
+    o << left << setw(11) << acc.phone_number;
+    o << right << setw(23) << acc.email << endl;
+    return o;
+}
+void Account::Show()
+{
+    cout << left << setw(4) << this->ID_number;
+    cout << left << setw(20) << this->fullname;
+    cout << left << setw(17) << this->username;
+    cout << left << setw(11) << this->phone_number;
+    cout << left << setw(23) << this->email;
+    cout << right << setw(2) << this->role << endl;
 }

@@ -16,6 +16,7 @@ public:
     void Show();
     int SearchName(string);
     char* checkPwd(int);
+    Account getAccount(int);
 
 };
 

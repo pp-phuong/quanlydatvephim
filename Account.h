@@ -1,7 +1,10 @@
 #pragma once
 #include <iostream>
 using namespace std;
-#include <string.h>
+#include <iomanip>
+#include <windows.h>
+#include <conio.h>
+#include <string>
 #include "AccountAccess.h"
 class Account
 {
@@ -27,4 +30,6 @@ public:
 	char* getPhone();
 	int getRole();
 	void setAccount();
+	friend ostream& operator<<(ostream&, const Account);
+	void Show();
 };

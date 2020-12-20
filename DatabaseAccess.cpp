@@ -55,3 +55,5 @@ void DatabaseAccess::Close()
 }
 void DatabaseAccess::Select()
 {}
+void DatabaseAccess:: Show()
+{}

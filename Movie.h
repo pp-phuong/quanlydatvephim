@@ -1,6 +1,9 @@
 #pragma once
 #include <iostream>
 using namespace std;
+#include <iomanip>
+#include <windows.h>
+#include <conio.h>
 #include <string>
 class Movie
 {
@@ -20,5 +23,6 @@ public:
 	char* getMovieDescription();
 	void setMovie();
 	string insertQuery();
+	void Show();
 };
 

@@ -37,7 +37,7 @@ string SeatType::insertQuery()
 	string t_seatTypeID = to_string(this->seat_type_id);
 	string t_seatTypeName(this->seat_type);
 	string t_seatPrice = to_string(this->seat_price);
-	t_query = t_seatTypeID + "','" + t_seatTypeName + "','" + t_seatPrice+ "')";
+	t_query = t_seatTypeID + "','" + t_seatTypeName + "','" + t_seatPrice + "')";
 	return t_query;
 }
 

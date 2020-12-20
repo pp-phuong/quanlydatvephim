@@ -146,6 +146,9 @@
     <ClInclude Include="Function.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="MovieAccess.h" />
+    <ClInclude Include="Seat.h" />
+    <ClInclude Include="SeatAccess.h" />
+    <ClInclude Include="SeatType.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
@@ -156,6 +159,9 @@
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Movie.cpp" />
     <ClCompile Include="MovieAccess.cpp" />
+    <ClCompile Include="Seat.cpp" />
+    <ClCompile Include="SeatAccess.cpp" />
+    <ClCompile Include="SeatType.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

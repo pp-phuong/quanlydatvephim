@@ -11,8 +11,20 @@ VALUES
 ('2','The call','dog and human', '85','human','12/12/2020'),
 ('3','The heir','hello man', '85','human','12/12/2020'),
 ('4','Tiec trang mau','tinh cam gia dinh,hai huoc', '85','human','12/12/2020')
+
+USE QLDatVeXemPhim
+INSERT INTO movie 
+VALUES
+('5','Jose, Nang tho cua toi','Cau chuyen tinh nen tho cua cau sinh vien Young Seok (Nam Joo Hyuk) va Josee (Han Ji Min)', '117','RomanticComedy Korea','2020-12-18'),
+('6','Chi Muoi Ba','chi Muoi ba lieu co minh oan cho anh Kem Gai', '96','Drama Vietnam','2020-12-23'),
+('7','DORAEMON: NOBITA va NNBKL','Nobita va nhung nguoi ban khung long ', '110','Animation Japan','2020-12-30'),
+('8','Run','bo phim ve Chloe Sherman', '89','Kinh di',' 2021-11-20'),
+('9','Escape Room 2 ','phan 2 can phong tu than', '110','action','2021-01-01'),
+('10','Cau Vang','chuyen the tu truyen ngan Lao Hac', '110','VietNam History','2021-01-08')
+select * from movie
 GO
 
+USE QLDatVeXemPhim
 INSERT INTO room
 VALUES
 ('1','R1'),
@@ -214,5 +226,5 @@ VALUES
 ('179','2','5','F','5',0),
 ('180','1','5','F','6',0)
 
-SELECT * FROM account
+SELECT * FROM seat
 

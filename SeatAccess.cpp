@@ -1,4 +1,4 @@
-#include "SeatAccess.h"
+﻿#include "SeatAccess.h"
 #include <iomanip>
 
 void SeatAccess::Select(Seat*& seat)
@@ -31,7 +31,7 @@ void SeatAccess::Select(Seat*& seat)
 			SQLGetData(SQLStateHandle, 5, SQL_CHAR, seat_number, sizeof(seat_number), NULL);
 			SQLGetData(SQLStateHandle, 6, SQL_INTEGER, &seat_status, sizeof(seat_status), NULL);
 
-			Seat* temp = new Seat(seat_id, seatType_id, room_id, seat_row, seat_number, seat_status);
+			Seat* temp = new Seat(seat_row, seat_number,seat_id, seatType_id, room_id, seat_status);
 			*(seat + i) = *temp;
 			i++;
 		}
@@ -78,11 +78,16 @@ int SeatAccess::Count(int choice, int roomID)
 
 bool SeatAccess::Insert()
 {
+	return 0;
 }
 
 bool SeatAccess::Update()
-{}
+{
+	return 0;
+}
 
 bool SeatAccess::Delete()
-{}
+{
+	return 0;
+}
 

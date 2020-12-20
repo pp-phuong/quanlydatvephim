@@ -76,6 +76,7 @@ void Function::Menu()
         << "                       7. Log out " << endl
         << "                       PRESS THE NUMBER : ";
     int m;
+    Account out;
     cin >> m;
     switch (m)
     {
@@ -99,7 +100,7 @@ void Function::Menu()
         this->MenuBooking();
         break;
     case 7:
-        
+        this->user_now = out;
         Authentication();
         break;
     default:
@@ -234,11 +235,8 @@ void Function::MenuMovieComing()
 }
 void Function::MenuSearchMovie()
 {
-    cout << "You chose SEARCH MOVIE " << endl;
-    cout << "Nhap ma phim can tim kiem :";
-    cin >> search;
     this->mv.Init();
-    cout << mv.Search(search);
+    this->mv.Show(4);
     this->mv.Close();
 }
 void Function::MenuSchedule()

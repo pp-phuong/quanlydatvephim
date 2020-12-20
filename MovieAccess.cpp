@@ -1,5 +1,13 @@
 ﻿#include "MovieAccess.h"
 #include <iomanip>
+MovieAccess::MovieAccess()
+{
+	this->search_key = "";
+}
+MovieAccess::~MovieAccess()
+{
+
+}
 void MovieAccess::Select(Movie*& mv, int choice)
 {
 	// 1: select all
@@ -18,6 +26,9 @@ void MovieAccess::Select(Movie*& mv, int choice)
 		break;
 	case 3:
 		c_query = "select * from movie where movie_release  > " + date.getToDay();
+		break;
+	case 4:
+		 c_query = "select * from movie where movie_name like '%" + this->search_key + "%'";
 		break;
 	}
 	const char* q = c_query.c_str();
@@ -71,9 +82,11 @@ int MovieAccess::CountRow(int choice)
 	case 3:
 		c_query = "select * from movie where movie_release  > " + date.getToDay();
 		break;
+	case 4:
+		 c_query = "select * from movie where movie_name like '%" + this->search_key + "%'";
+		break;
 	}
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "Co loi xay ra, vui long thu lai!" << endl;
@@ -102,14 +115,22 @@ int MovieAccess::Search(int id)
 }
 void MovieAccess::Show(int index)
 {
+	if (index == 4)
+	{
+		cout << "Nhap ten phim ban can tim: ";
+		cin >> this->search_key;
+	}
 	Movie* ptr = new Movie[this->CountRow(index)];
 	this->Select(ptr, index);
-	cout << "ID: " << setw(4) << "Movie name: " << setw(30) << "Movie description: " << setw(34) << "Movie Length: " << setw(20) << "Movie Genres" << setw(14) << "Movie release: " << endl;
+	
 	for (int i = 0; i < this->CountRow(index); i++)
 	{
 		ptr[i].Show();
 	}
-
+	if (this->CountRow(index) == 0)
+	{
+		cout << endl << "Sorry,no film founded!" << endl;
+	}
 }
 bool MovieAccess::Insert()
 {

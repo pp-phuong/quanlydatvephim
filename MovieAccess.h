@@ -5,7 +5,10 @@
 class MovieAccess :
     public DatabaseAccess
 {
+    string search_key;
 public:
+    MovieAccess();
+    ~MovieAccess();
     void Select(Movie*& , int);
     int CountRow(int);
     bool Insert();
@@ -13,7 +16,6 @@ public:
     bool Update();
     bool Delete();
     void Show(int);
-    int SearchName(string);
 };
 
 

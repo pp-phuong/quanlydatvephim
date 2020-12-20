@@ -15,6 +15,7 @@ int main()
     cout << " WELCOME TO HANAFUO CINEMA!" << endl;
     do
     {
+        system("cls");
         fc.Menu(); 
         cout << "Do you want to be continute? y/n ";
         cin >> key;

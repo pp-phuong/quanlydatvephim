@@ -54,10 +54,17 @@ string Movie::insertQuery()
 
 void Movie::Show()
 {
-	cout << left << setw(4) << this->movie_id;
-	cout << left << setw(20) << this->movie_name;
-	cout << left << setw(17) << this->movie_description;
-	cout << left << setw(10) << this->movie_length;
-	cout << left << setw(11) << this->movie_genre;
-	cout << right << setw(11) << this->movie_release << endl;
+	char* MV = this->movie_name;
+	for (int i = strlen(MV) - 1; i >= 0; i--) {
+		if (MV[i] != ' ') {
+			MV[i + 1] = '\0';
+			break;
+		}
+	}
+	string temp(MV);
+	cout << "___________________" << temp << "___________________" << endl << endl;
+	cout <<  "\t\tDescription: " << this->movie_description << endl;
+	cout <<  "\t\tLength: " << this->movie_length << " phut " << endl; 
+	cout <<  "\t\tGenre: " <<this->movie_genre << endl;
+	cout <<  "\t\tRelease: " <<  this->movie_release << endl << endl;
 }

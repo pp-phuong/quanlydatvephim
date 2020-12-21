@@ -54,16 +54,67 @@ int RoomAccess::Count()
 }
 
 void RoomAccess::Show()
-{}
+{
+	Room* ptr = new Room[this->Count()];
+	this->Select(ptr);
+
+	for (int i = 0; i < this->Count(); i++)
+	{
+		cout << i + 1 << ".";
+		ptr[i].Show();
+	}
+	if (this->Count() == 0)
+	{
+		cout << endl << "Sorry,no room founded!" << endl;
+	}
+}
 
 bool RoomAccess::Insert()
 {
-	return 0;
+	string c_query = "insert into room values ('";
+	Room room;
+	room.setRoom();
+	c_query += room.insertQuery();
+	const char* q = c_query.c_str();
+	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
+	{
+		cout << "Co loi xay ra, vui long thu lai!!" << endl;
+		Close();
+	}
+	else
+	{
+		cout << c_query;
+		cout << "Them du lieu thanh cong !" << endl;
+		return true;
+	}
+	SQLCancel(SQLStateHandle);
+	return false;
 }
 
-bool RoomAccess::Update()
+bool RoomAccess::Update(int id)
 {
-	return 0;
+	string c_query = "update room set";
+	string room_name;
+	cout << "Nhap room name :";
+	cin.ignore();
+	getline(cin, room_name);
+	c_query += " room_name = '" + room_name;
+	c_query += "'where room_id = '" + to_string(id) + "'";
+	const char* q = c_query.c_str();
+	cout << q;
+	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
+	{
+		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
+		Close();
+	}
+	else
+	{
+		cout << c_query;
+		cout << endl << "Them du lieu thanh cong !" << endl;
+		return true;
+	}
+	SQLCancel(SQLStateHandle);
+	return true;
 }
 
 bool RoomAccess::Delete()
@@ -71,7 +122,27 @@ bool RoomAccess::Delete()
 	return 0;
 }
 
-int RoomAccess::SearchName(char* r_name)
+int RoomAccess::Search(int id)
 {
-	return 0;
+	Room* ptr = new Room[this->Count()];
+	this->Select(ptr);
+	for (int i = 0; i < this->Count(); i++)
+	{
+		if (ptr[i].getRoomID() == id) return i;
+	}
+	return -1;
+}
+
+Room RoomAccess::getRoom(int index)
+{
+	Room* ptr = new Room[this->Count()];
+	this->Select(ptr);
+	return ptr[index];
+}
+
+int RoomAccess::LastID()
+{
+	Room* ptr = new Room[this->Count()];
+	this->Select(ptr);
+	return ptr[this->Count() - 1].getRoomID();
 }

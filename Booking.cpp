@@ -1,13 +1,5 @@
 #include "Booking.h"
 
-// Booking::Booking()
-// {
-// 	this->booking_id = 0;
-// 	this->account_id = 0;
-// 	this->schedule_id = 0;
-// 	this->seat_id = 0;
-// }
-
 Booking::Booking(int bookingID, int accountID, int scheduleID, int seatID)
 {
 	this->booking_id = bookingID;
@@ -47,7 +39,7 @@ string Booking::insertQuery()
 	string t_schedule_id = to_string(this->schedule_id);
 	string t_seat_id = to_string(this->seat_id);
 	t_query = t_booking_id + "','" + t_account_id + "','" + t_schedule_id + "','" + t_seat_id + "')";
-	return t;
+	return t_query;
 }
 
 void Booking::Show()

@@ -1,5 +1,5 @@
-﻿  AccountAccess.cpp
-D:\University\Năm 2\Kì 3\Đồ án\quanlydatvephim\AccountAccess.cpp(12,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
-D:\University\Năm 2\Kì 3\Đồ án\quanlydatvephim\AccountAccess.cpp(46,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
-D:\University\Năm 2\Kì 3\Đồ án\quanlydatvephim\AccountAccess.cpp(92): warning C4715: 'AccountAccess::Insert': not all control paths return a value
-  DALT.vcxproj -> D:\University\Năm 2\Kì 3\Đồ án\quanlydatvephim\x64\Debug\DALT.exe
+﻿  Booking.cpp
+  RoomAccess.cpp
+D:\University\Năm 2\Kì 3\Đồ án\DALT\RoomAccess.cpp(17,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
+  Generating Code...
+  DALT.vcxproj -> D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.exe

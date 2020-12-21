@@ -22,9 +22,9 @@ protected:
 public:
 	bool Init();
 	void Select();
-	virtual bool Insert() = 0;
-	virtual bool Delete() = 0;
-	virtual bool Update() = 0;
+	virtual bool Insert() ;
+	virtual bool Delete() ;
+	virtual bool Update() ;
 	virtual void Show();
 	void Close();
 };

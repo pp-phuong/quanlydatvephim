@@ -22,10 +22,17 @@ char* Movie::getMovieName() {
 char* Movie::getMovieDescription() {
 	return this->movie_description;
 }
+char* Movie::getMovieRelease() {
+	return this->movie_release;
+}
+int Movie::getMovieLength() {
+	return this->movie_length;
+}
+char* Movie::getMovieGenre() {
+	return this->movie_genre;
+}
 void Movie::setMovie()
 {
-	cout << "Movie ID:";
-	cin >> movie_id;
 	cin.ignore();
 	cout << "Movie name: ";
 	cin.getline(this->movie_name,50);

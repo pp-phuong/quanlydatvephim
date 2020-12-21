@@ -141,27 +141,37 @@
   <ItemGroup>
     <ClInclude Include="Account.h" />
     <ClInclude Include="AccountAccess.h" />
+    <ClInclude Include="Booking.h" />
+    <ClInclude Include="BookingAccess.h" />
     <ClInclude Include="DatabaseAccess.h" />
     <ClInclude Include="Date.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="MovieAccess.h" />
+    <ClInclude Include="Room.h" />
+    <ClInclude Include="RoomAccess.h" />
     <ClInclude Include="Seat.h" />
     <ClInclude Include="SeatAccess.h" />
     <ClInclude Include="SeatType.h" />
+    <ClInclude Include="SeatTypeAccess.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Account.cpp" />
     <ClCompile Include="AccountAccess.cpp" />
+    <ClCompile Include="Booking.cpp" />
+    <ClCompile Include="BookingAccess.cpp" />
     <ClCompile Include="DatabaseAccess.cpp" />
     <ClCompile Include="Date.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Movie.cpp" />
     <ClCompile Include="MovieAccess.cpp" />
+    <ClCompile Include="Room.cpp" />
+    <ClCompile Include="RoomAccess.cpp" />
     <ClCompile Include="Seat.cpp" />
     <ClCompile Include="SeatAccess.cpp" />
     <ClCompile Include="SeatType.cpp" />
+    <ClCompile Include="SeatTypeAccess.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

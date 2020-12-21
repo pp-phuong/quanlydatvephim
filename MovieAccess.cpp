@@ -1,5 +1,4 @@
 ﻿#include "MovieAccess.h"
-#include <iomanip>
 MovieAccess::MovieAccess()
 {
 	this->search_key = "";
@@ -13,6 +12,8 @@ void MovieAccess::Select(Movie*& mv, int choice)
 	// 1: select all
 	// 2: select phim đang chiếu
 	// 3. select phim sắp khởi chiếu
+	// 4. select phim được tìm kiếm
+	// 5. select phim hôm nay
 	int i = 0;
 	Date date;
 	string c_query;
@@ -29,6 +30,9 @@ void MovieAccess::Select(Movie*& mv, int choice)
 		break;
 	case 4:
 		 c_query = "select * from movie where movie_name like '%" + this->search_key + "%'";
+		break;
+	case 5:
+		c_query = "select * from movie where movie_release = " + date.getToDay();
 		break;
 	}
 	const char* q = c_query.c_str();
@@ -85,6 +89,9 @@ int MovieAccess::CountRow(int choice)
 	case 4:
 		 c_query = "select * from movie where movie_name like '%" + this->search_key + "%'";
 		break;
+	case 5:
+		c_query = "select * from movie where movie_release = " + date.getToDay();
+		break;
 	}
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
@@ -102,7 +109,6 @@ int MovieAccess::CountRow(int choice)
 	SQLCancel(SQLStateHandle);
 	return i;
 }
-
 int MovieAccess::Search(int id)
 {
 	Movie* ptr = new Movie[this->CountRow(1)];
@@ -125,6 +131,7 @@ void MovieAccess::Show(int index)
 	
 	for (int i = 0; i < this->CountRow(index); i++)
 	{
+		cout << i + 1 << ".";
 		ptr[i].Show();
 	}
 	if (this->CountRow(index) == 0)
@@ -153,11 +160,82 @@ bool MovieAccess::Insert()
 	SQLCancel(SQLStateHandle);
 	return false;
 }
-bool MovieAccess::Update()
+bool MovieAccess::Update(int id, int type)
 {
+	//1. Movie name
+	//2. movie description
+	// 3. movie release
+	// 4. movie length
+	// 5. movie genre
+	string c_query = "update movie set" ;
+	string movie_name;
+	string movie_description;
+	string movie_release;
+	int movie_length;
+	string movie_genre;
+	switch (type)
+	{
+	case 1:
+		cout << "Nhap movie name :";
+		cin.ignore();
+		getline(cin,movie_name);
+		c_query += " movie_name = '"+ movie_name;
+		break;
+	case 2:
+		cout << "Nhap movie description :";
+		cin.ignore();
+		getline(cin, movie_description);
+		c_query += " movie_description = '" +  movie_description;
+		break;
+	case 3:
+		cout << "Nhap movie release :";
+		cin.ignore();
+		getline(cin, movie_release);
+		c_query += " movie_release = '" + movie_release;
+		break;
+	case 4 :
+		cout << "Nhap movie length :";
+		cin >> movie_length;
+		c_query += " movie_length = '" + to_string(movie_length);
+		break;
+	case 5:
+		cout << "Nhap movie genre :";
+		cin.ignore();
+		getline(cin, movie_genre);
+		c_query += " movie_genre = '" + movie_genre;
+		break;
+	}
+	c_query += "'where movie_id = '" + to_string(id) + "'";
+	const char* q = c_query.c_str();
+	cout << q;
+	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
+	{
+		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
+		Close();
+	}
+	else
+	{
+		cout << c_query;
+		cout << endl <<  "Them du lieu thanh cong !" << endl;
+		return true;
+	}
+	SQLCancel(SQLStateHandle);
+	return false;
 	return true;
 }
 bool MovieAccess::Delete()
 {
 	return true;
+}
+Movie MovieAccess::getMovie(int index)
+{
+	Movie* ptr = new Movie[this->CountRow(1)];
+	this->Select(ptr,1);
+	return ptr[index];
+}
+int MovieAccess::LastID()
+{
+	Movie* ptr = new Movie[this->CountRow(1)];
+	this->Select(ptr,1);
+	return ptr[this->CountRow(1) - 1].getMovieID();
 }

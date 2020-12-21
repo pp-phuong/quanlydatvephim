@@ -18,18 +18,24 @@ class Function
 public:
 	Function();
 	void Menu();
-	void MenuAllMovie();
+	void MenuTodayMovie();
 	void MenuMovieShowing();
 	void MenuMovieComing();
 	void MenuSearchMovie();
 	void MenuSchedule();
 	void MenuBooking();
 	void MenuAdmin();
-	void MenuAccount();
-	void MenuRoom();
-	void MenuSeat();
+	void MenuAdAccount();
+	void MenuAdRoom();
+	void MenuAdSeat();
+	void MenuAdMovie();
+	void MenuUpdateMovie(int);
+	void MenuAdSeatType();
+	void MenuAdBooking();
+	void MenuAdSchedule();
 	void Authentication();
 	void Validate();
+	Account getUserNow();
 	~Function();
 };
 

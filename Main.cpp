@@ -16,7 +16,12 @@ int main()
     do
     {
         system("cls");
-        fc.Menu(); 
+        if (fc.getUserNow().getRole() == 1) {
+            fc.MenuAdmin();
+        }
+        else {
+            fc.Menu();
+        }
         cout << "Do you want to be continute? y/n ";
         cin >> key;
     } while (key != 'n');

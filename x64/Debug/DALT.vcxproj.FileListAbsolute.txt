@@ -1,2 +1,2 @@
-D:\University\Năm 2\Kì 3\Đồ án\quanlydatvephim\x64\Debug\DALT.exe
-D:\University\Năm 2\Kì 3\Đồ án\quanlydatvephim\x64\Debug\DALT.pdb
+D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.exe
+D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.pdb

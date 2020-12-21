@@ -127,7 +127,8 @@ bool AccountAccess::Insert() {
 }
 bool AccountAccess::Update()
 {
-	return true;
+	
+	return 1;
 }
 bool AccountAccess::Delete()
 {

@@ -57,3 +57,15 @@ void DatabaseAccess::Select()
 {}
 void DatabaseAccess:: Show()
 {}
+bool  DatabaseAccess::Update()
+{
+	return 1;
+}
+bool DatabaseAccess::Delete()
+{
+	return 1;
+}
+bool DatabaseAccess::Insert()
+{
+	return 1;
+}

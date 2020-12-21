@@ -21,6 +21,9 @@ public:
 	int getMovieID();
 	char* getMovieName();
 	char* getMovieDescription();
+	char* getMovieRelease();
+	int getMovieLength();
+	char* getMovieGenre();
 	void setMovie();
 	string insertQuery();
 	void Show();

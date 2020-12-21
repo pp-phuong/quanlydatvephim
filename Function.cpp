@@ -1,62 +1,53 @@
 #include "Function.h"
 Function::Function() {
+    this->search = 0;
 }
 Function::~Function() {
 }
 void Function::MenuAdmin()
 {
     cout << "_________________________HANAFUO CINEMA_________________________" << endl
-        << "                       1. MOVIE" << endl
-        << "                       2. SCHEDULE " << endl
-        << "                       3. BOOKING " << endl
-        << "                       4. ACCOUNT" << endl
-        << "                       5. INSERT ACCOUNT " << endl
-        << "                       6. INSERT MOVIE " << endl
-        << "                       7. SEARCH MOVIE " << endl
-        << "                       8. ID USER " << endl
+        << "                       1. Movie" << endl
+        << "                       2. Account " << endl
+        << "                       3. Booking " << endl
+        << "                       4. Schedule" << endl
+        << "                       5. Room" << endl
+        << "                       6. Seat " << endl
+        << "                       7. SeatType" << endl
+        << "                       8. Menu User" << endl
         << "                       9. Log out " << endl
         << "                       PRESS THE NUMBER : ";
     int m;
+    Account out;
     cin >> m;
     switch (m)
     {
     case 1:
-        this->MenuAllMovie();
+        this->MenuAdMovie();
         break;
     case 2:
-        cout << "You chose SCHEDULE" << endl;
+        this->MenuAdAccount();
         break;
     case 3:
-        cout << "You chose BOOKING" << endl;
+        this->MenuAdBooking();
         break;
     case 4:
-        this->MenuAccount();
+        this->MenuAdSchedule();
         break;
     case 5:
-        cout << "You chose INSERT ACCOUNT " << endl;
-        this->acc.Init();
-        this->account.setAccount();
-        this->acc.Insert(account);
-        this->acc.Close();
+        this->MenuAdRoom();
         break;
     case 6:
-        cout << "You chose INSERT MOVIE " << endl;
-        this->mv.Init();
-        this->mv.Insert();
-        this->mv.Close();
+        this->MenuAdSeat();
         break;
     case 7:
-        cout << "You chose SEARCH MOVIE " << endl;
-        cout << "Nhap ma phim can tim kiem :";
-        cin >> search;
-        this->mv.Init();
-        cout << mv.Search(search);
-        this->mv.Close();
+        this->MenuAdSeatType();
         break;
-    case 8:
-        cout << "id : " << this->user_now  ;
+    case 8: 
+        Menu();
         break;
     case 9:
+        this->user_now = out;
         Authentication();
         break;
     default:
@@ -67,7 +58,7 @@ void Function::MenuAdmin()
 void Function::Menu()
 {
     cout << "_________________________HANAFUO CINEMA_________________________" << endl
-        << "                       1. View all movies" << endl
+        << "                       1. Movie on today" << endl
         << "                       2. Movie now showing" << endl
         << "                       3. Movie coming soon" << endl
         << "                       4. Search movie " << endl
@@ -81,7 +72,7 @@ void Function::Menu()
     switch (m)
     {
     case 1:
-        this->MenuAllMovie();
+        this->MenuTodayMovie();
         break;
     case 2:
         this->MenuMovieShowing();
@@ -212,11 +203,11 @@ void Function::Validate()
             this->acc.Close();
         }
 }
-void Function::MenuAllMovie()
+void Function::MenuTodayMovie()
 {
     cout << "You chose All Movie" << endl;
     this->mv.Init();
-    this->mv.Show(1);
+    this->mv.Show(5);
     this->mv.Close();
 }
 void Function::MenuMovieShowing()
@@ -245,10 +236,175 @@ void Function::MenuSchedule()
 }
 void Function::MenuBooking()
 {}
-void Function::MenuAccount()
+void Function::MenuAdAccount()
 {
-    cout << "You chose ACCOUNT" << endl;
-    this->acc.Init();
-    this->acc.Show();
-    this->acc.Close();
+
+    cout << "_________________________ACCOUNT_________________________" << endl
+        << "                       1. Show All Account" << endl
+        << "                       2. New Account " << endl
+        << "                       3. Update Account " << endl
+        << "                       4. Delete Account" << endl
+        << "                       5. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    Account out;
+    cin >> m;
+    switch (m)
+    {
+    case 1:
+        this->acc.Init();
+        this->acc.Show();
+        this->acc.Close();
+        break;
+    case 2:
+        this->acc.Init();
+        this->user.setAccount();
+        this->acc.Insert(user);
+        this->acc.Show();
+        this->acc.Close();
+        break;
+    case 3:
+        this->acc.Init();
+        this->acc.Update();
+        this->acc.Close();
+        break;
+    case 4:
+        this->acc.Delete();
+        break;
+    case 5:
+        MenuAdmin();
+        break;
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
+}
+void Function::MenuAdRoom() {
+
+}
+void Function::MenuAdSeat() {
+
+}
+void Function::MenuAdMovie() {
+
+
+    cout << "_________________________Movie_________________________" << endl
+        << "                       1. Show all Movie" << endl
+        << "                       2. Show today Movie" << endl
+        << "                       3. Show showing Movie" << endl
+        << "                       4. Show coming Movie" << endl
+        << "                       5. New movie " << endl
+        << "                       6. Update movie " << endl
+        << "                       7. Delete movie" << endl
+        << "                       8. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    int stt_mv;
+    cin >> m;
+    switch (m)
+    {
+    case 1:
+        this->mv.Init();
+        this->mv.Show(1);
+        this->mv.Close();
+        break;
+    case 2:
+        this->mv.Init();
+        this->mv.Show(5);
+        this->mv.Close();
+        break;
+    case 3:
+        this->mv.Init();
+        this->mv.Show(2);
+        this->mv.Close();
+        break;
+    case 4:
+        this->mv.Init();
+        this->mv.Show(3);
+        this->mv.Close();
+        break;
+    case 5:
+        this->mv.Init();
+        this->mv.Insert();
+        this->mv.Show(1);
+        this->mv.Close();
+        break;
+    case 6:
+        this->mv.Init();
+        this->mv.Show(1);
+        cout << "Nhap stt phim can update : ";
+        cin >> stt_mv;
+        this->MenuUpdateMovie(stt_mv-1);
+        break;
+    case 7:
+        this->mv.Delete();
+        break;
+    case 8:
+        MenuAdmin();
+        break;
+
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
+}
+void Function::MenuUpdateMovie(int stt)
+{
+    char key= 'y';
+    do {
+        cout << "_________________________Update Movie_________________________" << endl
+            << "                       1. Movie name" << endl
+            << "                       2. movie description" << endl
+            << "                       3. movie release" << endl
+            << "                       4. movie length" << endl
+            << "                       5. movie genre " << endl
+            << "                       PRESS THE NUMBER : ";
+        int m;
+        cin >> m;
+        switch (m)
+        {
+        case 1:
+            this->mv.getMovie(stt).Show();
+            this->mv.Update(this->mv.getMovie(stt).getMovieID(), 1);
+            this->mv.getMovie(stt).Show();
+            break;
+        case 2:
+            this->mv.getMovie(stt).Show();
+            this->mv.Update(this->mv.getMovie(stt).getMovieID(), 2);
+            this->mv.getMovie(stt).Show();
+            break;
+        case 3:
+            this->mv.getMovie(stt).Show();
+            this->mv.Update(this->mv.getMovie(stt).getMovieID(), 3);
+            this->mv.getMovie(stt).Show();
+            break;
+        case 4:
+            this->mv.getMovie(stt).Show();
+            this->mv.Update(this->mv.getMovie(stt).getMovieID(), 4);
+            this->mv.getMovie(stt).Show();
+            break;
+        case 5:
+            this->mv.getMovie(stt).Show();
+            this->mv.Update(this->mv.getMovie(stt).getMovieID(), 5);
+            this->mv.getMovie(stt).Show();
+            break;
+
+        default:
+            cout << " Sorry,There is no matching option " << endl;
+            break;
+        }
+        this->mv.getMovie(stt).Show();
+        cout << "Do you want to be continute? y/n ";
+        cin >> key;
+        
+    } while (key != 'n');
+    MenuAdmin();
+}
+void Function::MenuAdSeatType(){}
+void Function::MenuAdBooking(){}
+void Function::MenuAdSchedule(){}
+
+Account Function::getUserNow()
+{
+    return this->user_now;
 }

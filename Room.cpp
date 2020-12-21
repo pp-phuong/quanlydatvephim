@@ -1,10 +1,7 @@
 #include "Room.h"
 
 Room::Room()
-{
-	this->room_id = 0;
-	strcpy_s(room_name, 5, "");
-}
+{}
 
 Room::Room(char* roonName, int roomID)
 {
@@ -34,9 +31,17 @@ string Room::insertQuery()
 	return t_query;
 }
 
-void Show()
-{}
+void Room::Show()
+{
+	cout << "Room name: " << this->room_name << endl << endl;
+}
 
+void Room::setRoom()
+{
+	cin.ignore();
+	cout << "Room name: ";
+	cin.getline(this->room_name, 5);
+}
 
 
 

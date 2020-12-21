@@ -1,12 +1,12 @@
 #include "Booking.h"
 
-Booking::Booking()
-{
-	this->booking_id = 0;
-	this->account_id = 0;
-	this->schedule_id = 0;
-	this->seat_id = 0;
-}
+// Booking::Booking()
+// {
+// 	this->booking_id = 0;
+// 	this->account_id = 0;
+// 	this->schedule_id = 0;
+// 	this->seat_id = 0;
+// }
 
 Booking::Booking(int bookingID, int accountID, int scheduleID, int seatID)
 {

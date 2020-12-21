@@ -13,7 +13,7 @@ class Booking
 		int schedule_id;
 		int seat_id;
 	public:
-		Booking();
+		//Booking();
 		Booking(int = 0, int = 0, int = 0, int = 0);
 		~Booking();
 		int getBookingID();

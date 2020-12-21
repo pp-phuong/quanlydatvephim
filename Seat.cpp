@@ -30,6 +30,14 @@ int Seat::getStatus()
 	return this->seat_status;
 }
 
+char* Seat::getSeatRow()
+{
+	return this->seat_row;
+}
+char* Seat::getSeatNumber()
+{
+	return this->seat_number;
+}
 string Seat::insertQuery()
 {
 	string t_query;
@@ -39,7 +47,7 @@ string Seat::insertQuery()
 	string t_seatStatus = to_string(seat_status);
 	string t_seat_row(seat_row);
 	string t_seat_number(seat_number);
-	t_query = t_seat_id + "','" + t_seatType_id + "','" + t_room_id + "','" + t_seat_row + "','" + t_seat_number + "','" + t_seatStatus + "')";
+	t_query =   t_seatType_id + "','" + t_room_id + "','" + t_seat_row + "','" + t_seat_number + "','" + t_seatStatus + "')";
 	return t_query;
 }
 
@@ -53,3 +61,18 @@ void Seat::Show()
 	cout << right << setw(4) << this->seat_status << endl;
 }
 
+void Seat::setSeat()
+{
+	cout << "Seat Type ID : ";
+	cout << " 1.Normal - 2.Couple - 3. VIP : ";
+	cin >> this->seatType_id;
+	cout << "Room ID: ";
+	cin >> this->room_id;
+	cout << "Seat Row : ";
+	cin.ignore();
+	cin.getline(this->seat_row, 5);
+	cout << "Seat Number : ";
+	cin.ignore();
+	cin.getline(this->seat_number, 5);
+	this->seat_status = 0;
+}

@@ -88,7 +88,10 @@ bool BookingAccess::Update()
 {
 	return 0;
 }
-
+bool BookingAccess::Insert()
+{
+	return 0;
+}
 bool BookingAccess::Delete()
 {
 	return 0;

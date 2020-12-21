@@ -20,6 +20,9 @@ public:
 	~Seat();
 	int getSeatID();
 	int getStatus();
+	char* getSeatRow();
+	char* getSeatNumber();
 	string insertQuery();
+	void setSeat();
 	void Show();
 };

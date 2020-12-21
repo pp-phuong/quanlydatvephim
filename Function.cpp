@@ -280,10 +280,90 @@ void Function::MenuAdAccount()
     }
 }
 void Function::MenuAdRoom() {
-
+    cout << "_________________________ROOM_________________________" << endl
+        << "                       1. Show Room" << endl
+        << "                       2. New Room " << endl
+        << "                       3. Update Room " << endl
+        << "                       4. Delete Room" << endl
+        << "                       5. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    Account out;
+    int room;
+    cin >> m;
+    switch (m)
+    {
+    case 1:
+        this->room.Init();
+        cout << "Nhap room muon hien thi : ";
+        cin >> room;
+        this->room.Show();
+        this->room.Close();
+        break;
+    case 2:
+        this->room.Init();
+        this->room.Insert();
+        this->room.Show();
+        this->room.Close();
+        break;
+    case 3:
+        this->room.Init();
+        this->room.Update();
+        this->room.Close();
+        break;
+    case 4:
+        this->room.Delete();
+        break;
+    case 5:
+        MenuAdmin();
+        break;
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
 }
 void Function::MenuAdSeat() {
-
+    cout << "_________________________SEAT_________________________" << endl
+        << "                       1. Show Seat of Room" << endl
+        << "                       2. New Seat " << endl
+        << "                       3. Update Seat " << endl
+        << "                       4. Delete Seat" << endl
+        << "                       5. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    Account out;
+    int room;
+    cin >> m;
+    switch (m)
+    {
+    case 1:
+        this->seat.Init();
+        cout << "Nhap room muon hien thi seat: ";
+        cin >> room;
+        this->seat.Show(room);
+        this->seat.Close();
+        break;
+    case 2:
+        this->seat.Init();
+        this->seat.Insert();
+        this->seat.Show(1);
+        this->seat.Close();
+        break;
+    case 3:
+        this->seat.Init();
+        this->seat.Update();
+        this->seat.Close();
+        break;
+    case 4:
+        this->seat.Delete();
+        break;
+    case 5:
+        MenuAdmin();
+        break;
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
 }
 void Function::MenuAdMovie() {
 

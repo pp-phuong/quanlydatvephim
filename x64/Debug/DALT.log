@@ -1,5 +1,9 @@
 ﻿  Booking.cpp
-  RoomAccess.cpp
-D:\University\Năm 2\Kì 3\Đồ án\DALT\RoomAccess.cpp(17,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
+  BookingAccess.cpp
+D:\University\Năm 2\Kì 3\Đồ án\DALT\BookingAccess.cpp(17,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
+  Function.cpp
+D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(132,14): warning C4102: 'Login': unreferenced label
+D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(134,14): warning C4101: 'ch': unreferenced local variable
+  Schedule.cpp
   Generating Code...
   DALT.vcxproj -> D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.exe

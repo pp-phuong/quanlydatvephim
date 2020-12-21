@@ -150,6 +150,7 @@
     <ClInclude Include="MovieAccess.h" />
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomAccess.h" />
+    <ClInclude Include="Schedule.h" />
     <ClInclude Include="Seat.h" />
     <ClInclude Include="SeatAccess.h" />
     <ClInclude Include="SeatType.h" />
@@ -168,6 +169,7 @@
     <ClCompile Include="MovieAccess.cpp" />
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="RoomAccess.cpp" />
+    <ClCompile Include="Schedule.cpp" />
     <ClCompile Include="Seat.cpp" />
     <ClCompile Include="SeatAccess.cpp" />
     <ClCompile Include="SeatType.cpp" />

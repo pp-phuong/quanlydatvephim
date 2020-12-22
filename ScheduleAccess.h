@@ -12,7 +12,9 @@ class ScheduleAccess : public DatabaseAccess
         bool Update(int,int);
         bool Delete();
         void Show();
-        Schedule getSchedule(int, int);
+        Schedule getSchedule(int);
         int LastID();
 };
+
+
 

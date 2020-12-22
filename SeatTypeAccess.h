@@ -8,11 +8,8 @@ public:
     void Select(SeatType*&);
     int Count();
     bool Insert();
-    bool Insert(SeatType);
     int Search(int); // search theo id_number
-    bool Update(int, int);
+    bool Update();
     bool Delete();
     void Show();
-    SeatType getSeatType(int);
-    int LastID();
 };

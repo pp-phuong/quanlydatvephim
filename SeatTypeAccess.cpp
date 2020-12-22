@@ -57,63 +57,12 @@ int SeatTypeAccess::Count()
 
 bool SeatTypeAccess::Insert()
 {
-	string c_query = "insert into seatType values ('";
-	SeatType st;
-	st.setSeatType();
-	c_query += st.insertQuery();
-	const char* q = c_query.c_str();
-	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
-	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
-		Close();
-	}
-	else
-	{
-		cout << c_query;
-		cout << "Them du lieu thanh cong !" << endl;
-		return true;
-	}
-	SQLCancel(SQLStateHandle);
-	return false;
+	return 0;
 }
 
-bool SeatTypeAccess::Update(int id, int choice)
+bool SeatTypeAccess::Update()
 {
-	// 1. update seat type name
-	// 2. update seat price
-	string c_query = "update seatType set";
-	string seat_type;
-	int seat_price;
-	switch (choice)
-	{
-	case 1:
-		cout << "Nhap seat type: ";
-		cin.ignore();
-		getline(cin, seat_type);
-		c_query += " seat_type = '" + seat_type;
-		break;
-	case 2:
-		cout << "Nhap seat price: ";
-		cin >> seat_price;
-		c_query += " seat_price = '" + to_string(seat_price);
-		break;
-	}
-	c_query += "'where seat_type_id = '" + to_string(id) + "'";
-	const char* q = c_query.c_str();
-	cout << q;
-	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
-	{
-		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
-		Close();
-	}
-	else
-	{
-		cout << c_query;
-		cout << endl << "Them du lieu thanh cong !" << endl;
-		return true;
-	}
-	SQLCancel(SQLStateHandle);	
-	return true;
+	return 0;
 }
 
 bool SeatTypeAccess::Delete()
@@ -122,32 +71,4 @@ bool SeatTypeAccess::Delete()
 }
 
 void SeatTypeAccess::Show()
-{
-	SeatType* ptr = new SeatType[this->Count()];
-	this->Select(ptr);
-
-	for (int i = 0; i < this->Count(); i++)
-	{
-		cout << i + 1 << ".";
-		ptr[i].Show();
-	}
-	if (this->Count() == 0)
-	{
-		cout << endl << "Sorry,no seat type founded!" << endl;
-	}
-}
-
-SeatType SeatTypeAccess::getSeatType(int index)
-{
-	SeatType* ptr = new SeatType[this->Count()];
-	this->Select(ptr);
-	return ptr[index];
-}
-
-int SeatTypeAccess::LastID()
-{
-	SeatType* ptr = new SeatType[this->Count()];
-	this->Select(ptr);
-	return ptr[this->Count() - 1].getSeatTypeID();
-}
-
+{}

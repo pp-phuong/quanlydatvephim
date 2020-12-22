@@ -308,7 +308,9 @@ void Function::MenuAdRoom() {
         break;
     case 3:
         this->room.Init();
-        this->room.Update();
+        cout << "Nhap room muon update : ";
+        cin >> room;
+        this->room.Update(room);
         this->room.Close();
         break;
     case 4:

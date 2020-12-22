@@ -11,9 +11,9 @@ class Schedule
 		int schedule_id;
 		int movie_id;
 		int room_id;
-		char schedule_date[15];
-		char schedule_start[15];
-		char schedule_end[15];
+		char schedule_date[20];
+		char schedule_start[20];
+		char schedule_end[20];
 	public:
 		Schedule();
 		Schedule(char*, char*, char*, int = 0, int = 0, int = 0);
@@ -26,5 +26,4 @@ class Schedule
 		void setSchedule();
 		void Show();
 };
-
 

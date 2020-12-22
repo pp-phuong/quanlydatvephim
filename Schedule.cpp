@@ -1,14 +1,21 @@
 #include "Schedule.h"
 
 Schedule::Schedule()
-{}
+{
+	this->schedule_id = 0;
+	this->movie_id = 0;
+	this->room_id = 0;
+	strcpy_s(this->schedule_date, 20, " ");
+	strcpy_s(this->schedule_start, 20, "");
+	strcpy_s(this->schedule_end, 20, " ");
+}
 
 Schedule::Schedule(char* date, char* start, char* end, int scheduleID, int movieID, int roomID)
 	:schedule_id(scheduleID), movie_id(movieID), room_id(roomID)
 {
-	strcpy_s(this->schedule_date, 15, date);
-	strcpy_s(this->schedule_start, 15, start);
-	strcpy_s(this->schedule_end, 15, end);
+	strcpy_s(this->schedule_date, 20, date);
+	strcpy_s(this->schedule_start, 20, start);
+	strcpy_s(this->schedule_end, 20, end);
 }
 
 Schedule::~Schedule()
@@ -43,18 +50,19 @@ string Schedule::insertQuery()
 	string t_schedule_date(this->schedule_date);
 	string t_schedule_start(this->schedule_start);
 	string t_schedule_end(this->schedule_end);
-	t_query = t_schedule_id + "','" + t_movie_id + "','" + t_room_id + "','" + t_schedule_date + "','" + t_schedule_start + "','" + t_schedule_end + "')";
+	//t_query = t_schedule_id + "','" + t_movie_id + "','" + t_room_id + "','" + t_schedule_date + "','" + t_schedule_start + "','" + t_schedule_end + "')";
+	t_query = t_movie_id + "','" + t_room_id + "','" + t_schedule_date + "','" + t_schedule_start + "','" + t_schedule_end + "')";
 	return t_query;
 }
 
 void Schedule::Show()
 {
-	cout << left << setw(15) << this->schedule_id;
-	cout << left << setw(15) << this->movie_id;
-	cout << left << setw(15) << this->room_id;
-	cout << left << setw(15) << this->schedule_date;
-	cout << left << setw(15) << this->schedule_start;
-	cout << left << setw(15) << this->schedule_end << endl;
+	cout << left << setw(20) << this->schedule_id;
+	cout << left << setw(20) << this->movie_id;
+	cout << left << setw(20) << this->room_id;
+	cout << left << setw(20) << this->schedule_date;
+	cout << left << setw(20) << this->schedule_start;
+	cout << left << setw(20) << this->schedule_end << endl;
 }
 
 void Schedule::setSchedule()
@@ -65,12 +73,13 @@ void Schedule::setSchedule()
 	cin >> this->room_id;
 	cout << "Schedule date (yyyy-mm-dd): ";
 	cin.ignore();
-	cin.getline(this->schedule_date, 15);
+	cin.getline(this->schedule_date, 20);
 	cout << "Schedule start (hh:mm:ss): ";
 	cin.ignore();
-	cin.getline(this->schedule_start, 15);
+	cin.getline(this->schedule_start, 20);
 	cout << "Schedule end (hh:mm:ss): ";
 	cin.ignore();
-	cin.getline(this->schedule_end, 15);
+	cin.getline(this->schedule_end, 20);
 }
+
 

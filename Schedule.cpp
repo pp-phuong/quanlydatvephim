@@ -49,16 +49,28 @@ string Schedule::insertQuery()
 
 void Schedule::Show()
 {
-	cout << left << setw(5) << this->schedule_id;
-	RoomAccess room;
-	Room* ptr = new Room[room.Count()];
-	room.Select(ptr);
-	MovieAccess mv;
-	Movie* ptr_mv = new Movie[mv.CountRow(1)];
-	mv.Select(ptr_mv, 1);
-	cout << left << setw(5) << ptr_mv[mv.Search(this->movie_id)].getMovieName();
-	cout << left << setw(5) << ptr[room.Search(this->room_id)].getRoomName();
-	cout << left << setw(18) << this->schedule_date;
-	cout << left << setw(18) << this->schedule_start;
-	cout << right << setw(18) << this->schedule_end << endl;
+	cout << left << setw(15) << this->schedule_id;
+	cout << left << setw(15) << this->movie_id;
+	cout << left << setw(15) << this->room_id;
+	cout << left << setw(15) << this->schedule_date;
+	cout << left << setw(15) << this->schedule_start;
+	cout << left << setw(15) << this->schedule_end << endl;
 }
+
+void Schedule::setSchedule()
+{
+	cout << "Movie ID : ";
+	cin >> this->movie_id;
+	cout << "Room ID: ";
+	cin >> this->room_id;
+	cout << "Schedule date (yyyy-mm-dd): ";
+	cin.ignore();
+	cin.getline(this->schedule_date, 15);
+	cout << "Schedule start (hh:mm:ss): ";
+	cin.ignore();
+	cin.getline(this->schedule_start, 15);
+	cout << "Schedule end (hh:mm:ss): ";
+	cin.ignore();
+	cin.getline(this->schedule_end, 15);
+}
+

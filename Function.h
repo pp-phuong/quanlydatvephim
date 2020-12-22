@@ -11,6 +11,7 @@
 #include "RoomAccess.h"
 #include "SeatAccess.h"
 #include "SeatTypeAccess.h"
+#include "ScheduleAccess.h"
 #include "BookingAccess.h"
 //#include "ScheduleAccess.h"
 #include <string>
@@ -25,6 +26,7 @@ class Function
 	RoomAccess room;
 	SeatAccess seat;
 	SeatTypeAccess seat_type;
+	ScheduleAccess schedule;
 	BookingAccess booking;
 	Account account;
 	Account user;
@@ -53,4 +55,3 @@ public:
 	Account getUserNow();
 	~Function();
 };
-

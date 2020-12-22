@@ -13,7 +13,7 @@
 #include "SeatTypeAccess.h"
 #include "ScheduleAccess.h"
 #include "BookingAccess.h"
-//#include "ScheduleAccess.h"
+#include "ScheduleAccess.h"
 #include <string>
 #include <conio.h>
 #include <windows.h>
@@ -49,6 +49,7 @@ public:
 	void MenuUpdateMovie(int);
 	void MenuAdSeatType();
 	void MenuAdBooking();
+	void MenuUpdateSchedule(int);
 	void MenuAdSchedule();
 	void Authentication();
 	void Validate();

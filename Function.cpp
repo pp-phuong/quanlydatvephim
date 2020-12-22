@@ -43,7 +43,7 @@ void Function::MenuAdmin()
     case 7:
         this->MenuAdSeatType();
         break;
-    case 8: 
+    case 8:
         Menu();
         break;
     case 9:
@@ -77,7 +77,7 @@ void Function::Menu()
     case 2:
         this->MenuMovieShowing();
         break;
-       
+
     case 3:
         this->MenuMovieComing();
         break;
@@ -129,79 +129,79 @@ void Function::Authentication()
 }
 void Function::Validate()
 {
-        Login:
-        int validate = 0;
-        char ch;
-        while (!validate)
+Login:
+    int validate = 0;
+    char ch;
+    while (!validate)
+    {
+        string username;
+        cout << "Username : ";
+        cin >> username;
+        this->acc.Init();
+        int stt = this->acc.SearchName(username);
+        if ((this->acc.SearchName(username)) == -1)
         {
-            string username;
-            cout << "Username : ";
-            cin >> username;
-            this->acc.Init();
-            int stt = this->acc.SearchName(username);
-            if ((this->acc.SearchName(username)) == -1)
+            cout << "Khong tim thay tai khoan ! " << endl;
+            cout << "Xin moi nhap lai !" << endl;
+            continue;
+        }
+        else
+        {
+            validate = 1;
+            string pwd;
+        Password:
+            cout << "Pass : ";
+            for (char c; c = _getch(); )
             {
-                cout << "Khong tim thay tai khoan ! " << endl;
-                cout << "Xin moi nhap lai !" << endl;
-                continue;
-            }
-            else
-            {
-                validate = 1;
-                string pwd;
-                Password:
-                cout <<  "Pass : ";
-                for (char c; c = _getch(); )
+                if (c == 13 || c == '\r') // enter 
                 {
-                    if (c == 13 || c == '\r') // enter 
-                    {
-                        cout << "\n";
-                        break;
-                    }
-                    else
-                    {
-                        if (c == 8) // backspace
-                        {
-                            if (!pwd.empty())
-                            {
-                                pwd.erase(pwd.size() - 1);
-                                cout << "\b \b";
-                            }
-                        }
-                        else {
-                            if (c == -32 ) // phim mui ten
-                            {
-                                _getch();
-                            }
-                            else {
-                                if (isprint(c))
-                                {
-                                    cout << '*';
-                                    pwd += c;
-                                }
-                            }
-                        }
-                    }
-                }
-                char* password = const_cast<char*>(pwd.c_str());
-                if (this->acc.checkPwd(stt) == pwd)
-                {
-                    
-                    cout << "Login success! Press Enter to continute !" << endl;
-                    validate = 1;
-                    _getch();
-                    system("cls");
+                    cout << "\n";
+                    break;
                 }
                 else
                 {
-                    cout << "Sai mat khau ! Moi nhap lai " << endl;
-                    pwd = "";
-                    goto Password;
+                    if (c == 8) // backspace
+                    {
+                        if (!pwd.empty())
+                        {
+                            pwd.erase(pwd.size() - 1);
+                            cout << "\b \b";
+                        }
+                    }
+                    else {
+                        if (c == -32) // phim mui ten
+                        {
+                            _getch();
+                        }
+                        else {
+                            if (isprint(c))
+                            {
+                                cout << '*';
+                                pwd += c;
+                            }
+                        }
+                    }
                 }
             }
-            this->user_now = this->acc.getAccount(stt);
-            this->acc.Close();
+            char* password = const_cast<char*>(pwd.c_str());
+            if (this->acc.checkPwd(stt) == pwd)
+            {
+
+                cout << "Login success! Press Enter to continute !" << endl;
+                validate = 1;
+                _getch();
+                system("cls");
+            }
+            else
+            {
+                cout << "Sai mat khau ! Moi nhap lai " << endl;
+                pwd = "";
+                goto Password;
+            }
         }
+        this->user_now = this->acc.getAccount(stt);
+        this->acc.Close();
+    }
 }
 void Function::MenuTodayMovie()
 {
@@ -297,13 +297,13 @@ void Function::MenuAdRoom() {
         this->room.Init();
         cout << "Nhap room muon hien thi : ";
         cin >> room;
-        this->room.Show();
+        this->room.Show(2,room);
         this->room.Close();
         break;
     case 2:
         this->room.Init();
         this->room.Insert();
-        this->room.Show();
+        this->room.Show(1,0);
         this->room.Close();
         break;
     case 3:
@@ -372,7 +372,7 @@ void Function::MenuAdSeat() {
 }
 void Function::MenuUpdateSeat(int room)
 {
-    
+
     char key = 'y';
     int seat;
     do {
@@ -387,7 +387,7 @@ void Function::MenuUpdateSeat(int room)
             << "                       PRESS THE NUMBER : ";
         int m;
         cin >> m;
-        cout << "id" << this->seat.getSeat(seat - 1,room).getSeatID() ;
+        cout << "id" << this->seat.getSeat(seat - 1, room).getSeatID();
         switch (m)
         {
         case 1:
@@ -399,7 +399,7 @@ void Function::MenuUpdateSeat(int room)
         case 3:
             this->seat.Update(this->seat.getSeat(seat - 1, room).getSeatID(), 3, room);
             break;
-        case 4: 
+        case 4:
             MenuAdSeat();
             break;
         default:
@@ -462,7 +462,7 @@ void Function::MenuAdMovie() {
         this->mv.Show(1);
         cout << "Nhap stt phim can update : ";
         cin >> stt_mv;
-        this->MenuUpdateMovie(stt_mv-1);
+        this->MenuUpdateMovie(stt_mv - 1);
         break;
     case 7:
         this->mv.Delete();
@@ -478,7 +478,7 @@ void Function::MenuAdMovie() {
 }
 void Function::MenuUpdateMovie(int stt)
 {
-    char key= 'y';
+    char key = 'y';
     do {
         cout << "_________________________Update Movie_________________________" << endl
             << "                       1. Movie name" << endl
@@ -524,13 +524,13 @@ void Function::MenuUpdateMovie(int stt)
         this->mv.getMovie(stt).Show();
         cout << "Do you want to be continute? y/n ";
         cin >> key;
-        
+
     } while (key != 'n');
     MenuAdmin();
 }
-void Function::MenuAdSeatType(){}
-void Function::MenuAdBooking(){}
-void Function::MenuAdSchedule(){}
+void Function::MenuAdSeatType() {}
+void Function::MenuAdBooking() {}
+void Function::MenuAdSchedule() {}
 
 Account Function::getUserNow()
 {

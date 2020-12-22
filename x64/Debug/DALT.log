@@ -1,5 +1,2 @@
-﻿  SeatType.cpp
-  SeatTypeAccess.cpp
-D:\University\Năm 2\Kì 3\Đồ án\DALT\SeatTypeAccess.cpp(17,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
-  Generating Code...
+﻿  Room.cpp
   DALT.vcxproj -> D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.exe

@@ -25,9 +25,8 @@ char* Room::getRoomName()
 string Room::insertQuery()
 {
 	string t_query;
-	string t_room_id = to_string(room_id);
 	string t_room_name(room_name);
-	t_query = t_room_id + "','" + t_room_name + "')";
+	t_query = t_room_name + "')";
 	return t_query;
 }
 

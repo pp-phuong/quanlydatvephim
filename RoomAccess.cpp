@@ -1,4 +1,5 @@
-#include "RoomAccess.h"
+﻿#include "RoomAccess.h"
+#include "SeatAccess.h"
 #include  <iomanip>
 
 void RoomAccess::Select(Room*& room)
@@ -36,7 +37,6 @@ int RoomAccess::Count()
 	string c_query;
 	c_query = "select * from room";
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "Co loi xay ra, vui long thu lai!" << endl;
@@ -53,20 +53,33 @@ int RoomAccess::Count()
 	return i;
 }
 
-void RoomAccess::Show()
+void RoomAccess::Show(int choice, int id)
 {
+	// 1 - 0: show hết các phòng
+	// 2 - id: show seat theo phòng
 	Room* ptr = new Room[this->Count()];
-	this->Select(ptr);
+	SeatAccess seat_access;
+	seat_access.Init();
+	switch (choice)
+	{
+	case 1:
+		this->Select(ptr);
+		for (int i = 0; i < this->Count(); i++)
+		{
+			cout << i + 1 << ".";
+			ptr[i].Show();
+		}
+		if (this->Count() == 0)
+		{
+			cout << endl << "Sorry,no room founded!" << endl;
+		}
+		break;
+	case 2:
+		seat_access.Show(id);
+		seat_access.Close();
+		break;
+	}
 
-	for (int i = 0; i < this->Count(); i++)
-	{
-		cout << i + 1 << ".";
-		ptr[i].Show();
-	}
-	if (this->Count() == 0)
-	{
-		cout << endl << "Sorry,no room founded!" << endl;
-	}
 }
 
 bool RoomAccess::Insert()
@@ -74,8 +87,11 @@ bool RoomAccess::Insert()
 	string c_query = "insert into room values ('";
 	Room room;
 	room.setRoom();
+	string t_ID = to_string(this->LastID() + 1);
+	c_query += t_ID + "','";
 	c_query += room.insertQuery();
 	const char* q = c_query.c_str();
+	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "Co loi xay ra, vui long thu lai!!" << endl;
@@ -88,7 +104,6 @@ bool RoomAccess::Insert()
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
-	return false;
 }
 
 bool RoomAccess::Update(int id)

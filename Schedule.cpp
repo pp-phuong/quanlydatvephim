@@ -55,7 +55,7 @@ void Schedule::Show()
 	room.Select(ptr);
 	MovieAccess mv;
 	Movie* ptr_mv = new Movie[mv.CountRow(1)];
-	mv.Select(ptr_mv,1);
+	mv.Select(ptr_mv, 1);
 	cout << left << setw(5) << ptr_mv[mv.Search(this->movie_id)].getMovieName();
 	cout << left << setw(5) << ptr[room.Search(this->room_id)].getRoomName();
 	cout << left << setw(18) << this->schedule_date;

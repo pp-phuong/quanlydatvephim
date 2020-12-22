@@ -333,6 +333,7 @@ void Function::MenuAdSeat() {
     int m;
     Account out;
     int room;
+    int stt_seat;
     cin >> m;
     switch (m)
     {
@@ -351,7 +352,9 @@ void Function::MenuAdSeat() {
         break;
     case 3:
         this->seat.Init();
-        this->seat.Update();
+        cout << "Nhap room can update seat";
+        cin >> room;
+        this->MenuUpdateSeat(room);
         this->seat.Close();
         break;
     case 4:
@@ -364,6 +367,49 @@ void Function::MenuAdSeat() {
         cout << " Sorry,There is no matching option " << endl;
         break;
     }
+}
+void Function::MenuUpdateSeat(int room)
+{
+    
+    char key = 'y';
+    int seat;
+    do {
+        this->seat.Show(room);
+        cout << "Nhap stt seat can update : ";
+        cin >> seat;
+        cout << "_________________________Update Seat_________________________" << endl
+            << "                       1. Seat Type" << endl
+            << "                       2. Seat Row" << endl
+            << "                       3. Seat Number" << endl
+            << "                       4. Back " << endl
+            << "                       PRESS THE NUMBER : ";
+        int m;
+        cin >> m;
+        cout << "id" << this->seat.getSeat(seat - 1,room).getSeatID() ;
+        switch (m)
+        {
+        case 1:
+            this->seat.Update(this->seat.getSeat(seat - 1, room).getSeatID(), 1, room);
+            break;
+        case 2:
+            this->seat.Update(this->seat.getSeat(seat - 1, room).getSeatID(), 2, room);
+            break;
+        case 3:
+            this->seat.Update(this->seat.getSeat(seat - 1, room).getSeatID(), 3, room);
+            break;
+        case 4: 
+            MenuAdSeat();
+            break;
+        default:
+            cout << " Sorry,There is no matching option " << endl;
+            break;
+        }
+        this->seat.Show(room);
+        cout << "Do you want to be continute? y/n ";
+        cin >> key;
+
+    } while (key != 'n');
+    MenuAdmin();
 }
 void Function::MenuAdMovie() {
 

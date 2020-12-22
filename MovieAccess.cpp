@@ -220,7 +220,6 @@ bool MovieAccess::Update(int id, int type)
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
-	return false;
 	return true;
 }
 bool MovieAccess::Delete()

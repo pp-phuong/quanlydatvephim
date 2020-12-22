@@ -42,6 +42,7 @@ public:
 	void MenuAdAccount();
 	void MenuAdRoom();
 	void MenuAdSeat();
+	void MenuUpdateSeat(int);
 	void MenuAdMovie();
 	void MenuUpdateMovie(int);
 	void MenuAdSeatType();

@@ -33,9 +33,9 @@ void ScheduleAccess::Select(Schedule*& schedule, int choice, int id)
 		int schedule_id;
 		int movie_id;
 		int room_id;
-		char schedule_date[15];
-		char schedule_start[15];
-		char schedule_end[15];
+		char schedule_date[20];
+		char schedule_start[20];
+		char schedule_end[20];
 		int i = 0;
 		while (SQLFetch(SQLStateHandle) == SQL_SUCCESS)
 		{
@@ -121,10 +121,10 @@ int ScheduleAccess::LastID() {
 	return ptr[this->Count(1) - 1].getScheduleID();
 }
 
-Schedule ScheduleAccess::getSchedule(int index, int movieID)
+Schedule ScheduleAccess::getSchedule(int index)
 {
-	Schedule* ptr = new Schedule[this->Count(3)];
-	this->Select(ptr, 2, movieID);
+	Schedule* ptr = new Schedule[this->Count(1)];
+	this->Select(ptr, 1, 0);
 	cout << "Schedule Id : " << ptr[index].getScheduleID();
 	return ptr[index];
 }
@@ -159,12 +159,12 @@ bool ScheduleAccess::Update(int id, int choice)
 		case 1:
 			cout << "Movie ID : ";
 			cin >> movie_id;
-			c_query += " movie_id = '" + movie_id;
+			c_query += " movie_id = '" + to_string(movie_id);
 			break;
 		case 2:
 			cout << "Room ID : ";
 			cin >> room_id;
-			c_query += " room_id = '" + room_id;
+			c_query += " room_id = '" + to_string(room_id);
 			break;
 		case 3:
 			cout << "Schedule Date (yyyy-mm-dd) : ";
@@ -182,7 +182,7 @@ bool ScheduleAccess::Update(int id, int choice)
 			c_query += " schedule_end = '" + schedule_end;
 			break;
 	}
-	c_query += "'where schedule_id = '" + to_string(id) + "'";
+	c_query += "' where schedule_id = '" + to_string(id) + "'";
 	const char* q = c_query.c_str();
 	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
@@ -203,12 +203,12 @@ void ScheduleAccess::Show()
 {
 	Schedule* ptr = new Schedule[this->Count(1)];
 	this->Select(ptr, 1, 0);
-	cout << left << setw(15) << "Schedule ID:";
-	cout << left << setw(15) << "Movie ID:";
-	cout << left << setw(15) << "Room ID:";
-	cout << left << setw(15) << "Date:";
-	cout << left << setw(15) << "Start:";
-	cout << left << setw(15) << "End:" << endl;
+	cout << left << setw(20) << "Schedule ID:";
+	cout << left << setw(20) << "Movie ID:";
+	cout << left << setw(20) << "Room ID:";
+	cout << left << setw(20) << "Date:";
+	cout << left << setw(20) << "Start:";
+	cout << left << setw(20) << "End:" << endl;
 	for (int i = 0; i < this->Count(1); i++)
 	{
 		ptr[i].Show();

@@ -10,6 +10,7 @@ public:
     bool Insert();
     int Search(int); // search theo id_number
     bool Update();
+    int LastID();
     bool Delete();
     void Show();
 };

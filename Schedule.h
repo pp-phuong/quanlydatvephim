@@ -5,6 +5,8 @@ using namespace std;
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include "MovieAccess.h"
+#include "RoomAccess.h"
 class Schedule
 {
 private:

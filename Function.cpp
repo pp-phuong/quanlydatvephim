@@ -528,9 +528,92 @@ void Function::MenuUpdateMovie(int stt)
     } while (key != 'n');
     MenuAdmin();
 }
-void Function::MenuAdSeatType(){}
+void Function::MenuAdSeatType(){
+    cout << "_________________________SEAT TYPE _________________________" << endl
+        << "                       1. Show seat type" << endl
+        << "                       2. New Seat type" << endl
+        << "                       3. Update Seat type" << endl
+        << "                       4. Delete Seat type" << endl
+        << "                       5. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    Account out;
+    cin >> m;
+    switch (m)
+    {
+    case 1:
+        this->seat_type.Init();
+        this->seat_type.Show();
+        this->seat_type.Close();
+        break;
+    case 2:
+        this->seat_type.Init();
+        this->seat_type.Insert();
+        this->seat_type.Show();
+        this->seat_type.Close();
+        break;
+    case 3:
+        this->seat.Init();
+        /*this->MenuUpdateSeat(room);*/
+        this->seat.Close();
+        break;
+    case 4:
+        this->seat.Delete();
+        break;
+    case 5:
+        MenuAdmin();
+        break;
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
+}
 void Function::MenuAdBooking(){}
-void Function::MenuAdSchedule(){}
+void Function::MenuAdSchedule(){
+    cout << "_________________________SCHEDULE_________________________" << endl
+        << "                       1. Show shedule" << endl
+        << "                       2. New schedule " << endl
+        << "                       3. Update Schedule " << endl
+        << "                       4. Delete Schedule" << endl
+        << "                       5. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    Account out;
+    int room;
+    cin >> m;
+    switch (m)
+    {
+    case 1:
+        this->room.Init();
+        cout << "Nhap room muon hien thi : ";
+        cin >> room;
+        this->room.Show();
+        this->room.Close();
+        break;
+    case 2:
+        this->room.Init();
+        this->room.Insert();
+        this->room.Show();
+        this->room.Close();
+        break;
+    case 3:
+        this->room.Init();
+        cout << "Nhap room muon update : ";
+        cin >> room;
+        this->room.Update(room);
+        this->room.Close();
+        break;
+    case 4:
+        this->room.Delete();
+        break;
+    case 5:
+        MenuAdmin();
+        break;
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
+}
 
 Account Function::getUserNow()
 {

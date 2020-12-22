@@ -50,8 +50,14 @@ string Schedule::insertQuery()
 void Schedule::Show()
 {
 	cout << left << setw(5) << this->schedule_id;
-	cout << left << setw(5) << this->movie_id;
-	cout << left << setw(5) << this->room_id;
+	RoomAccess room;
+	Room* ptr = new Room[room.Count()];
+	room.Select(ptr);
+	MovieAccess mv;
+	Movie* ptr_mv = new Movie[mv.CountRow(1)];
+	mv.Select(ptr_mv,1);
+	cout << left << setw(5) << ptr_mv[mv.Search(this->movie_id)].getMovieName();
+	cout << left << setw(5) << ptr[room.Search(this->room_id)].getRoomName();
 	cout << left << setw(18) << this->schedule_date;
 	cout << left << setw(18) << this->schedule_start;
 	cout << right << setw(18) << this->schedule_end << endl;

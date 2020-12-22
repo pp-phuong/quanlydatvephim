@@ -18,6 +18,7 @@ public:
     ~SeatType();
     int getSeatTypeID();
     char* getSeatTypeName();
+    void setSeatType();
     int getSeatPrice();
     string insertQuery();
     void Show(); // xem seatType ( ko cần thiết lắm )

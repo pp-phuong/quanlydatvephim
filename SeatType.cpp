@@ -30,14 +30,19 @@ char* SeatType::getSeatTypeName()
 {
 	return this->seat_type;
 }
-
+void SeatType::setSeatType() {
+	cout << "Seat Type:";
+	cin.ignore();
+	cin.getline(this->seat_type, 15);
+	cout << "Seat Price :";
+	cin >> this->seat_price;
+}
 string SeatType::insertQuery()
 {
 	string t_query;
-	string t_seatTypeID = to_string(this->seat_type_id);
 	string t_seatTypeName(this->seat_type);
 	string t_seatPrice = to_string(this->seat_price);
-	t_query = t_seatTypeID + "','" + t_seatTypeName + "','" + t_seatPrice + "')";
+	t_query = t_seatTypeName + "','" + t_seatPrice + "')";
 	return t_query;
 }
 
@@ -45,5 +50,5 @@ void SeatType::Show()
 {
 	cout << left << setw(4) << this->seat_type_id;
 	cout << left << setw(15) << this->seat_type;
-	cout << right << setw(10) << this->seat_price;
+	cout << right << setw(10) << long( this->seat_price );
 }

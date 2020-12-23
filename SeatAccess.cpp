@@ -59,18 +59,20 @@ void SeatAccess::Show(int room)
 	{
 		if ((i % this->Count(4, room)) == 0) cout << endl;
 		
-		cout << setw(7) << i+1 << "." << ptr[i].getSeatRow() << ptr[i].getSeatNumber() ;
-		if (ptr[i].getStatus() == 0) cout << " O  ";
-		else cout << " X  ";
+		cout << setw(3) << i+1 << ptr[i].getSeatRow() << ptr[i].getSeatNumber() ;
+		if (ptr[i].getStatus() == 0) cout << " O \t";
+		else cout << " X \t";
 	}
 	cout << endl;
 }
 
 int SeatAccess::Count(int choice, int roomID)
 {
-	// 1: đếm hàng
-	// 2: đếm cột
-	// 3: đếm số seat của room
+
+	// 1: đếm full seat
+	// 2: đếm seat của room
+	// 3: đếm số hàng
+	// 4 : đếm số cột
 	int i = 0;
 	string c_query = "";
 	switch (choice)
@@ -118,8 +120,6 @@ int SeatAccess::Search(int seatID, int roomID)
 }
 bool SeatAccess::Insert()
 {
-	// để a test choa, đang làm chỗ insert ni nề
-	// hình như hắn ném ra cái ngoại lệ, chỗ cài đặt ngoại lệ a thấy bấm setting nó cho break khi có ngoại lệ
 	string c_query = "insert into seat values ('";
 	Seat seat;
 	seat.setSeat();
@@ -136,7 +136,7 @@ bool SeatAccess::Insert()
 	else
 	{
 		cout << c_query;
-		cout << "Them du lieu thanh cong !" << endl;
+		cout << "Them thanh cong !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
@@ -150,7 +150,6 @@ Seat SeatAccess::getSeat(int index, int room)
 {
 	Seat* ptr = new Seat[this->Count(2,room)];
 	this->Select(ptr, 2,room);
-	cout << "seat Id : " << ptr[index].getSeatID();
 	return ptr[index];
 }
 bool SeatAccess::Update(int id, int type, int room)
@@ -184,10 +183,13 @@ bool SeatAccess::Update(int id, int type, int room)
 		getline(cin, seat_number);
 		c_query += " seat_number = '" + seat_number;
 		break;
+	case 4:
+		c_query += " seat_status = '1" ;
+		break;
 	}
-	c_query += "'where seat_id = '" + to_string(id) + "' and room_id = '" + to_string(room) +"'" ;
+	if (type == 4) c_query += "'where seat_id = '" + to_string(id) + "'";
+	else c_query += "'where seat_id = '" + to_string(id) + "' and room_id = '" + to_string(room) +"'" ;
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
@@ -195,7 +197,6 @@ bool SeatAccess::Update(int id, int type, int room)
 	}
 	else
 	{
-		cout << endl << "Them du lieu thanh cong !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);

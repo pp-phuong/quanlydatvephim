@@ -69,9 +69,12 @@ string Seat::insertQuery()
 
 void Seat::Show()
 {
+	RoomAccess room;
+	Room* ptr = new Room[room.Count()];
+	room.Select(ptr);
 	cout << left << setw(4) << this->seat_id;
 	cout << left << setw(4) << this->seatType_id;
-	cout << left << setw(4) << this->room_id;
+	cout << left << setw(4) << ptr[room.Search(this->room_id)].getRoomName();
 	cout << left << setw(4) << this->seat_row;
 	cout << left << setw(4) << this->seat_number;
 	cout << right << setw(4) << this->seat_status << endl;

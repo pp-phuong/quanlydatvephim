@@ -17,6 +17,8 @@
 #include <string>
 #include <conio.h>
 #include <windows.h>
+#include <iostream>
+using namespace std;
 
 class Function
 {
@@ -28,6 +30,7 @@ class Function
 	SeatTypeAccess seat_type;
 	ScheduleAccess schedule;
 	BookingAccess booking;
+	Booking new_booking;
 	Account account;
 	Account user;
 	Account user_now;
@@ -48,6 +51,7 @@ public:
 	void MenuAdMovie();
 	void MenuUpdateMovie(int);
 	void MenuAdSeatType();
+	void MenuUpdateSeatType();
 	void MenuAdBooking();
 	void MenuUpdateSchedule(int);
 	void MenuAdSchedule();

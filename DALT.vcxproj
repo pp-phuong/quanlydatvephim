@@ -151,6 +151,7 @@
     <ClInclude Include="Room.h" />
     <ClInclude Include="RoomAccess.h" />
     <ClInclude Include="Schedule.h" />
+    <ClInclude Include="ScheduleAccess.h" />
     <ClInclude Include="Seat.h" />
     <ClInclude Include="SeatAccess.h" />
     <ClInclude Include="SeatType.h" />
@@ -170,6 +171,7 @@
     <ClCompile Include="Room.cpp" />
     <ClCompile Include="RoomAccess.cpp" />
     <ClCompile Include="Schedule.cpp" />
+    <ClCompile Include="ScheduleAccess.cpp" />
     <ClCompile Include="Seat.cpp" />
     <ClCompile Include="SeatAccess.cpp" />
     <ClCompile Include="SeatType.cpp" />

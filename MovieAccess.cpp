@@ -143,6 +143,7 @@ bool MovieAccess::Insert()
 {
 	string c_query = "insert into movie values ('";
 	Movie mv;
+	c_query += to_string( this->LastID() + 1) + "','";
 	mv.setMovie();
 	c_query += mv.insertQuery();
 	const char* q = c_query.c_str();
@@ -202,7 +203,7 @@ bool MovieAccess::Update(int id, int type)
 		cout << "Nhap movie genre :";
 		cin.ignore();
 		getline(cin, movie_genre);
-		c_query += " movie_genre = '" + movie_genre;
+		c_query += " movie_genres = '" + movie_genre;
 		break;
 	}
 	c_query += "'where movie_id = '" + to_string(id) + "'";
@@ -231,6 +232,12 @@ Movie MovieAccess::getMovie(int index)
 	Movie* ptr = new Movie[this->CountRow(1)];
 	this->Select(ptr,1);
 	return ptr[index];
+}
+char* MovieAccess::getMovieName(int index)
+{
+	Movie* ptr = new Movie[this->CountRow(1)];
+	this->Select(ptr, 1);
+	return ptr[index].getMovieName();
 }
 int MovieAccess::LastID()
 {

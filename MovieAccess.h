@@ -13,11 +13,11 @@ public:
     void Select(Movie*& , int);
     int CountRow(int);
     bool Insert();
-    bool Insert(Movie);
     int Search(int); // search theo id_number
     bool Update(int, int);
     bool Delete();
     Movie getMovie(int);
+    char* getMovieName(int);
     void Show(int);
     int LastID();
 };

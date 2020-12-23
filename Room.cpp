@@ -3,10 +3,10 @@
 Room::Room()
 {}
 
-Room::Room(char* roonName, int roomID)
+Room::Room(char* roomName, int roomID)
 {
 	this->room_id = roomID;
-	strcpy_s(this->room_name, 5, roonName);
+	strcpy_s(this->room_name, 5, roomName);
 }
 
 Room::~Room()

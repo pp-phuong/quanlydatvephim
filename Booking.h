@@ -5,6 +5,9 @@ using namespace std;
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include "ScheduleAccess.h"
+#include "MovieAccess.h"
+#include "SeatAccess.h"
 class Booking
 {
 private:
@@ -19,7 +22,7 @@ public:
 	int getAccountID();
 	int getScheduleID();
 	int getSeatID();
-	//void setBooking();
+	void setBooking(int,int,int);
 	string insertQuery();
 	void Show();
 };

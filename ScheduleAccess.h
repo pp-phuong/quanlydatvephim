@@ -2,18 +2,21 @@
 #include "Schedule.h"
 #include "Date.h"
 #include "DatabaseAccess.h"
+#include "RoomAccess.h"
+#include "MovieAccess.h"
 class ScheduleAccess : public DatabaseAccess
 {
-	public:
-        void Select(Schedule*&, int, int);
-        int Count(int);
-        bool Insert();
-        int Search(int, int); // search theo id_number
-        bool Update(int,int);
-        bool Delete();
-        void Show();
-        Schedule getSchedule(int);
-        int LastID();
+public:
+    void Select(Schedule*&, int, int);
+    int Count(int);
+    bool Insert();
+    int Search(int); // search theo id_number
+    bool Update(int, int);
+    bool Delete();
+    void Show(int);
+    Schedule getSchedule(int);
+    char* getRoomName(int);
+    int LastID();
 };
 
 

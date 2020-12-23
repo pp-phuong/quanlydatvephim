@@ -55,7 +55,7 @@ string Movie::insertQuery()
 	string t_movie_release(movie_release);
 	string t_movie_length = to_string(movie_length);
 	string t_movie_genres(movie_genre);
-	t_query = t_movie_id + "','" + t_movie_name + "','" + t_movie_description + "','" +  t_movie_length + "','" + t_movie_genres + "','" +  t_movie_release + "')";
+	t_query =  t_movie_name + "','" + t_movie_description + "','" +  t_movie_length + "','" + t_movie_genres + "','" +  t_movie_release + "')";
 	return t_query;
 }
 

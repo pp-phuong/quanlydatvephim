@@ -32,9 +32,9 @@ CREATE TABLE schedule
 	schedule_id int PRIMARY KEY,
 	movie_id int NOT NULL ,
 	room_id int NOT NULL ,
-	shedule_date date,
-	shedule_start time NOT NULL,
-	shedule_end time,
+	schedule_date date,
+	schedule_start time NOT NULL,
+	schedule_end time,
 	constraint fk_id_movie FOREIGN KEY (movie_id ) REFERENCES movie(movie_id),
 	constraint fk_id_room FOREIGN KEY (room_id) REFERENCES room(room_id)
 )

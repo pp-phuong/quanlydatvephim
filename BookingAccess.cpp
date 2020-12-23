@@ -40,7 +40,6 @@ int BookingAccess::Count()
 	string c_query;
 	c_query = "select * from booking";
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "Co loi xay ra, vui long thu lai!" << endl;
@@ -68,10 +67,85 @@ int BookingAccess::Search(int account_id)
 	return -1;
 }
 
-void BookingAccess::Show()
+void BookingAccess::Show(int choice, int id)
 {
-	string c_query = "select booking.ID_number, movie_name, room_name, seat_row, seat_number, schedule_date, schedule_start, schedule_end, seat_price from booking inner join schedule on booking.schedule_id = schedule.schedule_id inner join room on schedule.room_id = room.room_id inner join movie on schedule.movie_id = movie.movie_id inner join account on booking.ID_number = account.ID_number inner join seat on booking.seat_id = seat.seat_id ";
+	Booking* ptr = new Booking[this->Count()];
+	const char* q;
+	SQLINTEGER PtrSQLVersion;
+	char movie_name[40];
+	char shedule_date[15];
+	char shedule_start[10];
+	char room_name[5];
+	char seat_row[5];
+	char seat_number[5];
+	int seat_price;
+	switch (choice)
+	{
+	case 1:
+		this->Select(ptr);
+		for (int i = 0; i < this->Count(); i++)
+		{
+			cout << i + 1 << ".";
+			ptr[i].Show();
+		}
+		if (this->Count() == 0)
+		{
+			cout << endl << "Sorry,no seat type founded!" << endl;
+		};
+		break;
+	case 2:
+		string c_query = "select movie_name, schedule_date, schedule_start, room_name, seat_row, seat_number, seat_price from booking";
+		c_query += " inner join seat on booking.seat_id = seat.seat_id";
+		c_query += " inner join seatType on seat.seat_type_id = seatType.seat_type_id";
+		c_query += " inner join schedule on booking.schedule_id =  schedule.schedule_id ";
+		c_query += " inner join room on room.room_id=  schedule.room_id ";
+		c_query += " inner join movie on movie.movie_id = schedule.movie_id ";
+		c_query += " where booking_id = " + to_string(id);
+		q = c_query.c_str();
+		if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
+		{
+			cout << "Co loi xay ra, vui long thu lai!!" << endl;
+			Close();
+		}
+		else
+		{
+			while (SQLFetch(SQLStateHandle) == SQL_SUCCESS)
+			{
+				SQLGetData(SQLStateHandle, 1, SQL_CHAR, movie_name, sizeof(movie_name), NULL);
+				SQLGetData(SQLStateHandle, 2, SQL_CHAR, shedule_date, sizeof(shedule_date), NULL);
+				SQLGetData(SQLStateHandle, 3, SQL_CHAR, shedule_start, sizeof(shedule_start), NULL);
+				SQLGetData(SQLStateHandle, 4, SQL_CHAR, room_name, sizeof(room_name), NULL);
+				SQLGetData(SQLStateHandle, 5, SQL_CHAR, seat_row, sizeof(seat_row), NULL);
+				SQLGetData(SQLStateHandle, 6, SQL_CHAR, seat_number, sizeof(seat_number), NULL);
+				SQLGetData(SQLStateHandle, 7, SQL_INTEGER, &seat_price, sizeof(seat_price), NULL);
+				cout << endl << "______ TICKET ______" << endl;
+				cout << "Movie : " << movie_name << endl;
+				cout << "Date : " << shedule_date << endl;
+				cout << "Time : " << shedule_start << endl;
+				cout << "Room : " << room_name << endl;
+				cout << "Seat : " << seat_row << seat_number << endl;
+				cout << "Price : " << seat_price << endl;
+				cout << "_____Thank you !_____" << endl;
+			}
+		}
+		SQLCancel(SQLStateHandle);
+		break;
+	}; 
+}
+
+bool BookingAccess::Update()
+{
+	return 0;
+}
+bool BookingAccess::Insert(Booking &booking)
+{
+	string c_query = "insert into booking values ('";
+	int id = this->LastID() + 1;
+	c_query += to_string(id) + "','";
+	c_query += booking.insertQuery();
 	const char* q = c_query.c_str();
+	SeatAccess seat;
+	seat.Init();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "Co loi xay ra, vui long thu lai!!" << endl;
@@ -79,18 +153,23 @@ void BookingAccess::Show()
 	}
 	else
 	{
-		cout << "Hoa don dat ve xem phim" << endl;
+		seat.Update(booking.getSeatID(), 4, 0); 
+		seat.Close();
+		cout << "Dat ve thanh cong !" << endl;
+		this->Show(2,id);
+		return true;
 	}
 	SQLCancel(SQLStateHandle);
+	return 1;
 }
-
-bool BookingAccess::Update()
+int BookingAccess::LastID()
 {
-	return 0;
-}
-bool BookingAccess::Insert()
-{
-	return 0;
+	if (this->Count() == 0) return 0;
+	else {
+		Booking* ptr = new Booking[this->Count()];
+		this->Select(ptr);
+		return ptr[this->Count() - 1].getBookingID();
+	}
 }
 bool BookingAccess::Delete()
 {

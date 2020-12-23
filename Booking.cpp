@@ -31,18 +31,26 @@ int Booking::getSeatID()
 	return this->seat_id;
 }
 
+void Booking::setBooking(int id,int schedule, int seat)
+{
+	this->account_id = id;
+	this->schedule_id = schedule;
+	this->seat_id = seat;
+}
 string Booking::insertQuery()
 {
 	string t_query;
-	string t_booking_id = to_string(this->booking_id);
 	string t_account_id = to_string(this->account_id);
 	string t_schedule_id = to_string(this->schedule_id);
 	string t_seat_id = to_string(this->seat_id);
-	t_query = t_booking_id + "','" + t_account_id + "','" + t_schedule_id + "','" + t_seat_id + "')";
+	t_query =  t_account_id + "','" + t_schedule_id + "','" + t_seat_id + "')";
 	return t_query;
 }
 
 void Booking::Show()
-{}
+{
+	cout << "Schedule: " << this->schedule_id << "   " ;
+	cout << "Seat: " << this->seat_id << endl;
+}
 
 

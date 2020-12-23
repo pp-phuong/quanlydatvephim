@@ -9,8 +9,9 @@ public:
     int Count();
     bool Insert();
     int Search(int); // search theo id_number
-    bool Update();
+    bool Update(int, int);
     int LastID();
     bool Delete();
     void Show();
+    SeatType getSeatType(int);
 };

@@ -5,6 +5,8 @@ using namespace std;
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include "RoomAccess.h"
+#include "Room.h"
 class Seat
 {
 private:

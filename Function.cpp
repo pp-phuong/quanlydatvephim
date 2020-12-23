@@ -6,7 +6,6 @@ Function::~Function() {
 }
 void Function::MenuAdmin()
 {
-    system("cls");
     cout << "_________________________HANAFUO CINEMA_________________________" << endl
         << "                       1. Movie" << endl
         << "                       2. Account " << endl
@@ -233,10 +232,71 @@ void Function::MenuSearchMovie()
 }
 void Function::MenuSchedule()
 {
-    cout << "You choose Schedule";
+    cout << "_________________________SChedule _________________________" << endl
+        << "                       1. Tat ca" << endl
+        //<< "                       2. Theo Phim" << endl
+        << "                       2. Hom nay" << endl
+        << "                       3. Back to menu before" << endl
+        << "                       PRESS THE NUMBER : ";
+    int m;
+    cin >> m;
+    this->schedule.Init();
+    //this->mv.Init();
+    switch (m)
+    {
+    case 1:
+        this->schedule.Show(1);
+        break;
+    /*case 2:
+        this->mv.Show(2);
+        this->schedule.Show(2);
+        break;*/
+    case 2:
+        this->schedule.Show(3);
+        break;
+    case 3:
+        Menu();
+        break;
+    default:
+        cout << " Sorry,There is no matching option " << endl;
+        break;
+    }
+    //this->mv.Close();
+    this->schedule.Close();
 }
 void Function::MenuBooking()
-{}
+{
+    this->schedule.Init();
+    this->seat.Init();
+    this->booking.Init();
+    this->schedule.Show(1);
+    cout << "Lich Chieu : " << endl;
+    int schedule_stt;
+    cout << "Chon Lich chieu :";
+    cin >> schedule_stt;
+    int id_schedule = this->schedule.getSchedule(schedule_stt - 1).getScheduleID();
+    int room_id = this->schedule.getSchedule(schedule_stt - 1).getRoomID();
+    cout << "Ghe : " ;
+    this->seat.Show(room_id);
+    int seat_stt = 0;
+    cout << "X : ghe da dat " << endl << "O : ghe trong " << endl;
+    cout << "Chon ghe : ";
+    cin >> seat_stt;
+    int seat_id = this->seat.getSeat(seat_stt-1, room_id).getSeatID();
+    while ( this->seat.getSeat(seat_stt-1, room_id).getStatus() == 1)
+    {
+        cout << "Ghe khong trong !";
+        cout << "X : ghe da dat " << endl << "O : ghe trong " << endl;
+        cout << "Chon ghe : ";
+        cin >> seat_stt;
+        seat_id = this->seat.getSeat(seat_stt-1, room_id).getSeatID();
+    }
+    this->new_booking.setBooking(this->getUserNow().getID(), id_schedule, seat_id);
+    this->booking.Insert(new_booking);
+    this->seat.Close();
+    this->schedule.Close();
+    this->booking.Close();
+}
 void Function::MenuAdAccount()
 {
 
@@ -281,13 +341,13 @@ void Function::MenuAdAccount()
     }
 }
 void Function::MenuAdRoom() {
-    system("cls");
     cout << "_________________________ROOM_________________________" << endl
-        << "                       1. Show Room" << endl
-        << "                       2. New Room " << endl
-        << "                       3. Update Room " << endl
-        << "                       4. Delete Room" << endl
-        << "                       5. Back to menu before" << endl
+        << "                       1. Show Full Room" << endl
+        << "                       2. Show One Room" << endl
+        << "                       3. New Room " << endl
+        << "                       4. Update Room " << endl
+        << "                       5. Delete Room" << endl
+        << "                       6. Back to menu before" << endl
         << "                       PRESS THE NUMBER : ";
     int m;
     Account out;
@@ -297,28 +357,33 @@ void Function::MenuAdRoom() {
     {
     case 1:
         this->room.Init();
-        cout << "Nhap room muon hien thi : ";
-        cin >> room;
-        this->room.Show(2,room);
+        this->room.Show(1, 0);
         this->room.Close();
         break;
     case 2:
         this->room.Init();
-        this->room.Insert();
-        this->room.Show(1,0);
+        cout << "Nhap room muon hien thi : ";
+        cin >> room;
+        this->room.Show(2, room);
         this->room.Close();
         break;
     case 3:
+        this->room.Init();
+        this->room.Insert();
+        this->room.Show(1, 0);
+        this->room.Close();
+        break;
+    case 4:
         this->room.Init();
         cout << "Nhap room muon update : ";
         cin >> room;
         this->room.Update(room);
         this->room.Close();
         break;
-    case 4:
+    case 5:
         this->room.Delete();
         break;
-    case 5:
+    case 6:
         MenuAdmin();
         break;
     default:
@@ -389,7 +454,6 @@ void Function::MenuUpdateSeat(int room)
             << "                       PRESS THE NUMBER : ";
         int m;
         cin >> m;
-        cout << "id" << this->seat.getSeat(seat - 1, room).getSeatID();
         switch (m)
         {
         case 1:
@@ -491,34 +555,24 @@ void Function::MenuUpdateMovie(int stt)
             << "                       PRESS THE NUMBER : ";
         int m;
         cin >> m;
+        this->mv.getMovie(stt).Show();
         switch (m)
         {
         case 1:
-            this->mv.getMovie(stt).Show();
             this->mv.Update(this->mv.getMovie(stt).getMovieID(), 1);
-            this->mv.getMovie(stt).Show();
             break;
         case 2:
-            this->mv.getMovie(stt).Show();
             this->mv.Update(this->mv.getMovie(stt).getMovieID(), 2);
-            this->mv.getMovie(stt).Show();
             break;
         case 3:
-            this->mv.getMovie(stt).Show();
             this->mv.Update(this->mv.getMovie(stt).getMovieID(), 3);
-            this->mv.getMovie(stt).Show();
             break;
         case 4:
-            this->mv.getMovie(stt).Show();
             this->mv.Update(this->mv.getMovie(stt).getMovieID(), 4);
-            this->mv.getMovie(stt).Show();
             break;
         case 5:
-            this->mv.getMovie(stt).Show();
             this->mv.Update(this->mv.getMovie(stt).getMovieID(), 5);
-            this->mv.getMovie(stt).Show();
             break;
-
         default:
             cout << " Sorry,There is no matching option " << endl;
             break;
@@ -530,8 +584,7 @@ void Function::MenuUpdateMovie(int stt)
     } while (key != 'n');
     MenuAdmin();
 }
-void Function::MenuAdSeatType() 
-{
+void Function::MenuAdSeatType() {
     cout << "_________________________SEAT TYPE _________________________" << endl
         << "                       1. Show seat type" << endl
         << "                       2. New Seat type" << endl
@@ -541,24 +594,22 @@ void Function::MenuAdSeatType()
         << "                       PRESS THE NUMBER : ";
     int m;
     Account out;
+    int stt;
     cin >> m;
+    this->seat_type.Init();
     switch (m)
     {
     case 1:
-        this->seat_type.Init();
+        
         this->seat_type.Show();
-        this->seat_type.Close();
         break;
     case 2:
-        this->seat_type.Init();
+     
         this->seat_type.Insert();
         this->seat_type.Show();
-        this->seat_type.Close();
         break;
     case 3:
-        this->seat.Init();
-        //this->MenuUpdateSeat(room);
-        this->seat.Close();
+        this->MenuUpdateSeatType();
         break;
     case 4:
         this->seat.Delete();
@@ -570,11 +621,49 @@ void Function::MenuAdSeatType()
         cout << " Sorry,There is no matching option " << endl;
         break;
     }
+    this->seat.Close();
+}
+void Function::MenuUpdateSeatType()
+{
+    char key = 'y';
+    int stt;
+    do {
+        this->seat_type.Show();
+        cout << "Nhap stt seat type can update: ";
+        cin >> stt;
+        cout << "_________________________Update Seat Type_________________________" << endl
+            << "                       1. Seat Type" << endl
+            << "                       2. Seat Price" << endl
+            << "                       3. Back" << endl
+            << "                       PRESS THE NUMBER : ";
+        int m;
+        cin >> m;
+        switch (m)
+        {
+        case 1:
+            this->seat_type.Update(1,this->seat_type.getSeatType(stt-1).getSeatTypeID());
+            break;
+        case 2:
+            this->seat_type.Update(2,this->seat_type.getSeatType(stt-1).getSeatTypeID());
+            break;
+        case 3:
+            MenuAdSeat();
+            break;
+        default:
+            cout << " Sorry,There is no matching option " << endl;
+            break;
+        }
+        this->seat_type.Show();
+        cout << "Do you want to be continute? y/n ";
+        cin >> key;
+
+    } while (key != 'n');
+    MenuAdmin();
 }
 void Function::MenuAdBooking() {}
-
 void Function::MenuUpdateSchedule(int stt)
 {
+    
     char key = 'y';
     do {
         cout << "_________________________Update Schedule_________________________" << endl
@@ -586,38 +675,30 @@ void Function::MenuUpdateSchedule(int stt)
             << "                       PRESS THE NUMBER : ";
         int m;
         cin >> m;
+        this->schedule.getSchedule(stt).Show(this->mv);
         switch (m)
         {
         case 1:
-            this->schedule.getSchedule(stt).Show();
+          
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 1);
-            this->schedule.getSchedule(stt).Show();
             break;
         case 2:
-            this->schedule.getSchedule(stt).Show();
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 2);
-            this->schedule.getSchedule(stt).Show();
             break;
         case 3:
-            this->schedule.getSchedule(stt).Show();
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 3);
-            this->schedule.getSchedule(stt).Show();
             break;
         case 4:
-            this->schedule.getSchedule(stt).Show();
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 4);
-            this->schedule.getSchedule(stt).Show();
             break;
         case 5:
-            this->schedule.getSchedule(stt).Show();
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 5);
-            this->schedule.getSchedule(stt).Show();
             break;
         default:
             cout << " Sorry,There is no matching option " << endl;
             break;
         }
-        this->schedule.getSchedule(stt).Show();
+        this->schedule.getSchedule(stt).Show(this->mv);
         cout << "Do you want to be continute? y/n ";
         cin >> key;
 
@@ -639,21 +720,17 @@ void Function::MenuAdSchedule() {
     Account out;
     int movieID;
     cin >> m;
+    this->schedule.Init();
     switch (m)
     {
     case 1:
-        this->schedule.Init();
-        this->schedule.Show();
-        this->schedule.Close();
+        this->schedule.Show(1);
         break;
     case 2:
-        this->schedule.Init();
         this->schedule.Insert();
-        this->schedule.Close();
         break;
     case 3:
-        this->schedule.Init();
-        this->schedule.Show();
+        this->schedule.Show(1);
         cout << "Nhap stt schedule can update : ";
         cin >> stt_sc;
         this->MenuUpdateSchedule(stt_sc - 1);
@@ -668,6 +745,7 @@ void Function::MenuAdSchedule() {
         cout << " Sorry,There is no matching option " << endl;
         break;
     }
+    this->schedule.Close();
 }
 Account Function::getUserNow()
 {

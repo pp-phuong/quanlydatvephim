@@ -12,7 +12,7 @@ bool DatabaseAccess::Init()
 	if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_DBC, SQLEnvironmentHandle, &SQLConnectionHandle))
 		Close();
 
-	cout << "Waiting......" << endl;
+	cout << "\tWait for a minute, processing......" << endl;
 	/*Data Source = DESKTOP - S2SLR6P; Initial Catalog = QlyDatVePhim; Persist Security Info = True; User ID = sa*/
 	switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLWCHAR*)L"DRIVER={SQL Server}; Server=DESKTOP-BIHQC8D;Database=QLDatVeXemPhim;UID=sa;PWD=123456;Trusted_Connection=True;",
 		SQL_NTS,

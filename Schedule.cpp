@@ -25,7 +25,10 @@ int Schedule::getScheduleID()
 {
 	return this->schedule_id;
 }
-
+int Schedule::getRoomID()
+{
+	return this->room_id;
+}
 char* Schedule::getSDate()
 {
 	return this->schedule_date;
@@ -41,6 +44,10 @@ char* Schedule::getEnd()
 	return this->schedule_end;
 }
 
+int Schedule::getMovieID()
+{
+	return this->movie_id;
+}
 string Schedule::insertQuery()
 {
 	string t_query;
@@ -50,19 +57,16 @@ string Schedule::insertQuery()
 	string t_schedule_date(this->schedule_date);
 	string t_schedule_start(this->schedule_start);
 	string t_schedule_end(this->schedule_end);
-	//t_query = t_schedule_id + "','" + t_movie_id + "','" + t_room_id + "','" + t_schedule_date + "','" + t_schedule_start + "','" + t_schedule_end + "')";
 	t_query = t_movie_id + "','" + t_room_id + "','" + t_schedule_date + "','" + t_schedule_start + "','" + t_schedule_end + "')";
 	return t_query;
 }
 
-void Schedule::Show()
+void Schedule::Show(MovieAccess movie)
 {
-	cout << left << setw(20) << this->schedule_id;
-	cout << left << setw(20) << this->movie_id;
-	cout << left << setw(20) << this->room_id;
+	cout << left << setw(20) << movie.getMovieName(this->movie_id-1);
 	cout << left << setw(20) << this->schedule_date;
 	cout << left << setw(20) << this->schedule_start;
-	cout << left << setw(20) << this->schedule_end << endl;
+	cout << endl;
 }
 
 void Schedule::setSchedule()
@@ -75,10 +79,8 @@ void Schedule::setSchedule()
 	cin.ignore();
 	cin.getline(this->schedule_date, 20);
 	cout << "Schedule start (hh:mm:ss): ";
-	cin.ignore();
 	cin.getline(this->schedule_start, 20);
 	cout << "Schedule end (hh:mm:ss): ";
-	cin.ignore();
 	cin.getline(this->schedule_end, 20);
 }
 

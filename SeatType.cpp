@@ -8,7 +8,7 @@ SeatType::SeatType()
 }
 
 SeatType::SeatType(char* seatType, int seatTypeID, int seatPrice)
-	:seat_type_id(seatTypeID), seat_price(seat_price)
+	:seat_type_id(seatTypeID), seat_price(seatPrice)
 {
 	strcpy_s(this->seat_type, 15, seatType);
 }
@@ -51,4 +51,5 @@ void SeatType::Show()
 	cout << left << setw(4) << this->seat_type_id;
 	cout << left << setw(15) << this->seat_type;
 	cout << right << setw(10) << long( this->seat_price );
+	cout << endl;
 }

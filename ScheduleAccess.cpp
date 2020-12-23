@@ -105,7 +105,7 @@ bool ScheduleAccess::Insert()
 	c_query += t_ID + "','";
 	c_query += sc.insertQuery();
 	const char* q = c_query.c_str();
-	cout << q;
+
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "Co loi xay ra, vui long thu lai!!" << endl;
@@ -118,6 +118,7 @@ bool ScheduleAccess::Insert()
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
+	return false;
 }
 
 int ScheduleAccess::LastID() {
@@ -160,6 +161,7 @@ bool ScheduleAccess::Update(int id, int choice)
 	cin.ignore();
 	switch (choice)
 	{
+<<<<<<< HEAD
 	case 1:
 		cout << "Movie ID : ";
 		cin >> movie_id;
@@ -185,10 +187,40 @@ bool ScheduleAccess::Update(int id, int choice)
 		getline(cin, schedule_end);
 		c_query += " schedule_end = '" + schedule_end;
 		break;
+=======
+		case 1:
+			cout << "Movie ID : ";
+			cin >> movie_id;
+			c_query += " movie_id = '" + to_string(movie_id);
+			break;
+		case 2:
+			cout << "Room ID : ";
+			cin >> room_id;
+			c_query += " room_id = '" + to_string(room_id);
+			break;
+		case 3:
+			cout << "Schedule Date (yyyy-mm-dd) : ";
+			cin.ignore();
+			getline(cin, schedule_date);
+			c_query += " schedule_date = '" + schedule_date;
+			break;
+		case 4:
+			cout << "Schedule Start (hh:mm:ss) : ";
+			cin.ignore();
+			getline(cin, schedule_start);
+			c_query += " schedule_start = '" + schedule_start;
+			break;
+		case 5:
+			cout << "Schedule End (hh:mm:ss) : ";
+			cin.ignore();
+			getline(cin, schedule_end);
+			c_query += " schedule_end = '" + schedule_end;
+			break;
+>>>>>>> 1434079257cbb43efba2897aa5c9864b14201624
 	}
 	c_query += "' where schedule_id = '" + to_string(id) + "'";
 	const char* q = c_query.c_str();
-	cout << q;
+	//cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;

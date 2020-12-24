@@ -33,17 +33,28 @@ char* Movie::getMovieGenre() {
 }
 void Movie::setMovie()
 {
+	Decoration d;
 	cin.ignore();
+	d.setColor(12);
 	cout << "\t\t\t\t\t\t\t\tMovie name: ";
+	d.setColor(15);
 	cin.getline(this->movie_name,50);
+	d.setColor(12);
 	cout << "\t\t\t\t\t\t\t\tMovie description:";
+	d.setColor(15);
 	cin.getline(this->movie_description, 160);
+	d.setColor(12);
 	cout << "\t\t\t\t\t\t\t\tMovie release:";
+	d.setColor(15);
 	cin.getline(this->movie_release, 15);
+	d.setColor(12);
 	cout << "\t\t\t\t\t\t\t\tMovie length";
+	d.setColor(15);
 	cin >> movie_length;
 	cin.ignore();
+	d.setColor(12);
 	cout << "\t\t\t\t\t\t\t\tMovie genre:";
+	d.setColor(15);
 	cin.getline(this->movie_genre, 50);
 }
 string Movie::insertQuery()

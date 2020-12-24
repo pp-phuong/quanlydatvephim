@@ -38,17 +38,30 @@ char* Seat::getSeatNumber()
 {
 	return this->seat_number;
 }
+int Seat::getSeatType()
+{
+	return this->seatType_id;
+}
 void Seat::setSeat()
 {
+	Decoration d;
+	d.setColor(12);
 	cout << "Seat Type ID : ";
 	cout << " 1.Normal - 2.Couple - 3. VIP : ";
+	d.setColor(14);
 	cin >> this->seatType_id;
+	d.setColor(12);
 	cout << "Room ID: ";
+	d.setColor(14);
 	cin >> this->room_id;
+	d.setColor(12);
 	cout << "Seat Row : ";
+	d.setColor(14);
 	cin.ignore();
 	cin.getline(this->seat_row, 5);
+	d.setColor(12);
 	cout << "Seat Number : ";
+	d.setColor(14);
 	cin.getline(this->seat_number, 5);
 	this->seat_status = 0;
 }

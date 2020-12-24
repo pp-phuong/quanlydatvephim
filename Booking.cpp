@@ -49,8 +49,19 @@ string Booking::insertQuery()
 
 void Booking::Show()
 {
-	cout << "\t\t\t\t\t\t\t\tSchedule: " << this->schedule_id << "   " ;
-	cout << "\t\t\t\t\t\t\t\tSeat: " << this->seat_id << endl;
+	Decoration d;
+	d.setColor(12);
+	cout << "\tCustomer: ";
+	d.setColor(15);
+	cout << this->account_id;
+	d.setColor(12);
+	cout << "\t\tSchedule: ";
+	d.setColor(15);
+	cout << this->schedule_id << "   ";
+	d.setColor(12);
+	cout << "\t\tSeat: ";
+	d.setColor(15);
+	cout << this->seat_id << endl;
 }
 
 

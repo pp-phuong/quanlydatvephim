@@ -3,8 +3,10 @@
 #include <iomanip>
 void AccountAccess::Select(Account*& acc)
 {
+	Decoration d;
 	if (SQL_SUCCESS != SQLExecDirect(SQLStateHandle, (SQLWCHAR*)L"SELECT * FROM account", SQL_NTS))
 	{
+		d.setColor(4);
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !" << endl;
 		Close();
 	}
@@ -38,8 +40,10 @@ void AccountAccess::Select(Account*& acc)
 int AccountAccess::CountRow()
 {
 	int i = 0;
+	Decoration d;
 	if (SQL_SUCCESS != SQLExecDirect(SQLStateHandle, (SQLWCHAR*)L"SELECT * FROM account", SQL_NTS))
 	{
+		d.setColor(14);
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !" << endl;
 		Close();
 	}
@@ -87,49 +91,95 @@ int AccountAccess::LastID() {
 }
 void AccountAccess::Show()
 {
+	Decoration d;
+	d.setColor(12);
 	Account* ptr = new Account[this->CountRow()];
 	this->Select(ptr);
+	cout << "\t";
+	cout << left << setw(8) << "STT";
+	cout << left << setw(30) << "Fullname";
+	cout << left << setw(30) << "Username";
+	cout << left << setw(40) << "Email";
+	cout << left << setw(24) << "Phonenumber";
+	cout << right << setw(4) << "Role" << endl;
 	for (int i = 0; i < this->CountRow(); i++)
 	{
+		d.setColor(11);
+		cout << "\t" << i + 1 << ".\t";
 		ptr[i].Show();
 	}
+	cout << endl << endl;
 }
 bool AccountAccess::Insert(Account acc)
 {
+	Decoration d;
 	string c_query = "insert into account values ('";
-	string t_ID = to_string(this->LastID() + 1 );
+	string t_ID = to_string(this->LastID() + 1);
 	string t_fullname(acc.getFullname());
 	string t_username(acc.getUsername());
 	string t_pwd(acc.getPwd());
 	string t_phone(acc.getPhone());
 	string t_email(acc.getEmail());
 	string t_role = to_string(acc.getRole());
+	if (this->SearchName(t_username) != -1)
+	{
+		cout << "\t\t\t\t\t\t\t\tUser name is exist ! Enter to continue";
+		_getch();
+		return 0;
+	}
 	c_query += t_ID + "','" + t_fullname + "','" + t_username + "','" + t_pwd + "','" + t_phone + "','" + t_email + "','" + t_role + "')";
 	const char* q = c_query.c_str();
-	cout << c_query;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
+		d.setColor(4);
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
+		d.setColor(10);
 		cout << "\t\t\t\t\t\t\t\tSuccess !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
 	return false;
 }
-bool AccountAccess::Insert() {
-	return true;
-}
 bool AccountAccess::Update()
 {
-	
 	return 1;
 }
-bool AccountAccess::Delete()
+bool AccountAccess::Delete(int stt)
 {
+	Decoration d;
+	string id = to_string( this->getAccount(stt).getID());
+	string c_query = "delete from account where ID_number = '" + id + "'";
+	const char* q = c_query.c_str();
+	d.setColor(12);
+	cout << q;
+	cout << "\t\t\t\t\t\t\t\tAre you sure  ? (Y/N): ";
+	d.setColor(15);
+	char ans;
+	cin >> ans;
+	switch (ans)
+	{
+			case 'Y':
+			case 'y':
+				if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
+				{
+					d.setColor(4);
+					cout << "\t\t\t\t\t\t\t\tSomething wrong, please try again !" << endl;
+					Close();
+					return false;
+				}
+				else
+				{
+					d.setColor(10);
+					cout << "\t\t\t\t\t\t\t\tDelete success!!" << endl;
+					return true;
+				}
+			default:
+				break;	
+	}
 	return true;
 }
 Account AccountAccess::getAccount(int index)

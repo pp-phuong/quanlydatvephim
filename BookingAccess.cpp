@@ -3,12 +3,14 @@
 
 void BookingAccess::Select(Booking*& bk)
 {
+	Decoration d;
 	int i = 0;
 	string c_query;
 	c_query = "select * from booking";
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
+		d.setColor(4);
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
@@ -36,12 +38,14 @@ void BookingAccess::Select(Booking*& bk)
 
 int BookingAccess::Count()
 {
+	Decoration d;
 	int i = 0;
 	string c_query;
 	c_query = "select * from booking";
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
+		d.setColor(4);
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
@@ -86,12 +90,14 @@ void BookingAccess::Show(int choice, int id)
 		this->Select(ptr);
 		for (int i = 0; i < this->Count(); i++)
 		{
-			cout << i + 1 << ".";
+			d.setColor(11);
+			cout << "\t\t\t\t\t\t" <<  i + 1 << ".\t";
 			ptr[i].Show();
 		}
 		if (this->Count() == 0)
 		{
-			cout << endl << "Sorry,no seat type founded!" << endl;
+			d.setColor(3);
+			cout << endl << "Sorry,no booking founded!" << endl;
 		};
 		break;
 	case 2:
@@ -105,7 +111,7 @@ void BookingAccess::Show(int choice, int id)
 		q = c_query.c_str();
 		if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 		{
-			cout << "Co loi xay ra, vui long thu lai!!" << endl;
+			cout << "Something wrong. Please try again !!" << endl;
 			Close();
 		}
 		else
@@ -123,30 +129,30 @@ void BookingAccess::Show(int choice, int id)
 				cout << endl << "\t\t\t\t\t\t\t\t____________TICKET____________ " << endl << endl;
 				d.setColor(11);
 				cout << "\t\t\t\t\t\t\t\tMovie : ";
-				d.setColor(15);
+				d.setColor(14);
 				cout << movie_name << endl;
 				d.setColor(11);
 				cout << "\t\t\t\t\t\t\t\tDate : ";
-				d.setColor(15);
+				d.setColor(14);
 				cout << shedule_date << endl;
 				d.setColor(11);
 				cout << "\t\t\t\t\t\t\t\tTime : ";
-				d.setColor(15);
+				d.setColor(14);
 				cout << shedule_start << endl;
 				d.setColor(11);
 				cout << "\t\t\t\t\t\t\t\tRoom : ";
-				d.setColor(15);
+				d.setColor(14);
 				cout << room_name << endl;
 				d.setColor(11);
 				cout << "\t\t\t\t\t\t\t\tSeat : ";
-				d.setColor(15);
+				d.setColor(14);
 				cout << seat_row << seat_number << endl;
 				d.setColor(11);
 				cout << "\t\t\t\t\t\t\t\tPrice : ";
-				d.setColor(15);
-				cout << seat_price << endl;
+				d.setColor(14);
+				cout << seat_price << endl << endl;
 				d.setColor(12);
-				cout << "\t\t\t\t\t\t\t\t___________Thanh you !___________" << endl;
+				cout << "\t\t\t\t\t\t\t\t__________Thanh you !__________" << endl << endl;
 			}
 		}
 		SQLCancel(SQLStateHandle);
@@ -160,6 +166,7 @@ bool BookingAccess::Update()
 }
 bool BookingAccess::Insert(Booking &booking)
 {
+	Decoration d;
 	string c_query = "insert into booking values ('";
 	int id = this->LastID() + 1;
 	c_query += to_string(id) + "','";
@@ -169,7 +176,8 @@ bool BookingAccess::Insert(Booking &booking)
 	seat.Init();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
+		d.setColor(4);
+		cout << "Something wrong. Please try again !!" << endl;
 		Close();
 	}
 	else
@@ -177,6 +185,7 @@ bool BookingAccess::Insert(Booking &booking)
 		seat.Update(booking.getSeatID(), 4, 0); 
 		seat.Close();
 		system("cls");
+		d.setColor(10);
 		cout << "\t\t\t\t\t\t\t\t Booking success ! " << endl;
 		this->Show(2,id);
 		return true;

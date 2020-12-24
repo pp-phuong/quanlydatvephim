@@ -63,8 +63,8 @@ CREATE TABLE booking
 	ID_number int NOT NULL,
 	schedule_id int NOT NULL,
 	seat_id int NOT NULL,
-	constraint fk_indentity_number FOREIGN KEY (ID_number) REFERENCES account(ID_number),
-	constraint fk_id_schedule FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id),
-	constraint fk_id_book_seat FOREIGN KEY (seat_id) REFERENCES seat(seat_id)
+	constraint fk_indentity_number FOREIGN KEY (ID_number) REFERENCES account(ID_number) ON UPDATE CASCADE ON DELETE CASCADE,
+	constraint fk_id_schedule FOREIGN KEY (schedule_id) REFERENCES schedule(schedule_id) ON UPDATE CASCADE ON DELETE CASCADE,
+	constraint fk_id_book_seat FOREIGN KEY (seat_id) REFERENCES seat(seat_id) ON UPDATE CASCADE ON DELETE CASCADE
 )
 GO

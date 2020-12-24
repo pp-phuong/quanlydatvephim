@@ -104,7 +104,6 @@ bool ScheduleAccess::Insert()
 	c_query += t_ID + "','";
 	c_query += sc.insertQuery();
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
@@ -150,6 +149,7 @@ bool ScheduleAccess::Update(int id, int choice)
 	// 3. update s.date
 	// 4. update s.start
 	// 5. update s.end
+	Decoration d;
 	string c_query = "update schedule set";
 	int movie_id;
 	int room_id;
@@ -160,34 +160,42 @@ bool ScheduleAccess::Update(int id, int choice)
 	switch (choice)
 	{
 	case 1:
+		d.setColor(12);
 		cout << "\t\t\t\t\t\t\t\tMovie ID : ";
+		d.setColor(14);
 		cin >> movie_id;
 		c_query += " movie_id = '" + to_string(movie_id);
 		break;
 	case 2:
+		d.setColor(12);
 		cout << "\t\t\t\t\t\t\t\tRoom ID : ";
+		d.setColor(14);
 		cin >> room_id;
 		c_query += " room_id = '" + to_string(room_id);
 		break;
 	case 3:
+		d.setColor(12);
 		cout << "\t\t\t\t\t\t\t\tSchedule Date (yyyy-mm-dd) : ";
+		d.setColor(14);
 		getline(cin, schedule_date);
 		c_query += " schedule_date = '" + schedule_date;
 		break;
 	case 4:
 		cout << "\t\t\t\t\t\t\t\tSchedule Start (hh:mm:ss) : ";
+		d.setColor(14);
 		getline(cin, schedule_start);
 		c_query += " schedule_start = '" + schedule_start;
 		break;
 	case 5:
+		d.setColor(12);
 		cout << "\t\t\t\t\t\t\t\tSchedule End (hh:mm:ss) : ";
+		d.setColor(14);
 		getline(cin, schedule_end);
 		c_query += " schedule_end = '" + schedule_end;
 		break;
 	}
 	c_query += "' where schedule_id = '" + to_string(id) + "'";
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << endl << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
@@ -195,6 +203,7 @@ bool ScheduleAccess::Update(int id, int choice)
 	}
 	else
 	{
+		d.setColor(10);
 		cout << endl << "\t\t\t\t\t\t\t\tSuccess!!" << endl;
 		return true;
 	}
@@ -205,7 +214,6 @@ bool ScheduleAccess::Update(int id, int choice)
 void ScheduleAccess::Show(int choice)
 {
 	Decoration d;
-	cout << this->Count(choice);
 	if (this->Count(choice) == 0)
 	{
 		d.setColor(3);
@@ -234,9 +242,38 @@ void ScheduleAccess::Show(int choice)
 	}
 }
 
-bool ScheduleAccess::Delete()
+bool ScheduleAccess::Delete(int stt)
 {
-	return 0;
+	Decoration d;
+	string id = to_string(this->getSchedule(stt).getScheduleID());
+	string c_query = "delete from schedule where schedule_id = '" + id + "'";
+	const char* q = c_query.c_str();
+	d.setColor(12);
+	cout << "\t\t\t\t\t\t\t\tAre you sure  ? (Y/N): ";
+	d.setColor(15);
+	char ans;
+	cin >> ans;
+	switch (ans)
+	{
+	case 'Y':
+	case 'y':
+		if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
+		{
+			d.setColor(4);
+			cout << "\t\t\t\t\t\t\t\tSomething wrong, please try again !" << endl;
+			Close();
+			return false;
+		}
+		else
+		{
+			d.setColor(10);
+			cout << "\t\t\t\t\t\t\t\tDelete success!!" << endl;
+			return true;
+		}
+	default:
+		break;
+	}
+	return true;
 }
 
 char* ScheduleAccess::getRoomName(int id)

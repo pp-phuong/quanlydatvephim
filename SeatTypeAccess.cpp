@@ -56,6 +56,7 @@ int SeatTypeAccess::Count()
 
 bool SeatTypeAccess::Insert()
 {
+	Decoration d;
 	string c_query= "insert into seatType values ('";
 	string seat_type_id = to_string(this->LastID() + 1);
 	c_query += seat_type_id + "','";
@@ -63,7 +64,6 @@ bool SeatTypeAccess::Insert()
 	seat_type.setSeatType();
 	c_query +=  seat_type.insertQuery();
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
@@ -71,7 +71,8 @@ bool SeatTypeAccess::Insert()
 	}
 	else
 	{
-		cout << "Them seat type thanh cong !";
+		d.setColor(10);
+		cout << "\t\t\t\t\t\t\t\tSuccess!";
 	}
 	SQLCancel(SQLStateHandle);
 	return 1;
@@ -86,19 +87,24 @@ bool SeatTypeAccess::Update(int choice, int id)
 
 	//1. seat Type name;
 	//2. seat type price;
+	Decoration d;
 	string c_query = "update seatType set";
 	string seat_type;
 	int seat_price;
 	switch (choice)
 	{
 	case 1:
-		cout << "Seat Type : ";
+		d.setColor(12);
+		cout << "\t\t\t\t\t\t\t\tSeat Type : ";
 		cin.ignore();
+		d.setColor(14);
 		getline(cin, seat_type);
 		c_query += " seat_type = '" + seat_type;
 		break;
 	case 2:
-		cout << "Seat Price : ";
+		d.setColor(12);
+		cout << "\t\t\t\t\t\t\t\tSeat Price : ";
+		d.setColor(14);
 		cin >> seat_price;
 		c_query += " seat_price = '" + to_string(seat_price);
 		break;
@@ -113,7 +119,8 @@ bool SeatTypeAccess::Update(int choice, int id)
 	}
 	else
 	{
-		cout << endl << "Success !" << endl;
+		d.setColor(10);
+		cout << endl << "\t\t\t\t\t\t\t\tSuccess !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
@@ -127,24 +134,26 @@ bool SeatTypeAccess::Delete()
 
 void SeatTypeAccess::Show()
 {
+	Decoration d;
 	SeatType* ptr = new SeatType[this->Count()];
 	this->Select(ptr);
 
 	for (int i = 0; i < this->Count(); i++)
 	{
-		cout << i + 1 << ".";
+		d.setColor(11);
+		cout << "\t\t\t\t\t\t\t" <<  i + 1 << ".";
+		d.setColor(14);
 		ptr[i].Show();
 	}
 	if (this->Count() == 0)
 	{
-		cout << endl << "Sorry,no seat type founded!" << endl;
+		d.setColor(3);
+		cout << endl << "\t\t\t\t\t\t\t\tSorry,no seat type founded!" << endl;
 	}
 }
 SeatType SeatTypeAccess::getSeatType(int index)
 {
 	SeatType* ptr = new SeatType[this->Count()];
 	this->Select(ptr);
-	cout << "seat type:"; ptr[index].Show(); cout << endl;
-	cout <<"id:"<< ptr[index].getSeatTypeID();
 	return ptr[index];
 }

@@ -9,6 +9,7 @@ MovieAccess::~MovieAccess()
 }
 void MovieAccess::Select(Movie*& mv, int choice)
 {
+	Decoration d;
 	// 1: select all
 	// 2: select phim đang chiếu
 	// 3. select phim sắp khởi chiếu
@@ -38,6 +39,7 @@ void MovieAccess::Select(Movie*& mv, int choice)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
+		d.setColor(4);
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
@@ -125,7 +127,9 @@ void MovieAccess::Show(int index)
 	d.setColor(15);
 	if (index == 4)
 	{
+		d.setColor(11);
 		cout << "\t\t\t\t\t\t\t\tEnter name of movie : ";
+		d.setColor(14);
 		cin >> this->search_key;
 	}
 	Movie* ptr = new Movie[this->CountRow(index)];
@@ -145,6 +149,7 @@ void MovieAccess::Show(int index)
 }
 bool MovieAccess::Insert()
 {
+	Decoration d;
 	string c_query = "insert into movie values ('";
 	Movie mv;
 	c_query += to_string( this->LastID() + 1) + "','";
@@ -158,7 +163,7 @@ bool MovieAccess::Insert()
 	}
 	else
 	{
-		cout << c_query;
+		d.setColor(10);
 		cout << "\t\t\t\t\t\t\t\tSuccess !!" << endl;
 		return true;
 	}
@@ -172,6 +177,7 @@ bool MovieAccess::Update(int id, int type)
 	// 3. movie release
 	// 4. movie length
 	// 5. movie genre
+	Decoration d;
 	string c_query = "update movie set" ;
 	string movie_name;
 	string movie_description;
@@ -181,47 +187,57 @@ bool MovieAccess::Update(int id, int type)
 	switch (type)
 	{
 	case 1:
-		cout << "Enter movie name :";
+		d.setColor(11);
+		cout << "\t\t\t\t\t\t\t\tEnter movie name :";
 		cin.ignore();
+		d.setColor(14);
 		getline(cin,movie_name);
 		c_query += " movie_name = '"+ movie_name;
 		break;
 	case 2:
-		cout << "Enter movie description :";
+		d.setColor(11);
+		cout << "\t\t\t\t\t\t\t\tEnter movie description :";
 		cin.ignore();
+		d.setColor(14);
 		getline(cin, movie_description);
 		c_query += " movie_description = '" +  movie_description;
 		break;
 	case 3:
-		cout << "Enter movie release :";
+		d.setColor(11);
+		cout << "\t\t\t\t\t\t\t\tEnter movie release :";
 		cin.ignore();
+		d.setColor(14);
 		getline(cin, movie_release);
 		c_query += " movie_release = '" + movie_release;
 		break;
 	case 4 :
-		cout << "Enter movie length :";
+		d.setColor(11);
+		cout << "\t\t\t\t\t\t\t\tEnter movie length :";
+		d.setColor(14);
 		cin >> movie_length;
 		c_query += " movie_length = '" + to_string(movie_length);
 		break;
 	case 5:
-		cout << "Enter movie genre :";
+		d.setColor(11);
+		cout << "\t\t\t\t\t\t\t\tEnter movie genre :";
 		cin.ignore();
+		d.setColor(14);
 		getline(cin, movie_genre);
 		c_query += " movie_genres = '" + movie_genre;
 		break;
 	}
 	c_query += "'where movie_id = '" + to_string(id) + "'";
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
+		d.setColor(4);
 		cout << endl << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
-		cout << c_query;
-		cout << endl <<  "Them du lieu thanh cong !" << endl;
+		d.setColor(10);
+		cout << endl <<  "\t\t\t\t\t\t\t\tSuccessful !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);

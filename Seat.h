@@ -26,6 +26,7 @@ public:
 	int getStatus();
 	char* getSeatRow();
 	char* getSeatNumber();
+	int getSeatType();
 	string insertQuery();
 	void setSeat();
 	void Show();

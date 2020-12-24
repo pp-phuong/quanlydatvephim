@@ -63,24 +63,43 @@ string Schedule::insertQuery()
 
 void Schedule::Show(MovieAccess movie)
 {
+	for (int i = strlen(this->schedule_start) - 1; i >= 0; i--)
+	{
+		if (this->schedule_start[i] == 46)
+		{
+			this->schedule_start[i] = '\0';
+			break;
+		}
+	}
 	cout << left << setw(20) << movie.getMovieName(this->movie_id-1);
-	cout << left << setw(20) << this->schedule_date;
+	cout << left << setw(21) << this->schedule_date;
 	cout << left << setw(20) << this->schedule_start;
 	cout << endl;
 }
 
 void Schedule::setSchedule()
 {
+	Decoration d;
+	d.setColor(11);
 cout << "\t\t\t\t\t\t\t\tMovie ID : ";
+d.setColor(14);
 	cin >> this->movie_id;
+	d.setColor(11);
 cout << "\t\t\t\t\t\t\t\tRoom ID: ";
+d.setColor(14);
 	cin >> this->room_id;
+	d.setColor(11);
 cout << "\t\t\t\t\t\t\t\tSchedule date (yyyy-mm-dd): ";
+d.setColor(14);
 	cin.ignore();
 	cin.getline(this->schedule_date, 20);
+	d.setColor(11);
 cout << "\t\t\t\t\t\t\t\tSchedule start (hh:mm:ss): ";
+d.setColor(14);
 	cin.getline(this->schedule_start, 20);
+	d.setColor(11);
 cout << "\t\t\t\t\t\t\t\tSchedule end (hh:mm:ss): ";
+d.setColor(14);
 	cin.getline(this->schedule_end, 20);
 }
 

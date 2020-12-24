@@ -318,6 +318,7 @@ void Function::MenuBooking()
     Decoration d;
     int schedule_stt;
     d.setColor(15);
+    system("cls");
     cout << "\t\t\t\t\t\t\t\tPick showtime :";
     cin >> schedule_stt;
     int id_schedule = this->schedule.getSchedule(schedule_stt - 1).getScheduleID();

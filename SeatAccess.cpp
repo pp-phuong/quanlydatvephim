@@ -17,7 +17,6 @@ void SeatAccess::Select(Seat*& seat , int choice , int room)
 		c_query = "select * from seat where room_id = " + to_string(room);
 		break;
 	}
-	
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
@@ -57,7 +56,12 @@ void SeatAccess::Show(int room)
 	d.setColor(15);
 	Seat* ptr = new Seat[this->Count(2,room)];
 	this->Select(ptr,2,room);
+	d.setColor(10);
+	cout << endl;
+	cout << endl<< "\t\t\t\t\t\t\t_______________SCREEN_______________" << endl;
+	cout << endl;
 	cout << "\t\t\t\t";
+	int available = 0;
 	for (int i = 0; i < this->Count(2, room); i++)
 	{
 		
@@ -72,8 +76,15 @@ void SeatAccess::Show(int room)
 		cout << ptr[i].getSeatRow() << ptr[i].getSeatNumber();
 		if (ptr[i].getStatus() == 0)
 		{
+			if (ptr[i].getSeatType() == 2) {
+				d.setColor(6);
+			}
+			else {
+
 			d.setColor(14);
-			cout << " O \t";
+			}
+			cout << " O \t"; 
+			available ++;
 		}
 		else
 		{
@@ -81,6 +92,7 @@ void SeatAccess::Show(int room)
 			cout << " X \t";
 		}
 	}
+	cout << "\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t\t" << available << "/" << this->Count(2, room);
 	cout << endl;
 }
 
@@ -145,7 +157,6 @@ bool SeatAccess::Insert()
 	c_query += t_ID + "','";
 	c_query += seat.insertQuery();
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
@@ -176,6 +187,7 @@ bool SeatAccess::Update(int id, int type, int room)
 	//2. room_id;
 	//3. seat_row[5];
 	//4. seat_number[5];
+	Decoration d;
 	string c_query = "update seat set";
 	string seat_row;
 	string seat_number;
@@ -186,18 +198,24 @@ bool SeatAccess::Update(int id, int type, int room)
 	switch (type)
 	{
 	case 1:
+		d.setColor(12);
 		cout << "Seat Type ID : ";
 		cout << " 1.Normal - 2.Couple - 3. VIP : ";
+		d.setColor(14);
 		cin >> seat_type_id;
 		c_query += " seat_type_id = '" + to_string(seat_type_id);
 		break;
 	case 2:
+		d.setColor(12);
 		cout << "Seat Row : ";
+		d.setColor(14);
 		getline(cin, seat_row);
 		c_query += " seat_row = '" + seat_row;
 		break;
 	case 3:
+		d.setColor(12);
 		cout << "Seat Number : ";
+		d.setColor(14);
 		getline(cin, seat_number);
 		c_query += " seat_number = '" + seat_number;
 		break;

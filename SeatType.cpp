@@ -31,10 +31,15 @@ char* SeatType::getSeatTypeName()
 	return this->seat_type;
 }
 void SeatType::setSeatType() {
+	Decoration d;
+	d.setColor(12);
 	cout << "Seat Type:";
+	d.setColor(14);
 	cin.ignore();
 	cin.getline(this->seat_type, 15);
+	d.setColor(12);
 	cout << "Seat Price :";
+	d.setColor(14);
 	cin >> this->seat_price;
 }
 string SeatType::insertQuery()
@@ -47,8 +52,9 @@ string SeatType::insertQuery()
 }
 
 void SeatType::Show()
-{
-	cout << left << setw(4) << this->seat_type_id;
+{	
+	Decoration d;
+	d.setColor(14);
 	cout << left << setw(15) << this->seat_type;
 	cout << right << setw(10) << long( this->seat_price );
 	cout << endl;

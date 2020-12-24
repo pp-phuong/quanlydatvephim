@@ -66,7 +66,7 @@ void RoomAccess::Show(int choice, int id)
 		this->Select(ptr);
 		for (int i = 0; i < this->Count(); i++)
 		{
-			cout << "\t\t\t\t\t" << i + 1 << ".";
+			cout << "\t\t\t\t\t\t\t\t" << i + 1 << ".\t";
 			ptr[i].Show();
 		}
 		if (this->Count() == 0)
@@ -91,7 +91,6 @@ bool RoomAccess::Insert()
 	c_query += t_ID + "','";
 	c_query += room.insertQuery();
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
 		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
@@ -99,7 +98,6 @@ bool RoomAccess::Insert()
 	}
 	else
 	{
-		cout << c_query;
 		cout << "\t\t\t\t\t\t\t\tSuccess!! " << endl;
 		return true;
 	}

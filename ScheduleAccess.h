@@ -13,7 +13,7 @@ public:
     bool Insert();
     int Search(int); // search theo id_number
     bool Update(int, int);
-    bool Delete();
+    bool Delete(int);
     void Show(int);
     Schedule getSchedule(int);
     char* getRoomName(int);

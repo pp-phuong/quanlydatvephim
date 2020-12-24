@@ -6,6 +6,7 @@ using namespace std;
 #include <conio.h>
 #include <string>
 #include "MovieAccess.h"
+#include "Decoration.h"
 class Schedule
 {
 private:
@@ -15,6 +16,7 @@ private:
 	char schedule_date[20];
 	char schedule_start[20];
 	char schedule_end[20];
+	Decoration decoration;
 public:
 	Schedule();
 	Schedule(char*, char*, char*, int = 0, int = 0, int = 0);

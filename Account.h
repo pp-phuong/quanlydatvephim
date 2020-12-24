@@ -1,5 +1,6 @@
 #pragma once
 #include <iostream>
+#include "Decoration.h"
 using namespace std;
 #include <iomanip>
 #include <windows.h>
@@ -16,7 +17,7 @@ private:
 	char email[32];
 	char phone_number[50];
 	int role;
-
+	Decoration decoration;
 public:
 	Account();
 	Account(int,char*, char*, char*, char*, char*, int);

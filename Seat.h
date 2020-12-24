@@ -7,8 +7,10 @@ using namespace std;
 #include <string>
 #include "RoomAccess.h"
 #include "Room.h"
+#include "Decoration.h"
 class Seat
 {
+	Decoration decoration;
 private:
 	int seat_id;
 	int seatType_id;

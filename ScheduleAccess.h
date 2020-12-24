@@ -6,6 +6,7 @@
 #include "MovieAccess.h"
 class ScheduleAccess : public DatabaseAccess
 {
+    Decoration decoration;
 public:
     void Select(Schedule*&, int, int);
     int Count(int);

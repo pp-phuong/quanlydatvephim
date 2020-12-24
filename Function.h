@@ -1,4 +1,5 @@
 #pragma once
+#include "Decoration.h"
 #include "Account.h"
 #include "Movie.h"
 #include "Room.h"
@@ -36,6 +37,7 @@ class Function
 	Account user_now;
 public:
 	Function();
+	void Information();
 	void Menu();
 	void MenuTodayMovie();
 	void MenuMovieShowing();

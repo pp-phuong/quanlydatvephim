@@ -8,6 +8,7 @@ using namespace std;
 #include "ScheduleAccess.h"
 #include "MovieAccess.h"
 #include "SeatAccess.h"
+#include "Decoration.h"
 class Booking
 {
 private:
@@ -15,6 +16,7 @@ private:
 	int account_id;
 	int schedule_id;
 	int seat_id;
+	Decoration decoration;
 public:
 	Booking(int = 0, int = 0, int = 0, int = 0);
 	~Booking();

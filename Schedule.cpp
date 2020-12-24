@@ -71,16 +71,16 @@ void Schedule::Show(MovieAccess movie)
 
 void Schedule::setSchedule()
 {
-	cout << "Movie ID : ";
+cout << "\t\t\t\t\t\t\t\tMovie ID : ";
 	cin >> this->movie_id;
-	cout << "Room ID: ";
+cout << "\t\t\t\t\t\t\t\tRoom ID: ";
 	cin >> this->room_id;
-	cout << "Schedule date (yyyy-mm-dd): ";
+cout << "\t\t\t\t\t\t\t\tSchedule date (yyyy-mm-dd): ";
 	cin.ignore();
 	cin.getline(this->schedule_date, 20);
-	cout << "Schedule start (hh:mm:ss): ";
+cout << "\t\t\t\t\t\t\t\tSchedule start (hh:mm:ss): ";
 	cin.getline(this->schedule_start, 20);
-	cout << "Schedule end (hh:mm:ss): ";
+cout << "\t\t\t\t\t\t\t\tSchedule end (hh:mm:ss): ";
 	cin.getline(this->schedule_end, 20);
 }
 

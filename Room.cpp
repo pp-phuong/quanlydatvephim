@@ -32,13 +32,13 @@ string Room::insertQuery()
 
 void Room::Show()
 {
-	cout << "Room name: " << this->room_name << endl << endl;
+	cout << "\t\t\t\t\t\t\t\tRoom name: " << this->room_name << endl << endl;
 }
 
 void Room::setRoom()
 {
 	cin.ignore();
-	cout << "Room name: ";
+	cout << "\t\t\t\t\t\t\t\tRoom name: ";
 	cin.getline(this->room_name, 5);
 }
 

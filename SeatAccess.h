@@ -4,6 +4,7 @@
 class SeatAccess :
 	public DatabaseAccess
 {
+	Decoration decoration;
 public:
 	void Select(Seat*& , int , int); // đổ dữ liệu full seat về
 	void Show(int); // show seat row vs number vs loại seat

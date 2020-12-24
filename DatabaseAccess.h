@@ -5,6 +5,7 @@
 #include <sqlext.h>
 #include <sqltypes.h>
 #include <string>
+#include "Decoration.h"
 #pragma once
 
 using namespace std;

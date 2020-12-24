@@ -21,7 +21,7 @@ void SeatAccess::Select(Seat*& seat , int choice , int room)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout <<"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -53,15 +53,33 @@ void SeatAccess::Select(Seat*& seat , int choice , int room)
 
 void SeatAccess::Show(int room)
 {
+	Decoration d;
+	d.setColor(15);
 	Seat* ptr = new Seat[this->Count(2,room)];
 	this->Select(ptr,2,room);
+	cout << "\t\t\t\t";
 	for (int i = 0; i < this->Count(2, room); i++)
 	{
-		if ((i % this->Count(4, room)) == 0) cout << endl;
 		
-		cout << setw(3) << i+1 << ptr[i].getSeatRow() << ptr[i].getSeatNumber() ;
-		if (ptr[i].getStatus() == 0) cout << " O \t";
-		else cout << " X \t";
+		if ((i % this->Count(4, room)) == 0)
+		{
+			cout << endl;
+			cout << "\t\t\t\t";
+		}
+		d.setColor(3);
+		cout << setw(3) << i + 1;
+		d.setColor(15);
+		cout << ptr[i].getSeatRow() << ptr[i].getSeatNumber();
+		if (ptr[i].getStatus() == 0)
+		{
+			d.setColor(14);
+			cout << " O \t";
+		}
+		else
+		{
+			d.setColor(4);
+			cout << " X \t";
+		}
 	}
 	cout << endl;
 }
@@ -95,7 +113,7 @@ int SeatAccess::Count(int choice, int roomID)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -130,13 +148,13 @@ bool SeatAccess::Insert()
 	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
 		cout << c_query;
-		cout << "Them thanh cong !" << endl;
+		cout << "Success !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
@@ -192,7 +210,7 @@ bool SeatAccess::Update(int id, int type, int room)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << endl << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else

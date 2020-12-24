@@ -1,6 +1,7 @@
 #include "DatabaseAccess.h"
 bool DatabaseAccess::Init()
 {
+	Decoration d;
 	//set SQLHandle = NULL
 	SQLStateHandle = NULL;
 	SQLConnectionHandle = NULL;
@@ -11,8 +12,8 @@ bool DatabaseAccess::Init()
 		Close();
 	if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_DBC, SQLEnvironmentHandle, &SQLConnectionHandle))
 		Close();
-
-	cout << "\tWait for a minute, processing......" << endl;
+	d.setColor(14);
+	cout << "\t\t\t\t\t\t\tPlease wait for a second, program is processing..." << endl;
 	/*Data Source = DESKTOP - S2SLR6P; Initial Catalog = QlyDatVePhim; Persist Security Info = True; User ID = sa*/
 	switch (SQLDriverConnect(SQLConnectionHandle, NULL, (SQLWCHAR*)L"DRIVER={SQL Server}; Server=DESKTOP-BIHQC8D;Database=QLDatVeXemPhim;UID=sa;PWD=123456;Trusted_Connection=True;",
 		SQL_NTS,
@@ -30,12 +31,14 @@ bool DatabaseAccess::Init()
 		break;
 
 	case SQL_INVALID_HANDLE:
-		cout << "Error!!" << endl;
+		d.setColor(4);
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 		break;
 
 	case SQL_ERROR:
-		cout << "Error!!" << endl;
+		d.setColor(4);
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 		break;
 	default:
@@ -43,6 +46,7 @@ bool DatabaseAccess::Init()
 	}
 	if (SQL_SUCCESS != SQLAllocHandle(SQL_HANDLE_STMT, SQLConnectionHandle, &SQLStateHandle))
 		Close();
+	d.setColor(15);
 	return true;
 }
 

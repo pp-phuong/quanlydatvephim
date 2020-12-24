@@ -1,4 +1,4 @@
 ﻿  BookingAccess.cpp
 D:\University\Năm 2\Kì 3\Đồ án\DALT\BookingAccess.cpp(17,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
-D:\University\Năm 2\Kì 3\Đồ án\DALT\BookingAccess.cpp(74,13): warning C4101: 'PtrSQLVersion': unreferenced local variable
+D:\University\Năm 2\Kì 3\Đồ án\DALT\BookingAccess.cpp(75,13): warning C4101: 'PtrSQLVersion': unreferenced local variable
   DALT.vcxproj -> D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.exe

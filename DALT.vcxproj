@@ -145,6 +145,7 @@
     <ClInclude Include="BookingAccess.h" />
     <ClInclude Include="DatabaseAccess.h" />
     <ClInclude Include="Date.h" />
+    <ClInclude Include="Decoration.h" />
     <ClInclude Include="Function.h" />
     <ClInclude Include="Movie.h" />
     <ClInclude Include="MovieAccess.h" />
@@ -164,6 +165,7 @@
     <ClCompile Include="BookingAccess.cpp" />
     <ClCompile Include="DatabaseAccess.cpp" />
     <ClCompile Include="Date.cpp" />
+    <ClCompile Include="Decoration.cpp" />
     <ClCompile Include="Function.cpp" />
     <ClCompile Include="Main.cpp" />
     <ClCompile Include="Movie.cpp" />

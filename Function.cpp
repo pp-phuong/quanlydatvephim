@@ -6,17 +6,17 @@ Function::~Function() {
 }
 void Function::MenuAdmin()
 {
-    cout << "_________________________HANAFUO CINEMA_________________________" << endl
-        << "                       1. Movie" << endl
-        << "                       2. Account " << endl
-        << "                       3. Booking " << endl
-        << "                       4. Schedule" << endl
-        << "                       5. Room" << endl
-        << "                       6. Seat " << endl
-        << "                       7. SeatType" << endl
-        << "                       8. Menu User" << endl
-        << "                       9. Log out " << endl
-        << "                       PRESS THE NUMBER : ";
+    cout << "\t\t\t\t\t\t\t\tHANAFUO CINEMA" << endl
+        << "\t\t\t\t\t\t\t\t1. Movie" << endl
+        << "\t\t\t\t\t\t\t\t2. Account " << endl
+        << "\t\t\t\t\t\t\t\t3. Booking " << endl
+        << "\t\t\t\t\t\t\t\t4. Schedule" << endl
+        << "\t\t\t\t\t\t\t\t5. Room" << endl
+        << "\t\t\t\t\t\t\t\t6. Seat " << endl
+        << "\t\t\t\t\t\t\t\t7. SeatType" << endl
+        << "\t\t\t\t\t\t\t\t8. Menu User" << endl
+        << "\t\t\t\t\t\t\t\t9. Log out " << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     Account out;
     cin >> m;
@@ -51,21 +51,25 @@ void Function::MenuAdmin()
         Authentication();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
         break;
     }
 }
 void Function::Menu()
 {
-    cout << "_________________________HANAFUO CINEMA_________________________" << endl
-        << "                       1. Movie on today" << endl
-        << "                       2. Movie now showing" << endl
-        << "                       3. Movie coming soon" << endl
-        << "                       4. Search movie " << endl
-        << "                       5. View showtimes ( schedule )" << endl
-        << "                       6. Book a ticket " << endl
-        << "                       7. Log out " << endl
-        << "                       PRESS THE NUMBER : ";
+    Decoration d;
+    d.setColor(12);
+    cout << "\t\t\t\t\t\t\t\tHANAFUO CINEMA" << endl;
+        d.setColor(15);
+        cout << "\t\t\t\t\t\t\t\t1. Movie on today" << endl
+            << "\t\t\t\t\t\t\t\t2. Movie now showing" << endl
+            << "\t\t\t\t\t\t\t\t3. Movie coming soon" << endl
+            << "\t\t\t\t\t\t\t\t4. Search movie " << endl
+            << "\t\t\t\t\t\t\t\t5. View showtimes ( schedule )" << endl
+            << "\t\t\t\t\t\t\t\t6. Book a ticket " << endl
+            << "\t\t\t\t\t\t\t\t7. Log out " << endl;
+        d.setColor(14);
+        cout<< "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     Account out;
     cin >> m;
@@ -95,54 +99,63 @@ void Function::Menu()
         Authentication();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
         break;
     }
 }
 void Function::Authentication()
 {
-    cout << "_________________________WELCOME TO HANAFUO CINEMA_________________________" << endl
-        << "                          Do you have account ? " << endl
-        << "                          1. Login " << endl
-        << "                          2. Register " << endl
-        << "                       PRESS THE NUMBER : ";
+    Decoration d;
+    d.setColor(12);
+    cout << "\t\t\t\t\t\t\t\tDo you have account ? " << endl;
+    d.setColor(7);
+    cout << "\t\t\t\t\t\t\t\t1. Login " << endl
+         << "\t\t\t\t\t\t\t\t2. Register " << endl;
+        d.setColor(14);
+    cout << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     cin >> m;
+    d.setColor(12);
     switch (m)
     {
     case 1:
-        cout << "Login:" << endl;
+        cout << "\t\t\t\t\t\t\t\tLogin:" << endl;
         Validate();
         break;
     case 2:
-        cout << "Register:" << endl;
+        cout << "\t\t\t\t\t\t\t\tRegister:" << endl;
         this->acc.Init();
         this->user.setAccount();
         this->acc.Insert(user);
-        cout << "Login:" << endl;
+        cout << "\t\t\t\t\t\t\t\tLogin:" << endl;
         Validate();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
         break;
     }
 }
 void Function::Validate()
 {
+    Decoration d;
+    d.setColor(15);
 Login:
     int validate = 0;
     char ch;
     while (!validate)
     {
         string username;
-        cout << "Username : ";
+        d.setColor(15);
+        cout << "\t\t\t\t\t\t\t\tUsername : ";
         cin >> username;
         this->acc.Init();
         int stt = this->acc.SearchName(username);
         if ((this->acc.SearchName(username)) == -1)
         {
-            cout << "Khong tim thay tai khoan ! " << endl;
-            cout << "Xin moi nhap lai !" << endl;
+            d.setColor(4);
+            cout << "\t\t\t\t\t\t\t\tAccount not founded ! " << endl;
+            cout << "\t\t\t\t\t\t\t\tPlease try again !" << endl;
+            d.setColor(14);
             continue;
         }
         else
@@ -150,7 +163,8 @@ Login:
             validate = 1;
             string pwd;
         Password:
-            cout << "Pass : ";
+            d.setColor(15);
+            cout << "\t\t\t\t\t\t\t\tEnter password  : ";
             for (char c; c = _getch(); )
             {
                 if (c == 13 || c == '\r') // enter 
@@ -186,15 +200,18 @@ Login:
             char* password = const_cast<char*>(pwd.c_str());
             if (this->acc.checkPwd(stt) == pwd)
             {
-
-                cout << "Login success! Press Enter to continute !" << endl;
+                d.setColor(10);
+                cout << "\t\t\t\t\t\t\tLogin success! Press Enter to continute !" << endl;
                 validate = 1;
+                d.setColor(15);
                 _getch();
                 system("cls");
             }
             else
             {
-                cout << "Sai mat khau ! Moi nhap lai " << endl;
+                d.setColor(4);
+                cout << "\t\t\t\t\t\t\t\tWrong password, please try again !" << endl;
+                d.setColor(14);
                 pwd = "";
                 goto Password;
             }
@@ -205,22 +222,29 @@ Login:
 }
 void Function::MenuTodayMovie()
 {
-    cout << "You chose All Movie" << endl;
+    Decoration d;
+    d.setColor(11);
     this->mv.Init();
+    cout << "\t\t\t\t\t\t\t\tMovie on today: " << endl;
+    d.setColor(7);
     this->mv.Show(5);
     this->mv.Close();
 }
 void Function::MenuMovieShowing()
 {
-    cout << "You chose Movie Showing" << endl;
+    Decoration d;
+    d.setColor(11);
     this->mv.Init();
+    cout << "\t\t\t\t\t\t\t\tMovie is showing: " << endl;
     this->mv.Show(2);
     this->mv.Close();
 }
 void Function::MenuMovieComing()
 {
-    cout << "You chose Movie Coming Soon" << endl;
+    Decoration d;
+    d.setColor(11);
     this->mv.Init();
+    cout << "\t\t\t\t\t\t\t\tMovie coming soon :" << endl;
     this->mv.Show(3);
     this->mv.Close();
 }
@@ -232,25 +256,25 @@ void Function::MenuSearchMovie()
 }
 void Function::MenuSchedule()
 {
-    cout << "_________________________SChedule _________________________" << endl
-        << "                       1. Tat ca" << endl
-        //<< "                       2. Theo Phim" << endl
-        << "                       2. Hom nay" << endl
-        << "                       3. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    Decoration d;
+    d.setColor(11);
+    cout << "\t\t\t\t\t\t\t\tSchedule ( Showtimes ) " << endl;
+    d.setColor(15);
+    cout
+        << "\t\t\t\t\t\t\t\t1. All showtimes" << endl
+        << "\t\t\t\t\t\t\t\t2. Movie on today" << endl
+        << "\t\t\t\t\t\t\t\t3. Back to menu before" << endl;
+    d.setColor(14);
+    cout
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     cin >> m;
     this->schedule.Init();
-    //this->mv.Init();
     switch (m)
     {
     case 1:
         this->schedule.Show(1);
         break;
-    /*case 2:
-        this->mv.Show(2);
-        this->schedule.Show(2);
-        break;*/
     case 2:
         this->schedule.Show(3);
         break;
@@ -258,40 +282,43 @@ void Function::MenuSchedule()
         Menu();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
         break;
     }
-    //this->mv.Close();
     this->schedule.Close();
 }
 void Function::MenuBooking()
 {
     this->schedule.Init();
-    this->seat.Init();
-    this->booking.Init();
     this->schedule.Show(1);
-    cout << "Lich Chieu : " << endl;
+    Decoration d;
     int schedule_stt;
-    cout << "Chon Lich chieu :";
+    d.setColor(15);
+    cout << "\t\t\t\t\t\t\t\tPick showtime :";
     cin >> schedule_stt;
     int id_schedule = this->schedule.getSchedule(schedule_stt - 1).getScheduleID();
     int room_id = this->schedule.getSchedule(schedule_stt - 1).getRoomID();
-    cout << "Ghe : " ;
+    this->seat.Init();
+    d.setColor(11);
+    cout << "\t\t\t\t\t\t\t\tRoom seating map: " ;
     this->seat.Show(room_id);
     int seat_stt = 0;
-    cout << "X : ghe da dat " << endl << "O : ghe trong " << endl;
-    cout << "Chon ghe : ";
+    d.setColor(14);
+    cout << "\t\t\t\t\t\t\tX - seat is reserved , O - seat is available " << endl;
+    d.setColor(15);
+    cout << "\t\t\t\t\t\t\t\tPick seat : ";
     cin >> seat_stt;
     int seat_id = this->seat.getSeat(seat_stt-1, room_id).getSeatID();
     while ( this->seat.getSeat(seat_stt-1, room_id).getStatus() == 1)
     {
-        cout << "Ghe khong trong !";
-        cout << "X : ghe da dat " << endl << "O : ghe trong " << endl;
-        cout << "Chon ghe : ";
+        cout << "\t\t\t\t\t\t\t\tSorry, this seat is reserved!";
+        cout << "\t\t\t\t\t\t\tX - seat is reserved , O - seat is available " << endl;
+        cout << "\t\t\t\t\t\t\t\tPick seat again : ";
         cin >> seat_stt;
         seat_id = this->seat.getSeat(seat_stt-1, room_id).getSeatID();
     }
     this->new_booking.setBooking(this->getUserNow().getID(), id_schedule, seat_id);
+    this->booking.Init();
     this->booking.Insert(new_booking);
     this->seat.Close();
     this->schedule.Close();
@@ -299,14 +326,16 @@ void Function::MenuBooking()
 }
 void Function::MenuAdAccount()
 {
-
-    cout << "_________________________ACCOUNT_________________________" << endl
-        << "                       1. Show All Account" << endl
-        << "                       2. New Account " << endl
-        << "                       3. Update Account " << endl
-        << "                       4. Delete Account" << endl
-        << "                       5. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    Decoration d;
+    d.setColor(11);
+    cout << "\t\t\t\t\t\t\t\tManage account" << endl;
+    d.setColor(15);
+    cout << "\t\t\t\t\t\t\t\t1. All account" << endl
+        << "\t\t\t\t\t\t\t\t2. New account " << endl
+        << "\t\t\t\t\t\t\t\t3. Update account " << endl
+        << "\t\t\t\t\t\t\t\t4. Delete account" << endl
+        << "\t\t\t\t\t\t\t\t5. Back to menu before" << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     Account out;
     cin >> m;
@@ -336,19 +365,24 @@ void Function::MenuAdAccount()
         MenuAdmin();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        d.setColor(3);
+        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option! " << endl;
         break;
     }
 }
 void Function::MenuAdRoom() {
-    cout << "_________________________ROOM_________________________" << endl
-        << "                       1. Show Full Room" << endl
-        << "                       2. Show One Room" << endl
-        << "                       3. New Room " << endl
-        << "                       4. Update Room " << endl
-        << "                       5. Delete Room" << endl
-        << "                       6. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    Decoration d;
+    d.setColor(11);
+    cout << "\t\t\t\t\t\t\t\tManage room" << endl;
+    d.setColor(15);
+    cout
+        << "\t\t\t\t\t\t\t\t1. Show all room" << endl
+        << "\t\t\t\t\t\t\t\t2. Show one room" << endl
+        << "\t\t\t\t\t\t\t\t3. New room " << endl
+        << "\t\t\t\t\t\t\t\t4. Update room " << endl
+        << "\t\t\t\t\t\t\t\t5. Delete room" << endl
+        << "\t\t\t\t\t\t\t\t6. Back to menu before" << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     Account out;
     int room;
@@ -362,7 +396,7 @@ void Function::MenuAdRoom() {
         break;
     case 2:
         this->room.Init();
-        cout << "Nhap room muon hien thi : ";
+        cout << "\t\t\t\t\t\t\t\tEnter room to show: ";
         cin >> room;
         this->room.Show(2, room);
         this->room.Close();
@@ -375,7 +409,7 @@ void Function::MenuAdRoom() {
         break;
     case 4:
         this->room.Init();
-        cout << "Nhap room muon update : ";
+        cout << "\t\t\t\t\t\t\t\tEnter room to update: ";
         cin >> room;
         this->room.Update(room);
         this->room.Close();
@@ -387,18 +421,18 @@ void Function::MenuAdRoom() {
         MenuAdmin();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
         break;
     }
 }
 void Function::MenuAdSeat() {
-    cout << "_________________________SEAT_________________________" << endl
-        << "                       1. Show Seat of Room" << endl
-        << "                       2. New Seat " << endl
-        << "                       3. Update Seat " << endl
-        << "                       4. Delete Seat" << endl
-        << "                       5. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    cout << "\t\t\t\t\t\t\t\tSEAT" << endl
+        << "\t\t\t\t\t\t\t\t1. Show Seat of Room" << endl
+        << "\t\t\t\t\t\t\t\t2. New Seat " << endl
+        << "\t\t\t\t\t\t\t\t3. Update Seat " << endl
+        << "\t\t\t\t\t\t\t\t4. Delete Seat" << endl
+        << "\t\t\t\t\t\t\t\t5. Back to menu before" << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     Account out;
     int room;
@@ -408,7 +442,7 @@ void Function::MenuAdSeat() {
     {
     case 1:
         this->seat.Init();
-        cout << "Nhap room muon hien thi seat: ";
+        cout << "\t\t\t\t\t\t\t\tEnter room to show map of seats: ";
         cin >> room;
         this->seat.Show(room);
         this->seat.Close();
@@ -421,7 +455,7 @@ void Function::MenuAdSeat() {
         break;
     case 3:
         this->seat.Init();
-        cout << "Nhap room can update seat";
+        cout << "\t\t\t\t\t\t\t\tEnter room to update seat";
         cin >> room;
         this->MenuUpdateSeat(room);
         this->seat.Close();
@@ -433,7 +467,7 @@ void Function::MenuAdSeat() {
         MenuAdmin();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
         break;
     }
 }
@@ -444,14 +478,14 @@ void Function::MenuUpdateSeat(int room)
     int seat;
     do {
         this->seat.Show(room);
-        cout << "Nhap stt seat can update : ";
+        cout << "\t\t\t\t\t\t\t\tEnter order number of seat to update: ";
         cin >> seat;
-        cout << "_________________________Update Seat_________________________" << endl
-            << "                       1. Seat Type" << endl
-            << "                       2. Seat Row" << endl
-            << "                       3. Seat Number" << endl
-            << "                       4. Back " << endl
-            << "                       PRESS THE NUMBER : ";
+        cout << "\t\t\t\t\t\t\t\tUpdate seat" << endl
+            << "\t\t\t\t\t\t\t\t1. Seat type" << endl
+            << "\t\t\t\t\t\t\t\t2. Seat row" << endl
+            << "\t\t\t\t\t\t\t\t3. Seat number" << endl
+            << "\t\t\t\t\t\t\t\t4. Back to menu before" << endl
+            << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
         int m;
         cin >> m;
         switch (m)
@@ -469,11 +503,11 @@ void Function::MenuUpdateSeat(int room)
             MenuAdSeat();
             break;
         default:
-            cout << " Sorry,There is no matching option " << endl;
+            cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
             break;
         }
         this->seat.Show(room);
-        cout << "Do you want to be continute? y/n ";
+        cout << "\t\t\t\t\t\t\t\tDo you want to be continute? y/n ";
         cin >> key;
 
     } while (key != 'n');
@@ -482,16 +516,16 @@ void Function::MenuUpdateSeat(int room)
 void Function::MenuAdMovie() {
 
 
-    cout << "_________________________Movie_________________________" << endl
-        << "                       1. Show all Movie" << endl
-        << "                       2. Show today Movie" << endl
-        << "                       3. Show showing Movie" << endl
-        << "                       4. Show coming Movie" << endl
-        << "                       5. New movie " << endl
-        << "                       6. Update movie " << endl
-        << "                       7. Delete movie" << endl
-        << "                       8. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    cout << "\t\t\t\t\t\t\t\tMovie" << endl
+        << "\t\t\t\t\t\t\t\t1. Show all Movie" << endl
+        << "\t\t\t\t\t\t\t\t2. Show today Movie" << endl
+        << "\t\t\t\t\t\t\t\t3. Show showing Movie" << endl
+        << "\t\t\t\t\t\t\t\t4. Show coming Movie" << endl
+        << "\t\t\t\t\t\t\t\t5. New movie " << endl
+        << "\t\t\t\t\t\t\t\t6. Update movie " << endl
+        << "\t\t\t\t\t\t\t\t7. Delete movie" << endl
+        << "\t\t\t\t\t\t\t\t8. Back to menu before" << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     int stt_mv;
     cin >> m;
@@ -526,7 +560,7 @@ void Function::MenuAdMovie() {
     case 6:
         this->mv.Init();
         this->mv.Show(1);
-        cout << "Nhap stt phim can update : ";
+        cout << "\t\t\t\t\t\t\t\tEnter order number of movie to update : ";
         cin >> stt_mv;
         this->MenuUpdateMovie(stt_mv - 1);
         break;
@@ -538,7 +572,7 @@ void Function::MenuAdMovie() {
         break;
 
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
         break;
     }
 }
@@ -546,13 +580,13 @@ void Function::MenuUpdateMovie(int stt)
 {
     char key = 'y';
     do {
-        cout << "_________________________Update Movie_________________________" << endl
-            << "                       1. Movie name" << endl
-            << "                       2. movie description" << endl
-            << "                       3. movie release" << endl
-            << "                       4. movie length" << endl
-            << "                       5. movie genre " << endl
-            << "                       PRESS THE NUMBER : ";
+        cout << "\t\t\t\t\t\t\t\tUpdate Movie" << endl
+            << "\t\t\t\t\t\t\t\t1. Movie name" << endl
+            << "\t\t\t\t\t\t\t\t2. movie description" << endl
+            << "\t\t\t\t\t\t\t\t3. movie release" << endl
+            << "\t\t\t\t\t\t\t\t4. movie length" << endl
+            << "\t\t\t\t\t\t\t\t5. movie genre " << endl
+            << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
         int m;
         cin >> m;
         this->mv.getMovie(stt).Show();
@@ -574,24 +608,24 @@ void Function::MenuUpdateMovie(int stt)
             this->mv.Update(this->mv.getMovie(stt).getMovieID(), 5);
             break;
         default:
-            cout << " Sorry,There is no matching option " << endl;
+            cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
             break;
         }
         this->mv.getMovie(stt).Show();
-        cout << "Do you want to be continute? y/n ";
+        cout << "\t\t\t\t\t\t\t\tDo you want to be continue ? y/n";
         cin >> key;
 
     } while (key != 'n');
     MenuAdmin();
 }
 void Function::MenuAdSeatType() {
-    cout << "_________________________SEAT TYPE _________________________" << endl
-        << "                       1. Show seat type" << endl
-        << "                       2. New Seat type" << endl
-        << "                       3. Update Seat type" << endl
-        << "                       4. Delete Seat type" << endl
-        << "                       5. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    cout << "\t\t\t\t\t\t\t\tSEAT TYPE " << endl
+        << "\t\t\t\t\t\t\t\t1. Show seat type" << endl
+        << "\t\t\t\t\t\t\t\t2. New Seat type" << endl
+        << "\t\t\t\t\t\t\t\t3. Update Seat type" << endl
+        << "\t\t\t\t\t\t\t\t4. Delete Seat type" << endl
+        << "\t\t\t\t\t\t\t\t5. Back to menu before" << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     Account out;
     int stt;
@@ -618,7 +652,7 @@ void Function::MenuAdSeatType() {
         MenuAdmin();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
         break;
     }
     this->seat.Close();
@@ -629,13 +663,13 @@ void Function::MenuUpdateSeatType()
     int stt;
     do {
         this->seat_type.Show();
-        cout << "Nhap stt seat type can update: ";
+        cout << "\t\t\t\t\t\t\t\tEnter order number of seat type to update: ";
         cin >> stt;
-        cout << "_________________________Update Seat Type_________________________" << endl
-            << "                       1. Seat Type" << endl
-            << "                       2. Seat Price" << endl
-            << "                       3. Back" << endl
-            << "                       PRESS THE NUMBER : ";
+        cout << "\t\t\t\t\t\t\t\tUpdate seat type" << endl
+            << "\t\t\t\t\t\t\t\t1. Seat type name" << endl
+            << "\t\t\t\t\t\t\t\t2. Seat price" << endl
+            << "\t\t\t\t\t\t\t\t3. Back to menu before" << endl
+            << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
         int m;
         cin >> m;
         switch (m)
@@ -650,11 +684,11 @@ void Function::MenuUpdateSeatType()
             MenuAdSeat();
             break;
         default:
-            cout << " Sorry,There is no matching option " << endl;
+            cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
             break;
         }
         this->seat_type.Show();
-        cout << "Do you want to be continute? y/n ";
+        cout << "\t\t\t\t\t\t\t\tDo you want to be continue ? y/n";
         cin >> key;
 
     } while (key != 'n');
@@ -666,13 +700,13 @@ void Function::MenuUpdateSchedule(int stt)
     
     char key = 'y';
     do {
-        cout << "_________________________Update Schedule_________________________" << endl
-            << "                       1. Movie ID" << endl
-            << "                       2. Room ID" << endl
-            << "                       3. Schedule Date" << endl
-            << "                       4. Schedule Start" << endl
-            << "                       5. Schedule End " << endl
-            << "                       PRESS THE NUMBER : ";
+        cout << "\t\t\t\t\t\t\t\tUpdate schedule" << endl
+            << "\t\t\t\t\t\t\t\t1. Movie ID" << endl
+            << "\t\t\t\t\t\t\t\t2. Room ID" << endl
+            << "\t\t\t\t\t\t\t\t3. Schedule date" << endl
+            << "\t\t\t\t\t\t\t\t4. Schedule start" << endl
+            << "\t\t\t\t\t\t\t\t5. Schedule end " << endl
+            << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
         int m;
         cin >> m;
         this->schedule.getSchedule(stt).Show(this->mv);
@@ -695,11 +729,11 @@ void Function::MenuUpdateSchedule(int stt)
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 5);
             break;
         default:
-            cout << " Sorry,There is no matching option " << endl;
+            cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
             break;
         }
         this->schedule.getSchedule(stt).Show(this->mv);
-        cout << "Do you want to be continute? y/n ";
+        cout << "\t\t\t\t\t\t\t\tDo you want to be continue ? y/n";
         cin >> key;
 
     } while (key != 'n');
@@ -708,13 +742,13 @@ void Function::MenuUpdateSchedule(int stt)
 
 
 void Function::MenuAdSchedule() {
-    cout << "_________________________SCHEDULE_________________________" << endl
-        << "                       1. Show shedule" << endl
-        << "                       2. New schedule " << endl
-        << "                       3. Update Schedule " << endl
-        << "                       4. Delete Schedule" << endl
-        << "                       5. Back to menu before" << endl
-        << "                       PRESS THE NUMBER : ";
+    cout << "\t\t\t\t\t\t\t\tSCHEDULE" << endl
+        << "\t\t\t\t\t\t\t\t1. Show shedule" << endl
+        << "\t\t\t\t\t\t\t\t2. New schedule " << endl
+        << "\t\t\t\t\t\t\t\t3. Update schedule " << endl
+        << "\t\t\t\t\t\t\t\t4. Delete schedule" << endl
+        << "\t\t\t\t\t\t\t\t5. Back to menu before" << endl
+        << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
     int m;
     int stt_sc;
     Account out;
@@ -731,7 +765,7 @@ void Function::MenuAdSchedule() {
         break;
     case 3:
         this->schedule.Show(1);
-        cout << "Nhap stt schedule can update : ";
+        cout << "\t\t\t\t\t\t\t\tEnter order number of schedule to update : ";
         cin >> stt_sc;
         this->MenuUpdateSchedule(stt_sc - 1);
         break;
@@ -742,7 +776,7 @@ void Function::MenuAdSchedule() {
         MenuAdmin();
         break;
     default:
-        cout << " Sorry,There is no matching option " << endl;
+        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
         break;
     }
     this->schedule.Close();
@@ -750,4 +784,14 @@ void Function::MenuAdSchedule() {
 Account Function::getUserNow()
 {
     return this->user_now;
+}
+void Function::Information() {
+    cout << "\t\t\t\t\t\t-------------------------------------------------------------------------" << endl;
+    cout << "\t\t\t\t\t\t|\t\t\t PBL2 PROJECT\t\t\t\t\t|" << endl;
+    cout << "\t\t\t\t\t\t|\t\t Project : Movie booking management \t\t\t|" << endl;
+    cout << "\t\t\t\t\t\t|\t\t Teacher : Phan Chi Tung & Phan Thanh Tao \t\t|" << endl;
+    cout << "\t\t\t\t\t\t|\t\t Student : Tran Thi Phuong & Le Hoang Ngoc Han \t\t|" << endl;
+    cout << "\t\t\t\t\t\t|\t\t Class   : 19TCLC_DT4 \t\t\t\t\t|" << endl;
+    cout << "\t\t\t\t\t\t|\t\t Group   : 19.Nh14A \t\t\t\t\t|" << endl;
+    cout << "\t\t\t\t\t\t-------------------------------------------------------------------------" << endl;
 }

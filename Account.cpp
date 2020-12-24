@@ -73,16 +73,16 @@ void Account::setAccount()
 {
     char ch;
     bool validate = false;
-    cout << "Fullname : ";
+   cout << "\t\t\t\t\t\t\t\tFullname : ";
     cin.ignore();
     cin.getline(fullname,32);
-    cout << "Username :";
+   cout << "\t\t\t\t\t\t\t\tUsername :";
     cin.getline(username,32);
-    cout << "Email :";
+   cout << "\t\t\t\t\t\t\t\tEmail :";
     cin.getline(email, 32);
-    cout << "Phone number :";
+   cout << "\t\t\t\t\t\t\t\tPhone number :";
     cin.getline(phone_number, 50);
-    cout << "Password :";
+   cout << "\t\t\t\t\t\t\t\tPassword :";
     cin.getline(pwd, 32);
 }
 ostream& operator<<(ostream& o, const Account acc)

@@ -5,13 +5,14 @@ using namespace std;
 #include <windows.h>
 #include <conio.h>
 #include <string>
-
+#include "Decoration.h"
 class SeatType
 {
 public:
     int seat_type_id;
     char seat_type[15];
     int seat_price;
+    Decoration decoration;
 public:
     SeatType();
     SeatType(char*, int = 0, int = 0);

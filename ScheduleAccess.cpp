@@ -26,10 +26,9 @@ void ScheduleAccess::Select(Schedule*& schedule, int choice, int id)
 		break;
 	}
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -82,7 +81,7 @@ int ScheduleAccess::Count(int choice)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -105,20 +104,19 @@ bool ScheduleAccess::Insert()
 	c_query += t_ID + "','";
 	c_query += sc.insertQuery();
 	const char* q = c_query.c_str();
-
+	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
 		cout << c_query;
-		cout << "Them du lieu thanh cong !" << endl;
+		cout << "\t\t\t\t\t\t\t\tSuccess!!" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
-	return false;
 }
 
 int ScheduleAccess::LastID() {
@@ -161,74 +159,43 @@ bool ScheduleAccess::Update(int id, int choice)
 	cin.ignore();
 	switch (choice)
 	{
-<<<<<<< HEAD
 	case 1:
-		cout << "Movie ID : ";
+		cout << "\t\t\t\t\t\t\t\tMovie ID : ";
 		cin >> movie_id;
 		c_query += " movie_id = '" + to_string(movie_id);
 		break;
 	case 2:
-		cout << "Room ID : ";
+		cout << "\t\t\t\t\t\t\t\tRoom ID : ";
 		cin >> room_id;
 		c_query += " room_id = '" + to_string(room_id);
 		break;
 	case 3:
-		cout << "Schedule Date (yyyy-mm-dd) : ";
+		cout << "\t\t\t\t\t\t\t\tSchedule Date (yyyy-mm-dd) : ";
 		getline(cin, schedule_date);
 		c_query += " schedule_date = '" + schedule_date;
 		break;
 	case 4:
-		cout << "Schedule Start (hh:mm:ss) : ";
+		cout << "\t\t\t\t\t\t\t\tSchedule Start (hh:mm:ss) : ";
 		getline(cin, schedule_start);
 		c_query += " schedule_start = '" + schedule_start;
 		break;
 	case 5:
-		cout << "Schedule End (hh:mm:ss) : ";
+		cout << "\t\t\t\t\t\t\t\tSchedule End (hh:mm:ss) : ";
 		getline(cin, schedule_end);
 		c_query += " schedule_end = '" + schedule_end;
 		break;
-=======
-		case 1:
-			cout << "Movie ID : ";
-			cin >> movie_id;
-			c_query += " movie_id = '" + to_string(movie_id);
-			break;
-		case 2:
-			cout << "Room ID : ";
-			cin >> room_id;
-			c_query += " room_id = '" + to_string(room_id);
-			break;
-		case 3:
-			cout << "Schedule Date (yyyy-mm-dd) : ";
-			cin.ignore();
-			getline(cin, schedule_date);
-			c_query += " schedule_date = '" + schedule_date;
-			break;
-		case 4:
-			cout << "Schedule Start (hh:mm:ss) : ";
-			cin.ignore();
-			getline(cin, schedule_start);
-			c_query += " schedule_start = '" + schedule_start;
-			break;
-		case 5:
-			cout << "Schedule End (hh:mm:ss) : ";
-			cin.ignore();
-			getline(cin, schedule_end);
-			c_query += " schedule_end = '" + schedule_end;
-			break;
->>>>>>> 1434079257cbb43efba2897aa5c9864b14201624
 	}
 	c_query += "' where schedule_id = '" + to_string(id) + "'";
 	const char* q = c_query.c_str();
-	//cout << q;
+	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << endl << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
-		cout << endl << "Cap nhat du lieu thanh cong !" << endl;
+		cout << endl << "\t\t\t\t\t\t\t\tSuccess!!" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
@@ -237,10 +204,12 @@ bool ScheduleAccess::Update(int id, int choice)
 
 void ScheduleAccess::Show(int choice)
 {
+	Decoration d;
 	cout << this->Count(choice);
 	if (this->Count(choice) == 0)
 	{
-		cout << "No schedule founded !";
+		d.setColor(3);
+		cout << "\t\t\t\t\t\t\t\tNo schedule founded !";
 		return;
 	}
 	else {
@@ -248,13 +217,17 @@ void ScheduleAccess::Show(int choice)
 		this->Select(ptr, choice, 0);
 		MovieAccess movie;
 		movie.Init();
-		cout << left  << setw(10) << "STT: " ;
+		d.setColor(12);
+		cout << "\t\t\t\t\t\t\t\t SHOWTIMES" << endl;
+		d.setColor(11);
+		cout << "\t\t\t\t" << left  << setw(10) << "STT: " ;
 		cout << left << setw(35) << "Movie: ";
 		cout << left << setw(20) << "Date: ";
 		cout << left << setw(20) << "Time start: " << endl;
 		for (int i = 0; i < this->Count(choice); i++)
 		{
-			cout << setw(10) << i + 1 ;
+			d.setColor(15);
+			cout << "\t\t\t\t" << setw(10) << i + 1 ;
 			ptr[i].Show(movie);
 		}
 		movie.Close();

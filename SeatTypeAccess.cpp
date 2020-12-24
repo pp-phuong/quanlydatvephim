@@ -9,7 +9,7 @@ void SeatTypeAccess::Select(SeatType*& seatType)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -40,7 +40,7 @@ int SeatTypeAccess::Count()
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -66,7 +66,7 @@ bool SeatTypeAccess::Insert()
 	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -108,12 +108,12 @@ bool SeatTypeAccess::Update(int choice, int id)
 	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << endl << 		"\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
-		cout << endl << "Them du lieu thanh cong !" << endl;
+		cout << endl << "Success !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);

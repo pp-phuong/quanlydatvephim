@@ -7,6 +7,7 @@ class MovieAccess :
     public DatabaseAccess
 {
     string search_key;
+    Decoration decoration;
 public:
     MovieAccess();
     ~MovieAccess();

@@ -34,16 +34,16 @@ char* Movie::getMovieGenre() {
 void Movie::setMovie()
 {
 	cin.ignore();
-	cout << "Movie name: ";
+	cout << "\t\t\t\t\t\t\t\tMovie name: ";
 	cin.getline(this->movie_name,50);
-	cout << "Movie description:";
+	cout << "\t\t\t\t\t\t\t\tMovie description:";
 	cin.getline(this->movie_description, 160);
-	cout << "Movie release:";
+	cout << "\t\t\t\t\t\t\t\tMovie release:";
 	cin.getline(this->movie_release, 15);
-	cout << "Movie length";
+	cout << "\t\t\t\t\t\t\t\tMovie length";
 	cin >> movie_length;
 	cin.ignore();
-	cout << "Movie genre:";
+	cout << "\t\t\t\t\t\t\t\tMovie genre:";
 	cin.getline(this->movie_genre, 50);
 }
 string Movie::insertQuery()
@@ -69,9 +69,12 @@ void Movie::Show()
 		}
 	}
 	string temp(MV);
-	cout << "___________________" << temp << "___________________" << endl << endl;
-	cout <<  "\t\tDescription: " << this->movie_description << endl;
-	cout <<  "\t\tLength: " << this->movie_length << " phut " << endl; 
-	cout <<  "\t\tGenre: " <<this->movie_genre << endl;
-	cout <<  "\t\tRelease: " <<  this->movie_release << endl << endl;
+	Decoration d;
+	d.setColor(11);
+	cout << "\t\t\t\t" << temp << "" << endl << endl;
+	d.setColor(15);
+	cout <<  "\t\t\t\tDescription: " << this->movie_description << endl;
+	cout <<  "\t\t\t\tLength: " << this->movie_length << " phut " << endl; 
+	cout <<  "\t\t\t\tGenre: " <<this->movie_genre << endl;
+	cout <<  "\t\t\t\tRelease: " <<  this->movie_release << endl << endl;
 }

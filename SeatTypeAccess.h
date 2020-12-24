@@ -4,11 +4,11 @@
 class SeatTypeAccess :
     public DatabaseAccess
 {
+    Decoration decoration;
 public:
     void Select(SeatType*&);
     int Count();
     bool Insert();
-    int Search(int); // search theo id_number
     bool Update(int, int);
     int LastID();
     bool Delete();

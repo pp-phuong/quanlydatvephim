@@ -9,35 +9,32 @@ using namespace std;
 
 int main()
 {
+    Decoration d;
     Function fc;
+    d.setColor(11);
+    fc.Information();
+    _getch();
+    system("cls");
     fc.Authentication();
     char key;
-    cout << " WELCOME TO HANAFUO CINEMA!" << endl;
+    d.setColor(12);
+    
+    cout << " \t\t\t\t\t\t\t\tWELCOME TO HANAFUO CINEMA!" << endl;
     do
     {
         system("cls");
+        d.setColor(15);
         if (fc.getUserNow().getRole() == 1) {
             fc.MenuAdmin();
         }
         else {
             fc.Menu();
         }
-        cout << "Do you want to be continute? y/n ";
+        d.setColor(14);
+        cout << "\t\t\t\t\t\t\t\tDo you want to be continute? y/n ";
         cin >> key;
+        d.setColor(7);
     } while (key != 'n');
-    /*ScheduleAccess s;
-    s.Init();
-    int choice = 1;
-    Schedule* ptr = new Schedule[s.Count(choice)];
-    s.Select(ptr, choice, 0);
-    
-    for (int i = 0; i < s.Count(choice); i++)
-    {
-        cout << i + 1 << ".";
-        cout << ptr[i].getSDate() <<endl;
-    }
-    cout << endl;
-    s.Close();*/
     return 0;
 }
 

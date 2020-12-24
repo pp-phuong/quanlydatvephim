@@ -5,6 +5,7 @@ using namespace std;
 #include <windows.h>
 #include <conio.h>
 #include <string>
+#include "Decoration.h"
 class Movie
 {
 private:
@@ -14,6 +15,7 @@ private:
 	char movie_release[15];
 	int movie_length;
 	char movie_genre[50];
+	Decoration decoration;
 public:
 	Movie();
 	Movie(int, char*, char*, char*, int, char*);

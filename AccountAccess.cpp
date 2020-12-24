@@ -5,7 +5,7 @@ void AccountAccess::Select(Account*& acc)
 {
 	if (SQL_SUCCESS != SQLExecDirect(SQLStateHandle, (SQLWCHAR*)L"SELECT * FROM account", SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !" << endl;
 		Close();
 	}
 	else
@@ -40,7 +40,7 @@ int AccountAccess::CountRow()
 	int i = 0;
 	if (SQL_SUCCESS != SQLExecDirect(SQLStateHandle, (SQLWCHAR*)L"SELECT * FROM account", SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !" << endl;
 		Close();
 	}
 	else
@@ -107,16 +107,14 @@ bool AccountAccess::Insert(Account acc)
 	c_query += t_ID + "','" + t_fullname + "','" + t_username + "','" + t_pwd + "','" + t_phone + "','" + t_email + "','" + t_role + "')";
 	const char* q = c_query.c_str();
 	cout << c_query;
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
-		cout << c_query;
-		cout << "Them du lieu thanh cong !" << endl;
+		cout << "\t\t\t\t\t\t\t\tSuccess !" << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);

@@ -3,6 +3,7 @@
 #include "DatabaseAccess.h"
 class RoomAccess : public DatabaseAccess
 {
+    Decoration decoration;
 public:
     void Select(Room*&);
     int Count();

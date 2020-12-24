@@ -10,7 +10,7 @@ void RoomAccess::Select(Room*& room)
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -39,7 +39,7 @@ int RoomAccess::Count()
 	const char* q = c_query.c_str();
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
@@ -66,12 +66,12 @@ void RoomAccess::Show(int choice, int id)
 		this->Select(ptr);
 		for (int i = 0; i < this->Count(); i++)
 		{
-			cout << i + 1 << ".";
+			cout << "\t\t\t\t\t" << i + 1 << ".";
 			ptr[i].Show();
 		}
 		if (this->Count() == 0)
 		{
-			cout << endl << "Sorry,no room founded!" << endl;
+			cout << endl << "\t\t\t\t\t\t\t\tSorry,no room founded!" << endl;
 		}
 		break;
 	case 2:
@@ -94,13 +94,13 @@ bool RoomAccess::Insert()
 	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
 		cout << c_query;
-		cout << "Them du lieu thanh cong !" << endl;
+		cout << "\t\t\t\t\t\t\t\tSuccess!! " << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);
@@ -110,22 +110,20 @@ bool RoomAccess::Update(int id)
 {
 	string c_query = "update room set";
 	string room_name;
-	cout << "Nhap room name :";
+	cout << "\t\t\t\t\t\t\t\tEnter room name :";
 	cin.ignore();
 	getline(cin, room_name);
 	c_query += " room_name = '" + room_name;
 	c_query += "'where room_id = '" + to_string(id) + "'";
 	const char* q = c_query.c_str();
-	cout << q;
 	if (SQL_SUCCESS != SQLExecDirectA(SQLStateHandle, (SQLCHAR*)q, SQL_NTS))
 	{
-		cout << endl << "Co loi xay ra, vui long thu lai!!" << endl;
+		cout << endl << "\t\t\t\t\t\t\t\tAn error occurred, please try again !!" << endl;
 		Close();
 	}
 	else
 	{
-		cout << c_query;
-		cout << endl << "Them du lieu thanh cong !" << endl;
+		cout << endl << "\t\t\t\t\t\t\t\tSuccess!! " << endl;
 		return true;
 	}
 	SQLCancel(SQLStateHandle);

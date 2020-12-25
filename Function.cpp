@@ -8,6 +8,7 @@ void Function::MenuAdmin()
 {
     Decoration d;
     d.setColor(12);
+    fflush(stdin);
     system("cls");
     cout << "\t\t\t\t\t\t\t\tHANAFUO CINEMA" << endl;
     d.setColor(15);
@@ -24,10 +25,9 @@ void Function::MenuAdmin()
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     Account out;
-    cin >> m;
-    system("cls");
+    //system("cls");
     switch (m)
     {
     case 1:
@@ -56,11 +56,12 @@ void Function::MenuAdmin()
         break;
     case 9:
         this->user_now = out;
-        Authentication();
+        this->Start();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+        _getch();
+        MenuAdmin();
         break;
     }
 }
@@ -69,20 +70,20 @@ void Function::Menu()
     Decoration d;
     d.setColor(12);
     system("cls");
-    cout << "\t\t\t\t\t\t\t\tHANAFUO CINEMA" << endl;
-        d.setColor(15);
-        cout << "\t\t\t\t\t\t\t\t1. Movie on today" << endl
-            << "\t\t\t\t\t\t\t\t2. Movie now showing" << endl
-            << "\t\t\t\t\t\t\t\t3. Movie coming soon" << endl
-            << "\t\t\t\t\t\t\t\t4. Search movie " << endl
-            << "\t\t\t\t\t\t\t\t5. View showtimes ( schedule )" << endl
-            << "\t\t\t\t\t\t\t\t6. Book a ticket " << endl
-            << "\t\t\t\t\t\t\t\t7. Log out " << endl;
-        d.setColor(14);
-        cout<< "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    fflush(stdin);
+    cout << "\t\t\t\t\t\t\t\tWELCOME TO HANAFUO CINEMA" << endl;
+    d.setColor(15);
+    cout << "\t\t\t\t\t\t\t\t1. Movie on today" << endl
+        << "\t\t\t\t\t\t\t\t2. Movie now showing" << endl
+        << "\t\t\t\t\t\t\t\t3. Movie coming soon" << endl
+        << "\t\t\t\t\t\t\t\t4. Search movie " << endl
+        << "\t\t\t\t\t\t\t\t5. View showtimes ( schedule )" << endl
+        << "\t\t\t\t\t\t\t\t6. Book a ticket " << endl
+        << "\t\t\t\t\t\t\t\t7. Log out " << endl;
+    d.setColor(14);
+    cout << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
+    int m = this->ImpChoice();
     Account out;
-    cin >> m;
     switch (m)
     {
     case 1:
@@ -91,7 +92,6 @@ void Function::Menu()
     case 2:
         this->MenuMovieShowing();
         break;
-
     case 3:
         this->MenuMovieComing();
         break;
@@ -106,11 +106,12 @@ void Function::Menu()
         break;
     case 7:
         this->user_now = out;
-        Authentication();
+        this->Start();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+        _getch();
+        Menu();
         break;
     }
 }
@@ -122,11 +123,10 @@ void Function::Authentication()
     cout << "\t\t\t\t\t\t\t\tDo you have account ? " << endl;
     d.setColor(7);
     cout << "\t\t\t\t\t\t\t\t1. Login " << endl
-         << "\t\t\t\t\t\t\t\t2. Register " << endl;
-        d.setColor(14);
+        << "\t\t\t\t\t\t\t\t2. Register " << endl;
+    d.setColor(14);
     cout << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
-    cin >> m;
+    int m = this->ImpChoice();
     d.setColor(12);
     switch (m)
     {
@@ -134,7 +134,7 @@ void Function::Authentication()
         system("cls");
         cout << "\t\t\t\t\t\t\t\tLogin:" << endl;
         Validate();
-        break;
+        return;
     case 2:
         system("cls");
         cout << "\t\t\t\t\t\t\t\tRegister:" << endl;
@@ -145,13 +145,12 @@ void Function::Authentication()
         this->Authentication();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+        cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
         _getch();
-        fflush(stdin);
-        cin.ignore();
         this->Authentication();
         break;
     }
+
 }
 void Function::Validate()
 {
@@ -223,6 +222,7 @@ Login:
                 validate = 1;
                 d.setColor(15);
                 _getch();
+                cin.ignore();
                 system("cls");
             }
             else
@@ -237,7 +237,9 @@ Login:
         this->user_now = this->acc.getAccount(stt);
         this->acc.Close();
     }
+
 }
+
 void Function::MenuTodayMovie()
 {
     system("cls");
@@ -290,8 +292,7 @@ void Function::MenuSchedule()
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
-    cin >> m;
+    int m = this->ImpChoice();
     this->schedule.Init();
     switch (m)
     {
@@ -305,8 +306,9 @@ void Function::MenuSchedule()
         Menu();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+        _getch();
+        MenuSchedule();
         break;
     }
     this->schedule.Close();
@@ -324,7 +326,7 @@ void Function::MenuBooking()
     int room_id = this->schedule.getSchedule(schedule_stt - 1).getRoomID();
     this->seat.Init();
     d.setColor(11);
-    cout << "\t\t\t\t\t\t\t\tRoom seating map: " ;
+    cout << "\t\t\t\t\t\t\t\tRoom seating map: ";
     this->seat.Show(room_id);
     int seat_stt = 0;
     d.setColor(14);
@@ -333,17 +335,17 @@ void Function::MenuBooking()
     d.setColor(15);
     cout << "\t\t\t\t\t\t\t\tPick seat : ";
     cin >> seat_stt;
-    int seat_id = this->seat.getSeat(seat_stt-1, room_id).getSeatID();
-    while ( this->seat.getSeat(seat_stt-1, room_id).getStatus() == 1)
+    int seat_id = this->seat.getSeat(seat_stt - 1, room_id).getSeatID();
+    while (this->seat.getSeat(seat_stt - 1, room_id).getStatus() == 1)
     {
         cout << "\t\t\t\t\t\t\t\tSorry, this seat is reserved! " << endl;
-        cout << "\t\t\t\t\t\t\tX - seat is reserved , O - seat is available " << endl;
+        cout << endl << "\t\t\t\t\t\t\tX - seat is reserved , O - seat is available " << endl;
         cout << "\t\t\t\t\t\t\tWhite - seat is normal , Yellow - seat is VIP " << endl;
         cout << "\t\t\t\t\t\t\t\tPick seat again : ";
         cin >> seat_stt;
-        seat_id = this->seat.getSeat(seat_stt-1, room_id).getSeatID();
+        seat_id = this->seat.getSeat(seat_stt - 1, room_id).getSeatID();
     }
-    this->new_booking.setBooking(this->getUserNow().getID(), id_schedule, seat_id);
+    this->new_booking.setBooking(this->user_now.getID(), id_schedule, seat_id);
     this->booking.Init();
     this->booking.Insert(new_booking);
     this->seat.Close();
@@ -366,9 +368,9 @@ void Function::MenuAdAccount()
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     Account out;
-    cin >> m;
+
     this->acc.Init();
     switch (m)
     {
@@ -389,15 +391,16 @@ void Function::MenuAdAccount()
         cout << "\t\t\t\t\t\t\t\tEnter stt account to delete: ";
         d.setColor(15);
         cin >> stt_acc;
-        this->acc.Delete(stt_acc-1);
+        this->acc.Delete(stt_acc - 1);
         break;
     case 5:
         MenuAdmin();
         break;
     default:
         d.setColor(3);
-        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option! " << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option! " << endl;
+        _getch();
+        this->MenuAdAccount();
         break;
     }
     this->acc.Close();
@@ -416,18 +419,19 @@ void Function::MenuAdRoom() {
         << "\t\t\t\t\t\t\t\t5. Delete room" << endl
         << "\t\t\t\t\t\t\t\t6. Back to menu before" << endl
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     Account out;
     int room;
-    cin >> m;
-        this->room.Init();
+
+    this->room.Init();
     switch (m)
     {
     case 1:
         this->room.Show(1, 0);
         break;
     case 2:
-        cout << "\t\t\t\t\t\t\t\tEnter room to show: ";
+        this->room.Show(1, 0);
+        cout << "\t\t\t\t\t\t\t\tEnter order number of room to show: ";
         cin >> room;
         this->room.Show(2, room);
         break;
@@ -447,11 +451,12 @@ void Function::MenuAdRoom() {
         MenuAdmin();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+        _getch();
+        this->MenuAdRoom();
         break;
     }
-     this->room.Close();
+    this->room.Close();
 }
 void Function::MenuAdSeat() {
     Decoration d;
@@ -468,11 +473,11 @@ void Function::MenuAdSeat() {
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+
     Account out;
     int room;
     int stt_seat;
-    cin >> m;
+    int m = this->ImpChoice();
     this->seat.Init();
     d.setColor(11);
     switch (m)
@@ -499,11 +504,12 @@ void Function::MenuAdSeat() {
         break;
     default:
         d.setColor(3);
-        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+        _getch();
+        this->MenuAdSeat();
         break;
     }
-        this->seat.Close();
+    this->seat.Close();
 }
 void Function::MenuUpdateSeat(int room)
 {
@@ -527,8 +533,7 @@ void Function::MenuUpdateSeat(int room)
         d.setColor(14);
         cout
             << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-        int m;
-        cin >> m;
+        int m = this->ImpChoice();
         switch (m)
         {
         case 1:
@@ -545,8 +550,9 @@ void Function::MenuUpdateSeat(int room)
             break;
         default:
             d.setColor(12);
-            cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
-            cin.ignore();
+            cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+            _getch();
+            this->MenuUpdateSeat(room);
             break;
         }
         this->seat.Show(room);
@@ -574,9 +580,8 @@ void Function::MenuAdMovie() {
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     int stt_mv;
-    cin >> m;
     switch (m)
     {
     case 1:
@@ -618,10 +623,10 @@ void Function::MenuAdMovie() {
     case 8:
         MenuAdmin();
         break;
-
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+        _getch();
+        this->MenuAdMovie();
         break;
     }
 }
@@ -640,12 +645,11 @@ void Function::MenuUpdateMovie(int stt)
             << "\t\t\t\t\t\t\t\t3. movie release" << endl
             << "\t\t\t\t\t\t\t\t4. movie length" << endl
             << "\t\t\t\t\t\t\t\t5. movie genre " << endl
-        << "\t\t\t\t\t\t\t\t6. Back to menu before " << endl;
+            << "\t\t\t\t\t\t\t\t6. Back to menu before " << endl;
         d.setColor(14);
         cout
             << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-        int m;
-        cin >> m;
+        int m = this->ImpChoice();
         this->mv.getMovie(stt).Show();
         switch (m)
         {
@@ -669,8 +673,9 @@ void Function::MenuUpdateMovie(int stt)
             break;
         default:
             d.setColor(11);
-            cout << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
-            cin.ignore();
+            cout << endl << "\t\t\t\t\t\t\t\tSorry,there is no matching option " << endl;
+            _getch();
+            this->MenuUpdateMovie(stt);
             break;
         }
         this->mv.getMovie(stt).Show();
@@ -696,19 +701,17 @@ void Function::MenuAdSeatType() {
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     Account out;
     int stt;
-    cin >> m;
+
     this->seat_type.Init();
     switch (m)
     {
     case 1:
-        
         this->seat_type.Show();
         break;
     case 2:
-     
         this->seat_type.Insert();
         this->seat_type.Show();
         break;
@@ -723,8 +726,9 @@ void Function::MenuAdSeatType() {
         break;
     default:
         d.setColor(11);
-        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-        cin.ignore();
+        cout <<endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+        _getch();
+        this->MenuAdSeatType();
         break;
     }
     this->seat.Close();
@@ -750,23 +754,23 @@ void Function::MenuUpdateSeatType()
         d.setColor(14);
         cout
             << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-        int m;
-        cin >> m;
+        int m = this->ImpChoice();
         switch (m)
         {
         case 1:
-            this->seat_type.Update(1,this->seat_type.getSeatType(stt-1).getSeatTypeID());
+            this->seat_type.Update(1, this->seat_type.getSeatType(stt - 1).getSeatTypeID());
             break;
         case 2:
-            this->seat_type.Update(2,this->seat_type.getSeatType(stt-1).getSeatTypeID());
+            this->seat_type.Update(2, this->seat_type.getSeatType(stt - 1).getSeatTypeID());
             break;
         case 3:
             MenuAdSeatType();
             break;
         default:
             d.setColor(11);
-            cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-            cin.ignore();
+            cout << endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+            _getch();
+            this->MenuUpdateSeatType();
             break;
         }
         this->seat_type.Show();
@@ -789,22 +793,22 @@ void Function::MenuAdBooking() {
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     Account out;
-    cin >> m;
     this->booking.Init();
     d.setColor(11);
     switch (m)
     {
     case 1:
-        this->booking.Show(1,0);
+        this->booking.Show(1, 0);
         break;
     case 2:
         MenuAdmin();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+        _getch();
+        this->MenuAdBooking();
         break;
     }
     this->booking.Close();
@@ -824,19 +828,18 @@ void Function::MenuUpdateSchedule(int stt)
             << "\t\t\t\t\t\t\t\t3. Schedule date" << endl
             << "\t\t\t\t\t\t\t\t4. Schedule start" << endl
             << "\t\t\t\t\t\t\t\t5. Schedule end " << endl
-        << "\t\t\t\t\t\t\t\t6. Back to menu before " << endl;
+            << "\t\t\t\t\t\t\t\t6. Back to menu before " << endl;
         d.setColor(14);
         cout
             << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-        int m;
-        cin >> m;
+        int m = this->ImpChoice();
         this->schedule.Init();
         this->mv.Init();
         this->schedule.getSchedule(stt).Show(this->mv);
         switch (m)
         {
         case 1:
-          
+
             this->schedule.Update(this->schedule.getSchedule(stt).getScheduleID(), 1);
             this->schedule.Close();
             break;
@@ -860,8 +863,9 @@ void Function::MenuUpdateSchedule(int stt)
             MenuAdSchedule();
             break;
         default:
-            cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-            cin.ignore();
+            cout << endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+            _getch();
+            this->MenuUpdateSchedule(stt);
             break;
         }
         this->schedule.getSchedule(stt).Show(this->mv);
@@ -889,11 +893,10 @@ void Function::MenuAdSchedule() {
     d.setColor(14);
     cout
         << "\t\t\t\t\t\t\t\tPRESS THE NUMBER : ";
-    int m;
+    int m = this->ImpChoice();
     int stt_sc;
     Account out;
     int movieID;
-    cin >> m;
     this->schedule.Init();
     d.setColor(11);
     switch (m)
@@ -904,33 +907,40 @@ void Function::MenuAdSchedule() {
     case 2:
         this->schedule.Insert();
         break;
-    /*case 3:
-        this->schedule.Show(1);
-        cout << "\t\t\t\t\t\t\tEnter order number of schedule to update : ";
-        cin >> stt_sc;
-        this->MenuUpdateSchedule(stt_sc - 1);
-        break;*/
+        /*case 3:
+            this->schedule.Show(1);
+            cout << "\t\t\t\t\t\t\tEnter order number of schedule to update : ";
+            cin >> stt_sc;
+            this->MenuUpdateSchedule(stt_sc - 1);
+            break;*/
     case 3:
         this->schedule.Show(1);
         cout << "\t\t\t\t\t\t\tEnter order number of schedule: ";
         cin >> stt_sc;
-        this->schedule.Delete(stt_sc-1);
+        this->schedule.Delete(stt_sc - 1);
         break;
     case 4:
         MenuAdmin();
         break;
     default:
-        cout << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
-        cin.ignore();
+        cout << endl << "\t\t\t\t\t\t\t\tSorry, there is no matching option !" << endl;
+        _getch();
+        this->MenuAdSchedule();
         break;
     }
     this->schedule.Close();
 }
-Account Function::getUserNow()
-{
-    return this->user_now;
+
+int Function::ImpChoice() {
+    string tmp;
+    getline(cin, tmp);
+    for (int i = 0; i < tmp.size(); i++)
+        if (tmp[i] < 48 || tmp[i] > 57) return -1;
+    return atoi(tmp.c_str());
 }
 void Function::Information() {
+    Decoration d;
+    d.setColor(11);
     cout << "\t\t\t\t\t\t-------------------------------------------------------------------------" << endl;
     cout << "\t\t\t\t\t\t|\t\t\t PBL2 PROJECT\t\t\t\t\t|" << endl;
     cout << "\t\t\t\t\t\t|\t\t Project : Movie booking management \t\t\t|" << endl;
@@ -939,4 +949,30 @@ void Function::Information() {
     cout << "\t\t\t\t\t\t|\t\t Class   : 19TCLC_DT4 \t\t\t\t\t|" << endl;
     cout << "\t\t\t\t\t\t|\t\t Group   : 19.Nh14A \t\t\t\t\t|" << endl;
     cout << "\t\t\t\t\t\t-------------------------------------------------------------------------" << endl;
+    _getch();
+    cin.ignore();
+}
+void Function::Start()
+{
+    Decoration d;
+    d.setColor(11);
+    system("cls");
+    this->Authentication();
+    char key;
+    d.setColor(12);
+    do
+    {
+        d.setColor(15);
+        if (this->user_now.getRole() == 1) {
+            this->MenuAdmin();
+        }
+        else {
+            this->Menu();
+        }
+        d.setColor(14);
+        cout << "\t\t\t\t\t\t\t\tDo you want to be continute? y/n ";
+        cin >> key;
+        cin.ignore();
+        d.setColor(7);
+    } while (key != 'n');
 }

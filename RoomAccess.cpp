@@ -59,7 +59,6 @@ void RoomAccess::Show(int choice, int id)
 	// 2 - id: show seat theo phòng
 	Room* ptr = new Room[this->Count()];
 	SeatAccess seat_access;
-	seat_access.Init();
 	switch (choice)
 	{
 	case 1:
@@ -75,6 +74,7 @@ void RoomAccess::Show(int choice, int id)
 		}
 		break;
 	case 2:
+		seat_access.Init();
 		seat_access.Show(id);
 		seat_access.Close();
 		break;
@@ -130,6 +130,8 @@ bool RoomAccess::Update(int id)
 
 bool RoomAccess::Delete()
 {
+
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return 0;
 }
 

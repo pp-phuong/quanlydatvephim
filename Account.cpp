@@ -77,7 +77,7 @@ void Account::setAccount()
     d.setColor(12);
     system("cls");
    cout << "\t\t\t\t\t\t\t\tFullname : ";
-    cin.ignore();
+   fflush(stdin);
     d.setColor(15);
     cin.getline(fullname,32);
 

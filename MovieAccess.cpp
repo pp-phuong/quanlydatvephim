@@ -190,7 +190,7 @@ bool MovieAccess::Update(int id, int type)
 	case 1:
 		d.setColor(11);
 		cout << "\t\t\t\t\t\t\t\tEnter movie name :";
-		cin.ignore();
+		fflush(stdin);
 		d.setColor(14);
 		getline(cin,movie_name);
 		c_query += " movie_name = '"+ movie_name;
@@ -198,7 +198,7 @@ bool MovieAccess::Update(int id, int type)
 	case 2:
 		d.setColor(11);
 		cout << "\t\t\t\t\t\t\t\tEnter movie description :";
-		cin.ignore();
+		fflush(stdin);
 		d.setColor(14);
 		getline(cin, movie_description);
 		c_query += " movie_description = '" +  movie_description;
@@ -206,7 +206,7 @@ bool MovieAccess::Update(int id, int type)
 	case 3:
 		d.setColor(11);
 		cout << "\t\t\t\t\t\t\t\tEnter movie release :";
-		cin.ignore();
+		fflush(stdin);
 		d.setColor(14);
 		getline(cin, movie_release);
 		c_query += " movie_release = '" + movie_release;
@@ -221,7 +221,7 @@ bool MovieAccess::Update(int id, int type)
 	case 5:
 		d.setColor(11);
 		cout << "\t\t\t\t\t\t\t\tEnter movie genre :";
-		cin.ignore();
+		fflush(stdin);
 		d.setColor(14);
 		getline(cin, movie_genre);
 		c_query += " movie_genres = '" + movie_genre;
@@ -246,6 +246,8 @@ bool MovieAccess::Update(int id, int type)
 }
 bool MovieAccess::Delete()
 {
+
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return true;
 }
 Movie MovieAccess::getMovie(int index)

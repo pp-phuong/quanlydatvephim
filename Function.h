@@ -59,6 +59,7 @@ public:
 	void MenuAdSchedule();
 	void Authentication();
 	void Validate();
-	Account getUserNow();
+	int ImpChoice();
+	void Start();
 	~Function();
 };

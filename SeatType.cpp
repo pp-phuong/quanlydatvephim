@@ -54,7 +54,7 @@ string SeatType::insertQuery()
 void SeatType::Show()
 {	
 	Decoration d;
-	d.setColor(14);
+	d.setColor(15);
 	cout << left << setw(15) << this->seat_type;
 	cout << right << setw(10) << long( this->seat_price );
 	cout << endl;

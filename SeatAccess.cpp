@@ -241,6 +241,8 @@ bool SeatAccess::Update(int id, int type, int room)
 
 bool SeatAccess::Delete()
 {
+
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return 0;
 }
 

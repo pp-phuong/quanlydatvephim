@@ -146,6 +146,7 @@ bool AccountAccess::Insert(Account acc)
 }
 bool AccountAccess::Update()
 {
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return 1;
 }
 bool AccountAccess::Delete(int stt)
@@ -155,7 +156,6 @@ bool AccountAccess::Delete(int stt)
 	string c_query = "delete from account where ID_number = '" + id + "'";
 	const char* q = c_query.c_str();
 	d.setColor(12);
-	cout << q;
 	cout << "\t\t\t\t\t\t\t\tAre you sure  ? (Y/N): ";
 	d.setColor(15);
 	char ans;

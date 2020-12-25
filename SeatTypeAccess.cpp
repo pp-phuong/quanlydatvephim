@@ -129,6 +129,8 @@ bool SeatTypeAccess::Update(int choice, int id)
 
 bool SeatTypeAccess::Delete()
 {
+
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return 0;
 }
 

@@ -226,9 +226,9 @@ void ScheduleAccess::Show(int choice)
 		MovieAccess movie;
 		movie.Init();
 		d.setColor(12);
-		cout << "\t\t\t\t\t\t\t\t SHOWTIMES" << endl;
+		cout << "\t\t\t\t\t\t\t\t\t SHOWTIMES" << endl;
 		d.setColor(11);
-		cout << "\t\t\t\t" << left  << setw(10) << "STT: " ;
+		cout << "\t\t\t\t\t" << left  << setw(10) << "STT: " ;
 		cout << left << setw(35) << "Movie: ";
 		cout << left << setw(20) << "Date: ";
 		cout << left << setw(20) << "Time start: " << endl;

@@ -84,8 +84,8 @@ void Movie::Show()
 	d.setColor(11);
 	cout << "\t\t\t\t" << temp << "" << endl << endl;
 	d.setColor(15);
-	cout <<  "\t\t\t\tDescription: " << this->movie_description << endl;
-	cout <<  "\t\t\t\tLength: " << this->movie_length << " phut " << endl; 
-	cout <<  "\t\t\t\tGenre: " <<this->movie_genre << endl;
-	cout <<  "\t\t\t\tRelease: " <<  this->movie_release << endl << endl;
+	cout <<  "\t\t\t\t\tDescription: " << this->movie_description << endl;
+	cout <<  "\t\t\t\t\tLength: " << this->movie_length << " phut " << endl; 
+	cout <<  "\t\t\t\t\tGenre: " <<this->movie_genre << endl;
+	cout <<  "\t\t\t\t\tRelease: " <<  this->movie_release << endl << endl;
 }

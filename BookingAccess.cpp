@@ -152,7 +152,7 @@ void BookingAccess::Show(int choice, int id)
 				d.setColor(14);
 				cout << seat_price << endl << endl;
 				d.setColor(12);
-				cout << "\t\t\t\t\t\t\t\t__________Thanh you !__________" << endl << endl;
+				cout << "\t\t\t\t\t\t\t\t__________Thank you !__________" << endl << endl;
 			}
 		}
 		SQLCancel(SQLStateHandle);
@@ -162,6 +162,8 @@ void BookingAccess::Show(int choice, int id)
 
 bool BookingAccess::Update()
 {
+
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return 0;
 }
 bool BookingAccess::Insert(Booking &booking)
@@ -204,5 +206,7 @@ int BookingAccess::LastID()
 }
 bool BookingAccess::Delete()
 {
+
+	cout << "\t\t\t\t\t\t\t\tUpdating this function..." << endl;
 	return 0;
 }

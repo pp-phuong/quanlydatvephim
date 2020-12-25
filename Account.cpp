@@ -115,10 +115,20 @@ Email:
         cout << "\t\t\t\t\t\tEmail is in wrong form  ! Enter email again " << endl;
         goto Email;
     }
+    int validate_phone = 0;
+Phone:
     d.setColor(12);
-   cout << "\t\t\t\t\t\t\t\tPhone number : ";
-   d.setColor(15);
+    cout << "\t\t\t\t\t\t\t\tPhone number : ";
+    d.setColor(15);
     cin.getline(phone_number, 50);
+    for (int i = 0; i < strlen(this->phone_number); i++)
+    {
+        if ((this->phone_number[i] >= 'a' && this->phone_number[i] <= 'z') || (this->phone_number[i] >= 'A' && this->phone_number[i] <= 'Z'))
+        {
+            cout << "\t\t\t\t\t\tPhone number is in wrong form ! Enter phone again " << endl;
+            goto Phone;
+        }
+    }
     d.setColor(12);
    cout << "\t\t\t\t\t\t\t\tPassword : ";
    d.setColor(15);

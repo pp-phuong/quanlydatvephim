@@ -1,7 +1,3 @@
-﻿  Function.cpp
-D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(160,6): warning C4102: 'Login': unreferenced label
-D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(162,10): warning C4101: 'ch': unreferenced local variable
-D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(475,9): warning C4101: 'stt_seat': unreferenced local variable
-D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(702,9): warning C4101: 'stt': unreferenced local variable
-D:\University\Năm 2\Kì 3\Đồ án\DALT\Function.cpp(896,9): warning C4101: 'movieID': unreferenced local variable
-  DALT.vcxproj -> D:\University\Năm 2\Kì 3\Đồ án\DALT\x64\Debug\DALT.exe
+﻿  MovieAccess.cpp
+C:\Users\Em\Downloads\quanlydatvephim-main\quanlydatvephim-main\MovieAccess.cpp(48,14): warning C4101: 'PtrSQLVersion': unreferenced local variable
+  DALT.vcxproj -> C:\Users\Em\Downloads\quanlydatvephim-main\quanlydatvephim-main\x64\Debug\DALT.exe

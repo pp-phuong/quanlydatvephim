@@ -24,7 +24,7 @@ void MovieAccess::Select(Movie*& mv, int choice)
 		c_query = "select * from movie";
 		break;
 	case 2:
-		c_query = "select * from movie where movie_release  <= " + date.getToDay();
+		c_query = "select * from movie where month(movie_release)  = " + date.getMonth();
 		break;
 	case 3:
 		c_query = "select * from movie where movie_release  > " + date.getToDay();
@@ -83,7 +83,7 @@ int MovieAccess::CountRow(int choice)
 		c_query = "select * from movie";
 		break;
 	case 2:
-		c_query = "select * from movie where movie_release  <= " + date.getToDay();
+		c_query = "select * from movie where month(movie_release)  = " + date.getMonth();
 		break;
 	case 3:
 		c_query = "select * from movie where movie_release  > " + date.getToDay();
@@ -130,7 +130,8 @@ void MovieAccess::Show(int index)
 		d.setColor(11);
 		cout << "\t\t\t\t\t\t\t\tEnter name of movie : ";
 		d.setColor(14);
-		cin >> this->search_key;
+		cin.ignore();
+		getline(cin, this->search_key);
 	}
 	Movie* ptr = new Movie[this->CountRow(index)];
 	this->Select(ptr, index);
